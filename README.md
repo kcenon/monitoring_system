@@ -559,6 +559,28 @@ make coverage
 
 ## Ecosystem Integration
 
+### Ecosystem Dependency Map
+
+```mermaid
+graph TD
+    A[common_system] --> B[thread_system]
+    A --> C[container_system]
+    B --> D[logger_system]
+    B --> E[monitoring_system]
+    D --> F[database_system]
+    E --> F
+    F --> G[network_system]
+    G --> H[pacs_system]
+
+    style E fill:#f9f,stroke:#333,stroke-width:3px
+```
+
+> **Ecosystem reference**:
+> [common_system](https://github.com/kcenon/common_system) — Tier 0: IMonitor interface and Result&lt;T&gt; pattern
+> [thread_system](https://github.com/kcenon/thread_system) — Tier 1: Thread pool for async metric collection
+> [logger_system](https://github.com/kcenon/logger_system) — Tier 2: Logging integration (optional)
+> [network_system](https://github.com/kcenon/network_system) — Tier 4: HTTP transport for exporters (optional)
+
 This monitoring system integrates seamlessly with other KCENON systems:
 
 ```cpp
@@ -570,8 +592,6 @@ auto collector = create_threaded_collector(thread_pool);
 #include <logger_system/logger.h>
 monitoring_system::set_logger(logger_system::get_logger());
 ```
-
-🌐 [Ecosystem Integration Guide →](../ECOSYSTEM.md)
 
 ---
 
