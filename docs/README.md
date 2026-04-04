@@ -85,7 +85,7 @@ Total documents: **80**
 | 64 | MON-INTR-004 | OpenTelemetry Collector Sidecar Pattern | [OTEL_COLLECTOR_SIDECAR.md](./guides/OTEL_COLLECTOR_SIDECAR.md) | Released |
 | 65 | MON-QUAL-001 | Monitoring System - 프로덕션 품질 메트릭 | [PRODUCTION_QUALITY.kr.md](./PRODUCTION_QUALITY.kr.md) | Released |
 | 66 | MON-QUAL-002 | Monitoring System - Production Quality Metrics | [PRODUCTION_QUALITY.md](./PRODUCTION_QUALITY.md) | Released |
-| 67 | MON-QUAL-002 | Feature-Test-Module Traceability Matrix | [TRACEABILITY.md](./TRACEABILITY.md) | Released |
+| 67 | MON-QUAL-005 | Feature-Test-Module Traceability Matrix | [TRACEABILITY.md](./TRACEABILITY.md) | Released |
 | 68 | MON-QUAL-003 | Testing Guide | [TESTING_GUIDE.md](./contributing/TESTING_GUIDE.md) | Released |
 | 69 | MON-QUAL-004 | Reliability Patterns Usage Guide | [RELIABILITY_PATTERNS.md](./guides/RELIABILITY_PATTERNS.md) | Released |
 | 70 | MON-SECU-001 | 보안 정책 | [SECURITY.kr.md](./guides/SECURITY.kr.md) | Released |
@@ -207,7 +207,7 @@ Total documents: **80**
 |--------|-------|----------|--------|
 | MON-QUAL-001 | Monitoring System - 프로덕션 품질 메트릭 | [PRODUCTION_QUALITY.kr.md](./PRODUCTION_QUALITY.kr.md) | Released |
 | MON-QUAL-002 | Monitoring System - Production Quality Metrics | [PRODUCTION_QUALITY.md](./PRODUCTION_QUALITY.md) | Released |
-| MON-QUAL-002 | Feature-Test-Module Traceability Matrix | [TRACEABILITY.md](./TRACEABILITY.md) | Released |
+| MON-QUAL-005 | Feature-Test-Module Traceability Matrix | [TRACEABILITY.md](./TRACEABILITY.md) | Released |
 | MON-QUAL-003 | Testing Guide | [TESTING_GUIDE.md](./contributing/TESTING_GUIDE.md) | Released |
 | MON-QUAL-004 | Reliability Patterns Usage Guide | [RELIABILITY_PATTERNS.md](./guides/RELIABILITY_PATTERNS.md) | Released |
 
