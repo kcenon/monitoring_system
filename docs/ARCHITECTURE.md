@@ -18,6 +18,15 @@ Architecture Overview
 
 ## Purpose
 
+> **Cross-reference**:
+> [API Reference](./API_REFERENCE.md) — Collector, tracer, and alert APIs
+> [Benchmarks](./BENCHMARKS.md) — Metrics collection performance data
+
+> **Ecosystem reference**:
+> [common_system API](https://github.com/kcenon/common_system/blob/main/docs/API_REFERENCE.md) — IMonitor interface and Result&lt;T&gt; pattern
+> [thread_system Architecture](https://github.com/kcenon/thread_system/blob/main/docs/ARCHITECTURE.md) — Thread pool for async metric collection
+> [logger_system Architecture](https://github.com/kcenon/logger_system/blob/main/docs/ARCHITECTURE.md) — Logging integration for diagnostics
+
 monitoring_system provides metrics collection, storage, analysis, health checks, and event-driven observability for C++20 services. It is interface-first and usable standalone or integrated with the thread_system and logger_system projects.
 
 ## Table of Contents
@@ -640,6 +649,32 @@ thread_system ──(metrics)──► monitoring_system ◄──(metrics)─�
 - Clear compiler diagnostics when types don't meet requirements
 - Self-documenting: concept definitions describe the expected interface
 - Interoperates with common_system concepts when available (`KCENON_HAS_COMMON_SYSTEM`)
+
+---
+
+## Ecosystem Dependencies
+
+monitoring_system sits at **Tier 3** in the kcenon ecosystem, providing observability.
+
+```mermaid
+graph TD
+    A[common_system] --> B[thread_system]
+    A --> C[container_system]
+    B --> D[logger_system]
+    B --> E[monitoring_system]
+    D --> F[database_system]
+    E --> F
+    F --> G[network_system]
+    G --> H[pacs_system]
+
+    style E fill:#f9f,stroke:#333,stroke-width:3px
+```
+
+> **Ecosystem reference**:
+> [common_system](https://github.com/kcenon/common_system) — Tier 0: IMonitor, event bus, Result&lt;T&gt;
+> [thread_system](https://github.com/kcenon/thread_system) — Tier 1: Thread pool for async collection
+> [logger_system](https://github.com/kcenon/logger_system) — Tier 2: Logging integration (optional)
+> [network_system](https://github.com/kcenon/network_system) — Tier 4: HTTP exporter transport (optional)
 
 ---
 
