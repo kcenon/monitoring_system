@@ -5,6 +5,7 @@
 /**
  * @file facade_adapter_poc.cpp
  * @brief Proof-of-concept for Facade + Adapter pattern refactoring
+ * @example facade_adapter_poc.cpp
  *
  * This file demonstrates how the Facade + Adapter pattern would replace
  * multiple inheritance in performance_monitor. This validates the approach

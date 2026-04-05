@@ -5,7 +5,8 @@
 /**
  * @file basic_monitoring_example.cpp
  * @brief Basic example demonstrating simple monitoring setup
- * 
+ * @example basic_monitoring_example.cpp
+ *
  * This example shows how to:
  * - Initialize the monitoring system
  * - Collect basic metrics

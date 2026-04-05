@@ -5,6 +5,7 @@
 /**
  * @file bidirectional_di_example.cpp
  * @brief Phase 4 - Bidirectional Dependency Injection Example
+ * @example bidirectional_di_example.cpp
  *
  * Demonstrates how logger_system and monitoring_system can integrate
  * through dependency injection WITHOUT compile-time circular dependency.

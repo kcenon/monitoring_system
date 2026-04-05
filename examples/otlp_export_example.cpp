@@ -5,6 +5,7 @@
 /**
  * @file otlp_export_example.cpp
  * @brief Demonstrates OpenTelemetry Protocol (OTLP) export configuration
+ * @example otlp_export_example.cpp
  *
  * This example shows how to:
  * - Configure OTLP gRPC exporter

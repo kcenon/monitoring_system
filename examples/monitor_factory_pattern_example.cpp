@@ -5,6 +5,7 @@
 /**
  * @file monitor_factory_pattern_example.cpp
  * @brief Monitor factory and provider pattern examples for Phase 4
+ * @example monitor_factory_pattern_example.cpp
  *
  * Demonstrates advanced DI patterns including factory pattern,
  * monitor providers, and aggregation strategies.
