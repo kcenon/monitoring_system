@@ -101,6 +101,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All usages migrated to `common::Result<T>` and `common::VoidResult` from common_system
 
 ### Added
+- **Modernize Doxygen with doxygen-awesome-css theme** (#646)
+  - Vendored doxygen-awesome-css theme (dark mode toggle, fragment copy, interactive TOC, paragraph links)
+  - Added custom HTML header with theme extensions and dark mode support
+  - Created standardized `mainpage.dox` with 8 sections: overview, features, architecture diagram, quick start, installation, module overview, examples, and related systems
+  - Updated Doxyfile: `HTML_COLORSTYLE = LIGHT`, `HTML_COPY_CLIPBOARD = NO`, `CREATE_SUBDIRS = NO`
+  - Consistent branding with other kcenon ecosystem projects
 - **Stream aggregation module** (#344)
   - `stream_aggregator.h`: Streaming statistical aggregation for real-time metrics
     - `online_statistics`: Welford's algorithm for streaming mean/variance/stddev
