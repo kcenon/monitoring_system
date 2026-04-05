@@ -5,6 +5,7 @@
 /**
  * @file multi_service_tracing_example.cpp
  * @brief Demonstrates distributed tracing across multiple services
+ * @example multi_service_tracing_example.cpp
  *
  * This example shows how to:
  * - Simulate multi-service architecture

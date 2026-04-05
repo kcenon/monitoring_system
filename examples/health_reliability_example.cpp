@@ -5,7 +5,8 @@
 /**
  * @file health_reliability_example.cpp
  * @brief Example demonstrating health monitoring and reliability features
- * 
+ * @example health_reliability_example.cpp
+ *
  * This example shows how to:
  * - Set up health checks
  * - Configure circuit breakers

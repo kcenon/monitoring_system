@@ -5,6 +5,7 @@
 /**
  * @file logger_di_integration_example.cpp
  * @brief Monitoring system integration example with Result pattern
+ * @example logger_di_integration_example.cpp
  *
  * Demonstrates how monitoring_system uses common_system interfaces
  * and Result<T> pattern for error handling.

@@ -5,6 +5,7 @@
 /**
  * @file graceful_degradation_example.cpp
  * @brief Demonstration of reliability patterns and graceful degradation
+ * @example graceful_degradation_example.cpp
  *
  * This example demonstrates:
  * - Circuit breaker pattern with monitoring

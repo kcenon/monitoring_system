@@ -2,6 +2,18 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file plugin_collector_example.cpp
+ * @brief Demonstrates plugin-based metric collector setup and usage
+ * @example plugin_collector_example.cpp
+ *
+ * This example shows how to:
+ * - Configure and create a plugin_metric_collector
+ * - Register multiple collector plugins (system, thread, logger)
+ * - Collect metrics from plugin-based collectors
+ * - Manage collector lifecycle (start/stop)
+ */
+
 #include <chrono>
 #include <iostream>
 #include <thread>

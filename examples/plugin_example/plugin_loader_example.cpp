@@ -5,6 +5,7 @@
 /**
  * @file plugin_loader_example.cpp
  * @brief Example demonstrating dynamic plugin loading
+ * @example plugin_example/plugin_loader_example.cpp
  *
  * This program shows how to:
  * 1. Load a plugin from a shared library

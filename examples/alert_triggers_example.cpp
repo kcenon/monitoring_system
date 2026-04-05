@@ -5,6 +5,7 @@
 /**
  * @file alert_triggers_example.cpp
  * @brief Comprehensive example demonstrating various alert trigger types
+ * @example alert_triggers_example.cpp
  *
  * This example demonstrates:
  * - ThresholdTrigger implementation (above/below/equal)

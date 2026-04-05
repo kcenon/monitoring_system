@@ -5,6 +5,7 @@
 /**
  * @file distributed_tracing_example.cpp
  * @brief Example demonstrating distributed tracing across services
+ * @example distributed_tracing_example.cpp
  *
  * This example shows how to:
  * - Create and manage trace spans

@@ -5,6 +5,12 @@
 /**
  * @file event_bus_example.cpp
  * @brief Example demonstrating event-driven monitoring system
+ * @example event_bus_example.cpp
+ *
+ * This example shows how to:
+ * - Create and configure the event bus
+ * - Publish and subscribe to monitoring events
+ * - Handle event-driven metric collection
  */
 
 #include <kcenon/monitoring/core/event_bus.h>

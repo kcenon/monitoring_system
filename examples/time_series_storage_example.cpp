@@ -5,6 +5,7 @@
 /**
  * @file time_series_storage_example.cpp
  * @brief Demonstrates time-series storage for metric history
+ * @example time_series_storage_example.cpp
  *
  * This example shows how to:
  * - Initialize time-series storage backend

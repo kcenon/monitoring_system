@@ -2,6 +2,18 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file storage_example.cpp
+ * @brief Example demonstrating metric storage backends and query engine
+ * @example storage_example.cpp
+ *
+ * This example shows how to:
+ * - Configure time-series storage engine
+ * - Write metrics with timestamps to the database
+ * - Query metrics by time range and labels
+ * - Perform aggregation queries (avg, min, max)
+ */
+
 #include <chrono>
 #include <iostream>
 #include <thread>
