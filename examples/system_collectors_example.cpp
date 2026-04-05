@@ -5,6 +5,7 @@
 /**
  * @file system_collectors_example.cpp
  * @brief Demonstrates unified system collectors usage
+ * @example system_collectors_example.cpp
  *
  * This example shows how to use the consolidated system collectors:
  * - system_resource_collector (CPU, memory, disk)

@@ -5,6 +5,7 @@
 /**
  * @file collector_factory_example.cpp
  * @brief Demonstrates metric_factory usage for collector creation
+ * @example collector_factory_example.cpp
  *
  * This example shows how to use the unified collector factory:
  * - metric_factory initialization and singleton access

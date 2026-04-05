@@ -5,6 +5,7 @@
 /**
  * @file alert_notifiers_example.cpp
  * @brief Comprehensive example demonstrating alert notification implementations
+ * @example alert_notifiers_example.cpp
  *
  * This example demonstrates:
  * - WebhookNotifier setup and configuration

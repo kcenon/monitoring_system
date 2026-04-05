@@ -5,6 +5,7 @@
 /**
  * @file example_plugin.cpp
  * @brief Example dynamically loaded collector plugin
+ * @example plugin_example/example_plugin.cpp
  *
  * This file demonstrates how to create a collector plugin that can be
  * loaded as a shared library at runtime.

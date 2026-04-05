@@ -5,6 +5,7 @@
 /**
  * @file platform_metrics_example.cpp
  * @brief Demonstrates platform_metrics_collector usage
+ * @example platform_metrics_example.cpp
  *
  * This example shows how to use the unified platform metrics collector:
  * - platform_metrics_collector initialization

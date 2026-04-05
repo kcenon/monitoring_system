@@ -2,16 +2,24 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file result_pattern_example.cpp
+ * @brief Example demonstrating Result<T> and VoidResult error handling patterns
+ * @example result_pattern_example.cpp
+ *
+ * This example shows how to:
+ * - Use Result<T> for functions that return values or errors
+ * - Use VoidResult for functions that may fail without a return value
+ * - Chain Result operations with map/and_then
+ * - Handle monitoring error codes
+ */
+
 #include <iostream>
 #include <kcenon/monitoring/core/result_types.h>
 #include <kcenon/monitoring/core/error_codes.h>
 #include <kcenon/monitoring/interfaces/monitoring_core.h>
 
 using namespace kcenon::monitoring;
-
-/**
- * @brief Example demonstrating Result pattern usage
- */
 
 // Example function that may fail
 kcenon::common::Result<double> divide(double a, double b) {

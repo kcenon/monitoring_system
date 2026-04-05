@@ -5,6 +5,7 @@
 /**
  * @file production_monitoring_example.cpp
  * @brief Complete production-ready monitoring setup demonstration
+ * @example production_monitoring_example.cpp
  *
  * This example demonstrates:
  * - Configure complete monitoring stack

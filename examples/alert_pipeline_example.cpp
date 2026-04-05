@@ -6,6 +6,7 @@
  * @file alert_pipeline_example.cpp
  * @brief Comprehensive example demonstrating AlertManager, AlertPipeline,
  *        and alert lifecycle management
+ * @example alert_pipeline_example.cpp
  *
  * This example demonstrates:
  * - AlertManager initialization and configuration

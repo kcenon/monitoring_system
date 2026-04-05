@@ -5,6 +5,7 @@
 /**
  * @file custom_metric_types_example.cpp
  * @brief Example demonstrating custom metric types: histogram, summary, and timer
+ * @example custom_metric_types_example.cpp
  *
  * This example shows how to use the advanced metric types added in ARC-007:
  * - histogram_data: Distribution of values with configurable buckets
