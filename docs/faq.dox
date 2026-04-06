@@ -1,0 +1,88 @@
+/**
+@page faq Frequently Asked Questions
+
+@tableofcontents
+
+@section faq_collectors Collector Questions
+
+@subsection faq_custom_collector How do I add a custom collector?
+
+Derive from `metric_base`, implement `collect()`, and register the type with the factory:
+
+@code{.cpp}
+class my_metric : public metric_base {
+    metric_sample collect() override { ... }
+};
+
+metric_factory::instance().register_type<my_metric>("my.metric");
+@endcode
+
+See @ref tutorial_metrics "Metrics Tutorial" for a full example.
+
+@subsection faq_collector_interval How often should collectors run?
+
+Depends on the metric cost and the signal frequency. System metrics (CPU, RSS) at 5–10s is usually fine. High-rate counters (request count) should use event-driven updates, not polling.
+
+@section faq_tracing Tracing Questions
+
+@subsection faq_otlp_config How do I configure OTLP export?
+
+Create an `otlp_exporter_config`, set the endpoint and service name, construct an `otlp_exporter`, and register it with the tracer:
+
+@code{.cpp}
+otlp_exporter_config cfg;
+cfg.endpoint = "http://collector:4318/v1/traces";
+cfg.service_name = "my-service";
+tracer->register_exporter(std::make_shared<otlp_exporter>(cfg));
+@endcode
+
+@subsection faq_trace_sampling Should I sample traces?
+
+Yes — at scale, exporting every span is expensive and mostly noise. Start with probabilistic sampling (e.g., 1%), and add rules to always sample errors and slow requests.
+
+@section faq_alerts Alert Questions
+
+@subsection faq_cb_vs_alert Circuit breaker vs alert — when should I use which?
+
+- **Circuit breaker**: Automatically stops calls to a failing dependency so the caller doesn't cascade failure. Runs in-process, protects latency budgets.
+- **Alert**: Notifies a human that something is wrong. Runs out-of-process, drives investigation.
+
+Use both. The breaker keeps the system running; the alert tells you to fix the root cause.
+
+@subsection faq_alert_flapping How do I prevent flapping alerts?
+
+Use the `sustained` duration on `threshold_trigger` so transient spikes don't fire. Combine with the `suppression_window` to prevent re-alerts on the same condition within a cooldown period.
+
+@section faq_integration Integration Questions
+
+@subsection faq_logger_integration How does monitoring_system integrate with logger_system?
+
+Register the logger as a notification sink, and the alert pipeline will write alert events to the log in addition to external notifiers. See `examples/logger_di_integration_example.cpp`.
+
+@subsection faq_bidirectional_di Bidirectional DI — what is it?
+
+monitoring_system can be both a service that other systems consume (they push metrics into it) and a consumer of other services (it pulls context from logger_system, etc.). The DI container supports both directions without circular dependency. See `examples/bidirectional_di_example.cpp`.
+
+@section faq_perf Performance Questions
+
+@subsection faq_overhead What's the overhead of instrumentation?
+
+A well-tuned span creation is ~200ns and a metric sample push is ~50ns. The dominant cost is the exporter I/O, which runs async. Budget for 1–3% overhead in production workloads; more if you over-instrument.
+
+@subsection faq_thread_safety Is the registry thread-safe?
+
+Yes. Collectors, metrics registration, and trigger evaluation are all thread-safe. Registration during hot paths is discouraged for performance, not correctness.
+
+@section faq_plugins Plugin Questions
+
+@subsection faq_dynamic_plugins Can I load collectors dynamically?
+
+Yes — the plugin system supports dynamic loading. See `examples/plugin_collector_example.cpp` and `examples/plugin_example/`. Dynamic plugins are useful for optional telemetry that shouldn't link into the main binary.
+
+@section faq_storage Storage Questions
+
+@subsection faq_storage_backends Which storage backends are supported?
+
+In-memory ring buffer (default), file-backed ring buffer, and OTLP export. For long-term retention, export to a proper time-series database via OTLP and let the backend handle storage.
+
+*/

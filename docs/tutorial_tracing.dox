@@ -1,0 +1,94 @@
+/**
+@page tutorial_tracing Tutorial: Distributed Tracing
+
+@tableofcontents
+
+@section tracing_goal Goal
+
+Instrument a service with distributed tracing using W3C Trace Context propagation, then export spans via OTLP to a compatible backend (Jaeger, Tempo, Honeycomb, etc.).
+
+@section tracing_prereq Prerequisites
+
+- Read @ref tutorial_metrics first
+- Understand the concept of spans and trace context
+
+@section tracing_step1 Step 1: Start a root span
+
+A root span represents the beginning of a trace. All child spans propagate its trace ID.
+
+@code{.cpp}
+#include <kcenon/monitoring/tracing/tracer.h>
+
+auto tracer = global_tracer();
+auto span = tracer->start_span("handle_request");
+span->set_attribute("http.method", "GET");
+span->set_attribute("http.url", request.url);
+
+// ... do work ...
+
+span->end();
+@endcode
+
+@section tracing_step2 Step 2: Create child spans
+
+Child spans inherit the trace ID from their parent. Use them to break up work into meaningful units.
+
+@code{.cpp}
+{
+    auto parse_span = tracer->start_span("parse_request", span);
+    auto parsed = parse(request.body);
+    parse_span->end();
+}
+
+{
+    auto db_span = tracer->start_span("db.query", span);
+    auto rows = db->query("SELECT ...");
+    db_span->set_attribute("db.rows", static_cast<int64_t>(rows.size()));
+    db_span->end();
+}
+@endcode
+
+@section tracing_step3 Step 3: Propagate context across services
+
+When calling a downstream service, inject the trace context into outbound headers so the next service picks it up as its parent.
+
+@code{.cpp}
+http_request outbound;
+tracer->inject_context(current_span, outbound.headers);
+client.send(outbound);
+@endcode
+
+On the receiving side, extract the context from incoming headers:
+
+@code{.cpp}
+auto parent_context = tracer->extract_context(request.headers);
+auto span = tracer->start_span("handle_downstream", parent_context);
+@endcode
+
+@section tracing_otlp Step 4: Export via OTLP
+
+Configure an OTLP exporter to push spans to your collector.
+
+@code{.cpp}
+otlp_exporter_config config;
+config.endpoint = "http://otel-collector:4318/v1/traces";
+config.service_name = "my-service";
+
+auto exporter = std::make_shared<otlp_exporter>(config);
+tracer->register_exporter(exporter);
+@endcode
+
+See `examples/otlp_export_example.cpp` for a runnable demo.
+
+@section tracing_mistakes Common Mistakes
+
+- **Orphaned spans.** Forgetting to call `end()` leaves the span open, wastes memory, and produces missing spans in the backend.
+- **Trace context not propagated.** If downstream spans don't share the root's trace ID, they appear as separate traces in the UI.
+- **Over-instrumentation.** Wrapping every function in a span adds latency and noise. Focus on operations that cross process boundaries or take meaningful time.
+
+@section tracing_next Next Steps
+
+- @ref tutorial_alerts "Tutorial: Alert Pipeline"
+- @ref faq "FAQ"
+
+*/
