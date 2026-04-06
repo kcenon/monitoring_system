@@ -1,0 +1,60 @@
+/**
+@page troubleshooting Troubleshooting Guide
+
+@tableofcontents
+
+@section ts_missing_metrics Missing Metrics
+
+**Symptom**: Collector is registered but no samples appear in storage or export.
+
+**Possible causes**:
+
+1. Collector was registered but never started. Call `collector->start()` explicitly — registration alone doesn't schedule collection.
+2. The collector's interval is longer than your observation window.
+3. The exporter is buffering samples and hasn't flushed. Check `exporter->flush()` is called during shutdown.
+4. The sink is dropping samples due to backpressure. Look for `sample_dropped` events in the log.
+
+@section ts_otlp_failures OTLP Export Failures
+
+**Symptom**: Traces or metrics are not appearing in the OTLP backend.
+
+**Checks**:
+
+1. Is the endpoint reachable from the host running the exporter? `curl -v http://collector:4318/v1/traces` should return 405 (Method Not Allowed) for GET, confirming the endpoint exists.
+2. Is the service name set? Unnamed services are often dropped by backends.
+3. Check exporter error callbacks — they surface protocol errors, TLS issues, and timeout problems.
+4. If using gRPC, confirm the collector is listening on `4317` (not `4318` which is HTTP).
+
+@section ts_alert_false_positives Alert False Positives
+
+**Symptom**: Alerts fire repeatedly for conditions that aren't real problems.
+
+**Fixes**:
+
+1. Increase the `sustained` duration on the trigger — 30s or 60s catches real issues while ignoring transient spikes.
+2. Aggregate noisy metrics (use p95/p99 instead of max, moving average instead of instantaneous).
+3. Add a suppression window so re-alerts on the same condition require a cooldown period.
+4. Review the threshold — if normal operation brushes against it, the threshold is too tight.
+
+@section ts_memory_growth Memory Growth
+
+**Symptom**: Process RSS grows unbounded over hours/days when monitoring is enabled.
+
+**Common causes**:
+
+1. Unbounded metric cardinality — tagging metrics with high-cardinality values like user IDs or request paths. Aggregate before tagging.
+2. Exporter queue is not draining. The exporter backend may be down; check for queue-full warnings.
+3. Orphaned spans — spans that were never ended accumulate in the tracer's active set. Wrap span lifetime in RAII or use try/finally.
+
+@section ts_plugin_loading Plugin Loader Failures
+
+**Symptom**: Dynamic collector plugin fails to load.
+
+**Checks**:
+
+1. Plugin path is absolute or relative to the search path configured via `plugin_loader::add_search_path`.
+2. Plugin was built against the same monitoring_system ABI as the host. A version mismatch causes `dlopen` to succeed but symbol resolution to fail.
+3. The plugin exports the expected factory function (`create_collector`). Check with `nm -D plugin.so | grep create_collector`.
+4. On Linux, `LD_LIBRARY_PATH` must include the plugin's directory if it has unresolved library dependencies.
+
+*/
