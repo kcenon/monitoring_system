@@ -1,0 +1,81 @@
+/**
+@page tutorial_metrics Tutorial: Metrics Collection
+
+@tableofcontents
+
+@section metrics_goal Goal
+
+Collect system and custom metrics using monitoring_system's collector and factory pattern, then store them for later analysis.
+
+@section metrics_prereq Prerequisites
+
+- monitoring_system installed and linked (`kcenon::monitoring_system`)
+- Familiarity with `Result<T>` from common_system
+
+@section metrics_step1 Step 1: Use a built-in system collector
+
+System collectors ship with the library and require no custom code. Register one and it starts emitting metrics on its own schedule.
+
+@code{.cpp}
+#include <kcenon/monitoring/collectors/system_resource_collector.h>
+
+auto collector = std::make_shared<system_resource_collector>();
+collector->set_interval(std::chrono::seconds(5));
+collector->start();
+
+// Later...
+auto snapshot = collector->latest();
+std::cout << "CPU: " << snapshot.cpu_percent
+          << "% | RSS: " << snapshot.memory_rss_mb << " MB\n";
+@endcode
+
+@section metrics_step2 Step 2: Define a custom metric
+
+For domain-specific measurements, derive from `metric_base` and populate values on a tick callback or push path.
+
+@code{.cpp}
+class queue_depth_metric : public metric_base {
+public:
+    explicit queue_depth_metric(const job_queue& q) : q_(q) {}
+    metric_sample collect() override {
+        return metric_sample{
+            .name = "queue.depth",
+            .value = static_cast<double>(q_.size()),
+            .timestamp = std::chrono::system_clock::now()
+        };
+    }
+private:
+    const job_queue& q_;
+};
+@endcode
+
+@section metrics_step3 Step 3: Register via the factory
+
+The factory pattern centralizes creation and lets the app pick which collectors run based on configuration, not code.
+
+@code{.cpp}
+auto& factory = metric_factory::instance();
+factory.register_type<queue_depth_metric>("queue.depth");
+
+// Later, from config:
+auto collector = factory.create("queue.depth", queue_context);
+registry.add(collector);
+@endcode
+
+@section metrics_storage Step 4: Time-series storage
+
+Collected samples can be written to an in-memory ring buffer, a local file, or exported via OTLP. See @ref tutorial_tracing for the OTLP path.
+
+@section metrics_mistakes Common Mistakes
+
+- **Collecting too frequently.** Sub-second intervals on cheap metrics are fine; on expensive ones you'll dominate CPU with measurement overhead.
+- **Unbounded tag cardinality.** Tagging metrics with user IDs or request paths creates an explosion of time series. Keep tag values to a bounded set.
+- **Forgetting to start the collector.** Registration alone does nothing — you must call `start()`.
+
+@section metrics_next Next Steps
+
+- @ref tutorial_tracing "Tutorial: Distributed Tracing"
+- @ref tutorial_alerts "Tutorial: Alert Pipeline"
+- `examples/basic_monitoring_example.cpp`
+
+*/

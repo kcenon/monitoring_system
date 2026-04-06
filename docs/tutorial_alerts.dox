@@ -1,0 +1,73 @@
+/**
+@page tutorial_alerts Tutorial: Alert Pipeline
+
+@tableofcontents
+
+@section alerts_goal Goal
+
+Build an alert pipeline that evaluates metrics against thresholds, triggers notifications through multiple channels, and gracefully degrades when a notifier fails.
+
+@section alerts_step1 Step 1: Define a trigger
+
+A trigger watches a metric and fires when a condition is met.
+
+@code{.cpp}
+#include <kcenon/monitoring/alerts/trigger.h>
+
+auto high_cpu = std::make_shared<threshold_trigger>(
+    "cpu.usage",
+    comparison::greater_than,
+    80.0,  // percent
+    std::chrono::seconds(30)  // sustained
+);
+@endcode
+
+The trigger only fires if the condition holds for the sustained duration — this avoids pager fatigue from transient spikes.
+
+@section alerts_step2 Step 2: Attach notifiers
+
+Notifiers deliver alerts to external systems (Slack, email, PagerDuty). Multiple notifiers can subscribe to the same trigger.
+
+@code{.cpp}
+#include <kcenon/monitoring/alerts/notifiers/slack_notifier.h>
+
+auto slack = std::make_shared<slack_notifier>("https://hooks.slack.com/...");
+auto email = std::make_shared<email_notifier>("alerts@example.com");
+
+high_cpu->add_notifier(slack);
+high_cpu->add_notifier(email);
+@endcode
+
+@section alerts_step3 Step 3: Register with the pipeline
+
+The alert pipeline evaluates all registered triggers against each incoming metric sample.
+
+@code{.cpp}
+auto pipeline = std::make_shared<alert_pipeline>();
+pipeline->add_trigger(high_cpu);
+
+registry.register_sink(pipeline);  // wire metrics into the pipeline
+@endcode
+
+@section alerts_degradation Graceful Degradation
+
+If a notifier fails (e.g., Slack API is down), the pipeline records the failure via the circuit breaker and continues delivering via the remaining channels. Use `on_failure_callback` to record these events:
+
+@code{.cpp}
+pipeline->on_notifier_failure([](const notifier& n, const error_info& err) {
+    logger->warn("Notifier {} failed: {}", n.name(), err.message);
+});
+@endcode
+
+@section alerts_mistakes Common Mistakes
+
+- **Alerting on noisy metrics without aggregation.** Raw per-request latencies flap. Use p99 over a window instead.
+- **Too-sensitive thresholds.** Alerts that fire dozens of times a day train operators to ignore them. Tune for signal, not noise.
+- **Single notifier channel.** If the one channel is down, you miss the alert that it's down. Always have a fallback.
+
+@section alerts_next Next Steps
+
+- `examples/alert_pipeline_example.cpp`
+- @ref faq "FAQ"
+
+*/
