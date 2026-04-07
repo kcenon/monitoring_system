@@ -673,6 +673,9 @@ if(MONITORING_WITH_THREAD_SYSTEM)
         get_target_property(_thread_imported ${MONITORING_THREAD_TARGET} IMPORTED)
         if(NOT _thread_imported)
             set(MONITORING_CAN_INSTALL FALSE)
+            message(WARNING "monitoring_system: Installation disabled because '${MONITORING_THREAD_TARGET}' is not an IMPORTED target. "
+                            "This typically happens when dependencies are added via add_subdirectory() instead of find_package(). "
+                            "vcpkg builds require IMPORTED targets for proper packaging.")
         endif()
     else()
         message(FATAL_ERROR "MONITORING_WITH_THREAD_SYSTEM is ON but no thread_system target found.")
@@ -686,6 +689,9 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
         get_target_property(_logger_imported ${MONITORING_LOGGER_TARGET} IMPORTED)
         if(NOT _logger_imported)
             set(MONITORING_CAN_INSTALL FALSE)
+            message(WARNING "monitoring_system: Installation disabled because '${MONITORING_LOGGER_TARGET}' is not an IMPORTED target. "
+                            "This typically happens when dependencies are added via add_subdirectory() instead of find_package(). "
+                            "vcpkg builds require IMPORTED targets for proper packaging.")
         endif()
     else()
         message(STATUS "MONITORING_WITH_LOGGER_SYSTEM is ON but no logger_system target found. "
@@ -701,6 +707,9 @@ if(MONITORING_WITH_NETWORK_SYSTEM)
         get_target_property(_network_imported ${MONITORING_NETWORK_TARGET} IMPORTED)
         if(NOT _network_imported)
             set(MONITORING_CAN_INSTALL FALSE)
+            message(WARNING "monitoring_system: Installation disabled because '${MONITORING_NETWORK_TARGET}' is not an IMPORTED target. "
+                            "This typically happens when dependencies are added via add_subdirectory() instead of find_package(). "
+                            "vcpkg builds require IMPORTED targets for proper packaging.")
         endif()
     elseif(DEFINED NETWORK_SYSTEM_INCLUDE_DIR)
         # Header-only integration
@@ -893,7 +902,8 @@ if(MONITORING_CAN_INSTALL)
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
     )
 else()
-    message(STATUS "Monitoring System: Skipping install/export (subdirectory build with non-IMPORTED deps)")
+    message(WARNING "monitoring_system: Skipping install rules because MONITORING_CAN_INSTALL is FALSE. "
+                    "Package will not produce installed files.")
 endif()
 
 
