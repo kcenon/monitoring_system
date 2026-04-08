@@ -18,6 +18,16 @@ include(CMakeFindDependencyMacro)
 find_dependency(Threads REQUIRED)
 find_dependency(common_system CONFIG REQUIRED)
 
+# Ensure kcenon::common_system exists for exported target references.
+# The common_system package may export common_system::common_system (lowercase namespace)
+# but the monitoring_system export records kcenon::common_system.
+if(TARGET common_system::common_system AND NOT TARGET kcenon::common_system)
+    add_library(kcenon::common_system INTERFACE IMPORTED)
+    set_target_properties(kcenon::common_system PROPERTIES
+        INTERFACE_LINK_LIBRARIES common_system::common_system
+    )
+endif()
+
 # Conditional dependencies based on build configuration
 set(MONITORING_USE_THREAD_SYSTEM @MONITORING_WITH_THREAD_SYSTEM@)
 set(MONITORING_USE_LOGGER_SYSTEM @MONITORING_WITH_LOGGER_SYSTEM@)
@@ -25,7 +35,25 @@ set(MONITORING_USE_NETWORK_SYSTEM @MONITORING_WITH_NETWORK_SYSTEM@)
 set(MONITORING_USE_GRPC @MONITORING_WITH_GRPC@)
 
 if(MONITORING_USE_THREAD_SYSTEM)
-    find_dependency(thread_system CONFIG REQUIRED)
+    # Try lowercase config first, then PascalCase (vcpkg/legacy)
+    find_dependency(thread_system CONFIG QUIET)
+    if(NOT thread_system_FOUND)
+        find_dependency(ThreadSystem CONFIG REQUIRED)
+    endif()
+
+    # Normalize target names for exported references.
+    # The thread_system package may provide targets under different namespaces
+    # depending on config version: thread_system::ThreadSystem, ThreadSystem::ThreadSystem,
+    # or thread_system::thread_system. Ensure all forms exist.
+    if(TARGET thread_system::ThreadSystem AND NOT TARGET thread_system::thread_system)
+        add_library(thread_system::thread_system ALIAS thread_system::ThreadSystem)
+    endif()
+    if(TARGET ThreadSystem::ThreadSystem AND NOT TARGET thread_system::thread_system)
+        add_library(thread_system::thread_system INTERFACE IMPORTED)
+        set_target_properties(thread_system::thread_system PROPERTIES
+            INTERFACE_LINK_LIBRARIES ThreadSystem::ThreadSystem
+        )
+    endif()
 endif()
 
 if(MONITORING_USE_LOGGER_SYSTEM)
