@@ -734,6 +734,27 @@ if(MONITORING_WITH_NETWORK_SYSTEM)
     endif()
 endif()
 
+# Collect non-IMPORTED dependency names for diagnostic messages
+set(_MONITORING_NON_IMPORTED_DEPS "")
+if(MONITORING_WITH_THREAD_SYSTEM AND MONITORING_THREAD_TARGET AND TARGET ${MONITORING_THREAD_TARGET})
+    get_target_property(_imp ${MONITORING_THREAD_TARGET} IMPORTED)
+    if(NOT _imp)
+        list(APPEND _MONITORING_NON_IMPORTED_DEPS "${MONITORING_THREAD_TARGET}")
+    endif()
+endif()
+if(MONITORING_WITH_LOGGER_SYSTEM AND MONITORING_LOGGER_TARGET AND TARGET ${MONITORING_LOGGER_TARGET})
+    get_target_property(_imp ${MONITORING_LOGGER_TARGET} IMPORTED)
+    if(NOT _imp)
+        list(APPEND _MONITORING_NON_IMPORTED_DEPS "${MONITORING_LOGGER_TARGET}")
+    endif()
+endif()
+if(MONITORING_WITH_NETWORK_SYSTEM AND MONITORING_NETWORK_TARGET AND TARGET ${MONITORING_NETWORK_TARGET})
+    get_target_property(_imp ${MONITORING_NETWORK_TARGET} IMPORTED)
+    if(NOT _imp)
+        list(APPEND _MONITORING_NON_IMPORTED_DEPS "${MONITORING_NETWORK_TARGET}")
+    endif()
+endif()
+
 if(MONITORING_WITH_GRPC)
     if(MONITORING_GRPC_TARGET AND TARGET ${MONITORING_GRPC_TARGET})
         target_link_libraries(monitoring_system PUBLIC ${MONITORING_GRPC_TARGET})
@@ -857,66 +878,82 @@ if(MONITORING_BUILD_INTEGRATION_TESTS)
     endif()
 endif()
 
-if(MONITORING_CAN_INSTALL)
-    # Installation — only when all dependency targets are IMPORTED (find_package / vcpkg).
-    # Subdirectory builds set MONITORING_CAN_INSTALL=FALSE because CMake cannot export
-    # non-IMPORTED dependency targets (e.g. "utilities" from common_system).
-    include(GNUInstallDirs)
+# Tiered Install Degradation
+# Tier 1 (headers) and Tier 4 (config) always install.
+# Tier 2 (library targets) always installs.
+# Tier 3 (install(EXPORT) + export(EXPORT)) is conditional on all PUBLIC deps being IMPORTED.
+include(GNUInstallDirs)
 
+# --- Tier 1: Headers (ALWAYS) ---
+install(DIRECTORY include/kcenon/monitoring
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon
+    FILES_MATCHING PATTERN "*.h"
+)
+
+install(FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_adapters.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_adapters.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_adapters.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_to_monitoring_adapter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/monitoring_to_common_adapter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_to_monitoring_adapter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_to_monitoring_adapter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/monitor_adapter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/performance_monitor_adapter.h
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon/monitoring/adapters
+    COMPONENT Development
+)
+
+# --- Tier 2+3: Targets + conditional EXPORT ---
+if(MONITORING_CAN_INSTALL)
+    # Tier 2: Library targets with EXPORT set
     install(TARGETS monitoring_system monitoring_system_interface
         EXPORT monitoring_system_targets
     )
 
-    install(DIRECTORY include/kcenon/monitoring
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon
-        FILES_MATCHING PATTERN "*.h"
-    )
-
+    # Tier 3: Export sets (requires all PUBLIC deps to be IMPORTED)
     install(EXPORT monitoring_system_targets
         FILE monitoring_system-targets.cmake
         NAMESPACE monitoring_system::
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
     )
 
-    # Create package configuration
-    include(CMakePackageConfigHelpers)
-
-    configure_package_config_file(
-        ${CMAKE_CURRENT_SOURCE_DIR}/cmake/monitoring_system-config.cmake.in
-        ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config.cmake
-        INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
-    )
-
-    write_basic_package_version_file(
-        ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
-        VERSION ${PROJECT_VERSION}
-        COMPATIBILITY SameMajorVersion
-    )
-
-    # Install adapter headers
-    install(FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_adapters.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_adapters.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_adapters.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_to_monitoring_adapter.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/monitoring_to_common_adapter.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_to_monitoring_adapter.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_to_monitoring_adapter.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/monitor_adapter.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/performance_monitor_adapter.h
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon/monitoring/adapters
-        COMPONENT Development
-    )
-
-    install(FILES
-        ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config.cmake
-        ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
+    export(EXPORT monitoring_system_targets
+        FILE "${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-targets.cmake"
+        NAMESPACE monitoring_system::
     )
 else()
-    message(WARNING "monitoring_system: Skipping install rules because MONITORING_CAN_INSTALL is FALSE. "
-                    "Package will not produce installed files.")
+    # Tier 2 fallback: Library targets without EXPORT
+    install(TARGETS monitoring_system monitoring_system_interface
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+
+    message(STATUS "monitoring_system: install(EXPORT) skipped — non-IMPORTED deps: "
+                   "${_MONITORING_NON_IMPORTED_DEPS}. Headers and libraries are installed.")
 endif()
+
+# --- Tier 4: Config + version files (ALWAYS) ---
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/monitoring_system-config.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
+)
+
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
+)
 
 
 
