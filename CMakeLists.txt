@@ -909,6 +909,10 @@ if(MONITORING_CAN_INSTALL)
     # Tier 2: Library targets with EXPORT set
     install(TARGETS monitoring_system monitoring_system_interface
         EXPORT monitoring_system_targets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     )
 
     # Tier 3: Export sets (requires all PUBLIC deps to be IMPORTED)
