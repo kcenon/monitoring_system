@@ -22,6 +22,7 @@
 #include <chrono>
 #include <memory>
 #include <functional>
+#include <iostream>
 
 namespace kcenon { namespace monitoring {
 
@@ -157,26 +158,31 @@ public:
 
         use_tls_ = url_parts.scheme == "https";
 
-        // For now, return a stub response
-        // Real implementation would use socket operations
-        http_response response;
-        response.status_code = 202;
-        response.status_message = "Accepted (Stub)";
-        response.elapsed = std::chrono::milliseconds(1);
+        // No real HTTP transport available. Return error instead of
+        // fake 202 success, so callers know data was NOT sent.
+        // Build with MONITORING_WITH_NETWORK_SYSTEM=ON for real transport.
+        static bool warned = false;
+        if (!warned)
+        {
+            std::cerr << "[monitoring_system] WARNING: Trace export configured but no HTTP "
+                      << "transport available. Build with MONITORING_WITH_NETWORK_SYSTEM=ON "
+                      << "or provide a real http_transport implementation. "
+                      << "Trace data is NOT being exported.\n";
+            warned = true;
+        }
 
-        // Log the request for debugging
-        // In production, this would actually send the HTTP request
-
-        return common::ok(response);
+        error_info err(monitoring_error_code::invalid_configuration,
+                      "No HTTP transport available (stub mode)");
+        return common::Result<http_response>::err(err.to_common_error());
     }
 
     bool is_available() const override {
-        // Simple client is always available (stub)
-        return true;
+        // Stub transport cannot actually send data
+        return false;
     }
 
     std::string name() const override {
-        return "simple";
+        return "stub";
     }
 
 private:
