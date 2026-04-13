@@ -1,0 +1,28 @@
+# Monitoring System Query Router — match query to minimum document set.
+_meta: {schema: "1.0.0", generated: "2026-04-12"}
+
+intent_routes:
+  - {keywords: [getting started, tutorial, install, 시작], bundle: quickstart}
+  - {keywords: [api, reference, 레퍼런스], bundle: api-core}
+  - {keywords: [architecture, design, 아키텍처], bundle: architecture}
+  - {keywords: [metric, counter, gauge, histogram, timer, 메트릭], bundle: metrics-core}
+  - {keywords: [collector, cpu, memory, disk, network, process, 수집기], bundle: collectors}
+  - {keywords: [alert, alarm, threshold, 알림, 경보], bundle: alerts}
+  - {keywords: [trace, tracing, span, distributed, 추적], bundle: tracing}
+  - {keywords: [export, exporter, prometheus, otlp, opentelemetry, 내보내기], bundle: exporters}
+  - {keywords: [plugin, extension, custom, 플러그인], bundle: plugin}
+  - {keywords: [benchmark, performance, 성능], bundle: performance}
+  - {keywords: [quality, sanitizer, 품질], bundle: quality-assurance}
+  - {keywords: [known issue, bug, limitation, 알려진 문제], bundle: known-issues}
+
+fallback:
+  primary: MON-DOC-IDX
+  secondary: [MON-API-QR, MON-FEAT-CORE]
+
+skip:
+  - ECOSYSTEM.md
+  - SOUP.md
+  - TRACEABILITY.md
+  - API_REFERENCE.md   # 53 lines, index-only
+  - FEATURES.md        # 31 lines, index-only
+  - ARCHITECTURE.kr.md # 69 lines, very partial Korean

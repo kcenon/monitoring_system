@@ -1,0 +1,55 @@
+# Monitoring System Change Impact Graph — when X changes, review Y.
+_meta: {schema: "1.0.0", generated: "2026-04-12"}
+
+cascade:
+  MON-ARCH-001:
+    targets:
+      - {doc: MON-API-CORE,  why: "Core API depends on architecture"}
+      - {doc: MON-PROJ-001,  why: "Directory mirrors architecture"}
+      - {doc: MON-FEAT-CORE, why: "Features reference architecture"}
+      - {doc: MON-PLG-ARCH,  why: "Plugin architecture extends core"}
+
+  MON-API-CORE:
+    targets:
+      - {doc: MON-API-QR,    why: "Quick reference"}
+      - {doc: MON-API-KR,    why: "Korean mirror"}
+      - {doc: MON-FEAT-CORE, why: "Features implemented via API"}
+      - {doc: MON-GS-001,    why: "Getting Started uses API"}
+
+  MON-API-COLL:
+    targets:
+      - {doc: MON-FEAT-COLL, why: "Collector features"}
+      - {doc: MON-API-QR,    why: "Quick reference"}
+
+  MON-API-ALRT:
+    targets:
+      - {doc: MON-FEAT-ALRT, why: "Alerts/tracing features"}
+
+  MON-PLG-ARCH:
+    targets:
+      - {doc: MON-PLG-API,   why: "Plugin API derives from architecture"}
+      - {doc: MON-PLG-DEV,   why: "Development guide references architecture"}
+
+  MON-PLG-API:
+    targets:
+      - {doc: MON-PLG-DEV,   why: "Dev guide uses API"}
+
+  MON-QUAL-001:
+    targets:
+      - {doc: MON-QUAL-KR,   why: "Korean mirror"}
+      - {doc: MON-BENCH,     why: "Quality report references benchmarks"}
+      - {doc: MON-KNOWN,     why: "Known issues tracked alongside quality"}
+
+korean_pairs:
+  - {en: MON-DOC-IDX,  kr: MON-DOC-KR}
+  - {en: MON-ARCH-001, kr: MON-ARCH-KR}
+  - {en: MON-API-CORE, kr: MON-API-KR}
+  - {en: MON-FEAT-CORE, kr: MON-FEAT-KR}
+  - {en: MON-PROJ-001, kr: MON-PROJ-KR}
+  - {en: MON-CHG-001,  kr: MON-CHG-KR}
+  - {en: MON-QUAL-001, kr: MON-QUAL-KR}
+  - {en: MON-BENCH,    kr: MON-BENCH-KR}
+
+external_deps:
+  - {source: common_system, target: MON-ARCH-001, why: "monitoring_system depends on common_system"}
+  - {source: thread_system, target: MON-ARCH-001, why: "async collectors use thread pool"}

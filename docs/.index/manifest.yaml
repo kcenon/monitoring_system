@@ -1,0 +1,50 @@
+# Monitoring System Document Manifest — read this FIRST, then load only needed sections.
+_meta: {schema: "1.0.0", generated: "2026-04-12", docs: 31, project: "monitoring_system", tier: 3}
+
+core:
+  - {id: MON-DOC-IDX,  file: README.md,                  title: "Project README",       keywords: [index, overview], lines: 242}
+  - {id: MON-DOC-KR,   file: README.kr.md,               title: "README (한국어)",        keywords: [index, korean], lines: 180, mirrors: MON-DOC-IDX}
+  - {id: MON-ARCH-001, file: ARCHITECTURE.md,            title: "Architecture",         keywords: [architecture, collectors, exporters, alerts], lines: 729}
+  - {id: MON-ARCH-KR,  file: ARCHITECTURE.kr.md,         title: "아키텍처 (한국어)",       keywords: [architecture, korean], lines: 69, mirrors: MON-ARCH-001}
+  - {id: MON-API-IDX,  file: API_REFERENCE.md,           title: "API Reference (index)", keywords: [api, index], lines: 53}
+  - {id: MON-API-KR,   file: API_REFERENCE.kr.md,        title: "API 참조 (한국어)",       keywords: [api, korean], lines: 490, mirrors: MON-API-CORE}
+  - {id: MON-API-CORE, file: API_REFERENCE_CORE.md,      title: "API Reference — Core", keywords: [api, core, metrics, timers, counters, gauges], lines: 676}
+  - {id: MON-API-COLL, file: API_REFERENCE_COLLECTORS.md, title: "API Reference — Collectors", keywords: [api, collectors, cpu, memory, net, disk], lines: 1245}
+  - {id: MON-API-ALRT, file: API_REFERENCE_ALERTS_EXPORT.md, title: "API Reference — Alerts & Export", keywords: [api, alerts, export, prometheus, otlp], lines: 483}
+  - {id: MON-API-QR,   file: API_QUICK_REFERENCE.md,     title: "API Quick Reference",  keywords: [api, cheatsheet], lines: 345}
+  - {id: MON-FEAT-IDX, file: FEATURES.md,                title: "Features (index)",     keywords: [features, index], lines: 31}
+  - {id: MON-FEAT-KR,  file: FEATURES.kr.md,             title: "기능 (한국어)",           keywords: [features, korean], lines: 983, mirrors: MON-FEAT-CORE}
+  - {id: MON-FEAT-CORE, file: FEATURES_CORE.md,          title: "Features — Core",      keywords: [features, core, metrics], lines: 1174}
+  - {id: MON-FEAT-COLL, file: FEATURES_COLLECTORS.md,    title: "Features — Collectors", keywords: [features, collectors], lines: 1351}
+  - {id: MON-FEAT-ALRT, file: FEATURES_ALERTS_TRACING.md, title: "Features — Alerts & Tracing", keywords: [features, alerts, tracing], lines: 234}
+  - {id: MON-PROJ-001, file: PROJECT_STRUCTURE.md,       title: "Project Structure",    keywords: [structure, directory], lines: 489}
+  - {id: MON-PROJ-KR,  file: PROJECT_STRUCTURE.kr.md,    title: "프로젝트 구조 (한국어)",    keywords: [structure, korean], lines: 486, mirrors: MON-PROJ-001}
+  - {id: MON-CHG-001,  file: CHANGELOG.md,               title: "Changelog",            keywords: [changelog], lines: 778}
+  - {id: MON-CHG-KR,   file: CHANGELOG.kr.md,            title: "변경 이력 (한국어)",       keywords: [changelog, korean], lines: 734, mirrors: MON-CHG-001}
+  - {id: MON-GS-001,   file: GETTING_STARTED.md,         title: "Getting Started",      keywords: [getting-started], lines: 355}
+
+plugin:
+  - {id: MON-PLG-ARCH, file: plugin_architecture.md,      title: "Plugin Architecture", keywords: [plugin, architecture, extensibility], lines: 333}
+  - {id: MON-PLG-API,  file: plugin_api_reference.md,     title: "Plugin API Reference", keywords: [plugin, api, extension], lines: 966}
+  - {id: MON-PLG-DEV,  file: plugin_development_guide.md, title: "Plugin Development Guide", keywords: [plugin, development, guide, tutorial], lines: 820}
+
+quality:
+  - {id: MON-QUAL-001, file: PRODUCTION_QUALITY.md,       title: "Production Quality",   keywords: [quality, ci, sanitizers], lines: 595}
+  - {id: MON-QUAL-KR,  file: PRODUCTION_QUALITY.kr.md,    title: "프로덕션 품질 (한국어)",    keywords: [quality, korean], lines: 336, mirrors: MON-QUAL-001}
+  - {id: MON-BENCH,    file: BENCHMARKS.md,               title: "Benchmarks",           keywords: [benchmarks, performance], lines: 485}
+  - {id: MON-BENCH-KR, file: BENCHMARKS.kr.md,            title: "벤치마크 (한국어)",        keywords: [benchmarks, korean], lines: 222, mirrors: MON-BENCH}
+  - {id: MON-KNOWN,    file: KNOWN_ISSUES.md,             title: "Known Issues",         keywords: [issues, bugs, limitations], lines: 180}
+
+reference:
+  - {id: MON-ECO,      file: ECOSYSTEM.md,                title: "Ecosystem",            keywords: [ecosystem], lines: 26}
+  - {id: MON-SOUP,     file: SOUP.md,                     title: "SOUP",                 keywords: [soup], lines: 167}
+  - {id: MON-TRACE,    file: TRACEABILITY.md,             title: "Traceability",         keywords: [traceability], lines: 152}
+
+load_patterns:
+  quick_start:         [MON-DOC-IDX, MON-GS-001, MON-API-QR]
+  api_deep:            [MON-API-CORE, MON-API-COLL, MON-API-ALRT]
+  architecture_review: [MON-ARCH-001, MON-PROJ-001, MON-FEAT-CORE]
+  collector_work:      [MON-API-COLL, MON-FEAT-COLL]
+  alerts_work:         [MON-API-ALRT, MON-FEAT-ALRT]
+  plugin_work:         [MON-PLG-ARCH, MON-PLG-API, MON-PLG-DEV]
+  quality_audit:       [MON-QUAL-001, MON-BENCH, MON-KNOWN]
