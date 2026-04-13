@@ -862,7 +862,7 @@ TEST(HttpTransportTest, SimpleHttpClientNameAndAvailability) {
 TEST(HttpTransportTest, StubHttpTransportIsAvailableAndName) {
     auto transport = create_stub_transport();
     ASSERT_TRUE(transport);
-    EXPECT_FALSE(transport->is_available());
+    EXPECT_TRUE(transport->is_available());
     EXPECT_EQ(transport->name(), "stub");
 }
 
