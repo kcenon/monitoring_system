@@ -1,0 +1,27 @@
+var dir_d28a4824dc47e487b107a5db32ef43c4 =
+[
+    [ "plugin_example", "dir_d6dea23286941972b437f22813ac7539.html", "dir_d6dea23286941972b437f22813ac7539" ],
+    [ "alert_notifiers_example.cpp", "alert__notifiers__example_8cpp.html", "alert__notifiers__example_8cpp" ],
+    [ "alert_pipeline_example.cpp", "alert__pipeline__example_8cpp.html", "alert__pipeline__example_8cpp" ],
+    [ "alert_triggers_example.cpp", "alert__triggers__example_8cpp.html", "alert__triggers__example_8cpp" ],
+    [ "basic_monitoring_example.cpp", "basic__monitoring__example_8cpp.html", "basic__monitoring__example_8cpp" ],
+    [ "bidirectional_di_example.cpp", "bidirectional__di__example_8cpp.html", "bidirectional__di__example_8cpp" ],
+    [ "collector_factory_example.cpp", "collector__factory__example_8cpp.html", "collector__factory__example_8cpp" ],
+    [ "custom_metric_types_example.cpp", "custom__metric__types__example_8cpp.html", "custom__metric__types__example_8cpp" ],
+    [ "distributed_tracing_example.cpp", "distributed__tracing__example_8cpp.html", "distributed__tracing__example_8cpp" ],
+    [ "event_bus_example.cpp", "event__bus__example_8cpp.html", "event__bus__example_8cpp" ],
+    [ "facade_adapter_poc.cpp", "facade__adapter__poc_8cpp.html", "facade__adapter__poc_8cpp" ],
+    [ "graceful_degradation_example.cpp", "graceful__degradation__example_8cpp.html", "graceful__degradation__example_8cpp" ],
+    [ "health_reliability_example.cpp", "health__reliability__example_8cpp.html", "health__reliability__example_8cpp" ],
+    [ "logger_di_integration_example.cpp", "logger__di__integration__example_8cpp.html", "logger__di__integration__example_8cpp" ],
+    [ "monitor_factory_pattern_example.cpp", "monitor__factory__pattern__example_8cpp.html", "monitor__factory__pattern__example_8cpp" ],
+    [ "multi_service_tracing_example.cpp", "multi__service__tracing__example_8cpp.html", "multi__service__tracing__example_8cpp" ],
+    [ "otlp_export_example.cpp", "otlp__export__example_8cpp.html", "otlp__export__example_8cpp" ],
+    [ "platform_metrics_example.cpp", "platform__metrics__example_8cpp.html", "platform__metrics__example_8cpp" ],
+    [ "plugin_collector_example.cpp", "plugin__collector__example_8cpp.html", "plugin__collector__example_8cpp" ],
+    [ "production_monitoring_example.cpp", "production__monitoring__example_8cpp.html", "production__monitoring__example_8cpp" ],
+    [ "result_pattern_example.cpp", "result__pattern__example_8cpp.html", "result__pattern__example_8cpp" ],
+    [ "storage_example.cpp", "storage__example_8cpp.html", "storage__example_8cpp" ],
+    [ "system_collectors_example.cpp", "system__collectors__example_8cpp.html", "system__collectors__example_8cpp" ],
+    [ "time_series_storage_example.cpp", "time__series__storage__example_8cpp.html", "time__series__storage__example_8cpp" ]
+];
