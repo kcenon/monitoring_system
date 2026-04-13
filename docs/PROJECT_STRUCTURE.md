@@ -23,7 +23,7 @@ category: "PROJ"
 - [Directory Structure](#directory-structure)
 - [Core Modules](#core-modules)
 - [Collector Modules](#collector-modules)
-- [File Descriptions](#file-descriptions)
+- File Descriptions
 - [Build Artifacts](#build-artifacts)
 - [Module Dependencies](#module-dependencies)
 

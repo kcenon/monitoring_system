@@ -53,7 +53,7 @@ category: "PROJ"
     - [Integration](#integration)
   - [Dependencies](#dependencies)
 - [[0.9.0-beta] - 2024-05-01](#090-beta---2024-05-01)
-  - [Added](#added-5)
+  - [Added](#added-2)
   - [Known Issues](#known-issues)
 - [Version Numbering](#version-numbering)
 - [Migration Guides](#migration-guides)
