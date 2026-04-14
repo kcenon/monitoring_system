@@ -1189,12 +1189,12 @@ monitor->record_counter("api_requests", 1.0, {
 - **[FAQ](FAQ.md)** - 25+ frequently asked questions
 - **[Quick Start](QUICK_START.md)** - Get started in 5 minutes
 - **[API Reference](../API_REFERENCE.md)** - Complete API documentation
-- **[Troubleshooting](../TROUBLESHOOTING.md)** - Common issues
+- **[Troubleshooting](TROUBLESHOOTING.md)** - Common issues
 
 ### Community
 - **GitHub Issues**: [Report issues](https://github.com/kcenon/monitoring_system/issues)
 - **Discussions**: [Ask questions](https://github.com/kcenon/monitoring_system/discussions)
-- **Contributing**: [CONTRIBUTING.md](../CONTRIBUTING.md)
+- **Contributing**: [CONTRIBUTING.md](../contributing/CONTRIBUTING.md)
 
 ---
 

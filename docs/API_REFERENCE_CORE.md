@@ -454,7 +454,7 @@ monitor.register_check("service",
 - C++20 required (C++17 no longer supported)
 - Thread support required
 - C++20 Concepts used for type-safe APIs with clear error messages
-- Compatible with: GCC 10+, Clang 10+, MSVC 2019 16.3+
+- Compatible with: GCC 13+, Clang 17+, MSVC 2022+, Apple Clang 14+
 
 ## C++20 Concepts
 
@@ -666,7 +666,7 @@ Phase 4 focuses on **core foundation stability** rather than feature completenes
 - [API_REFERENCE.md](API_REFERENCE.md) - API Reference index
 - [API_REFERENCE_COLLECTORS.md](API_REFERENCE_COLLECTORS.md) - Collector class APIs
 - [API_REFERENCE_ALERTS_EXPORT.md](API_REFERENCE_ALERTS_EXPORT.md) - Alerts, exporters, tracing, reliability, storage APIs
-- [Phase 4 Documentation](PHASE4.md) - Current implementation details
+- [Phase 4 Documentation](advanced/ARCHITECTURE_GUIDE.md#phase-4-implementation-status) <!-- TODO: PHASE4.md removed; linking to Phase 4 status section -->
 - [Architecture Guide](ARCHITECTURE.md) - System design and patterns
 - [Examples](../examples/) - Working code examples
 - [Changelog](CHANGELOG.md) - Version history and changes

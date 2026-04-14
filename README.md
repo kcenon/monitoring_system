@@ -27,7 +27,7 @@
 - [Configuration](#configuration)
 - [Testing](#testing)
 - [Production Quality](#production-quality)
-- [Contributing](#contributing)
+- [Support & Contributing](#support--contributing)
 - [License](#license)
 
 ## Overview
@@ -91,7 +91,7 @@ cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
 
-📖 **[Quick Start Guide →](docs/guides/QUICK_START.md)** | **[빠른 시작 가이드 →](docs/guides/QUICK_START_KO.md)**
+📖 **[Quick Start Guide →](docs/guides/QUICK_START.md)** | **[빠른 시작 가이드 →](docs/guides/QUICK_START.kr.md)**
 
 ---
 
@@ -113,7 +113,7 @@ common_system (interfaces) ← monitoring_system implements IMonitor
 
 **Benefits**: Interface-only dependencies, independent compilation, runtime DI, clean separation
 
-📖 [Complete Ecosystem Integration Guide →](../ECOSYSTEM.md)
+📖 [Complete Ecosystem Integration Guide →](docs/ECOSYSTEM.md)
 
 ---
 
@@ -186,7 +186,7 @@ int main() {
 }
 ```
 
-📖 [Complete User Guide →](docs/guides/USER_GUIDE.md)
+📖 [Complete Quick Start Guide →](docs/guides/QUICK_START.md)
 
 ---
 
@@ -265,7 +265,7 @@ factory.register_collector("my_collector", []() {
 - Support for plugin, CRTP, and standalone collector types
 - Consistent error handling and initialization
 
-📖 [Factory API Reference →](docs/02-API_REFERENCE.md#metric-factory)
+📖 [Factory API Reference →](docs/API_REFERENCE.md#metric-factory)
 
 ---
 
@@ -290,7 +290,7 @@ factory.register_collector("my_collector", []() {
 - **Zero Circular Dependencies**: Interface-only dependencies via common_system
 - **Production Grade**: 100% test pass rate, <10% overhead
 
-🏗️ [Architecture Guide →](docs/01-ARCHITECTURE.md)
+🏗️ [Architecture Guide →](docs/ARCHITECTURE.md)
 
 ---
 
@@ -325,7 +325,7 @@ cmake --build build
 
 | Platform | Compilers | Status |
 |----------|-----------|--------|
-| **Linux** | GCC 13+, Clang 14+ | ✅ Fully supported |
+| **Linux** | GCC 13+, Clang 17+ | ✅ Fully supported |
 | **macOS** | Apple Clang 14+ | ✅ Fully supported |
 | **Windows** | MSVC 2022+ | ✅ Fully supported |
 
@@ -383,27 +383,31 @@ int main() {
 ## Documentation
 
 ### Getting Started
-- 📖 [User Guide](docs/guides/USER_GUIDE.md) - Comprehensive usage guide
+- 📖 [Quick Start Guide](docs/guides/QUICK_START.md) - Comprehensive usage guide
 - 🚀 [Quick Start Examples](examples/) - Working code examples
 - 🔧 [Integration Guide](docs/guides/INTEGRATION.md) - Ecosystem integration
 
 ### Core Documentation
-- 📘 [API Reference](docs/02-API_REFERENCE.md) - Complete API documentation
+- 📘 [API Reference](docs/API_REFERENCE.md) - Complete API documentation
 - 📚 [Features](docs/FEATURES.md) - Detailed feature descriptions
 - ⚡ [Benchmarks](docs/BENCHMARKS.md) - Performance metrics and comparisons
-- 🏗️ [Architecture](docs/01-ARCHITECTURE.md) - System design and patterns
+- 🏗️ [Architecture](docs/ARCHITECTURE.md) - System design and patterns
 - 📦 [Project Structure](docs/PROJECT_STRUCTURE.md) - File organization
 
 ### Advanced Topics
 - ✅ [Best Practices](docs/guides/BEST_PRACTICES.md) - Usage recommendations
 - 🔍 [Troubleshooting](docs/guides/TROUBLESHOOTING.md) - Common issues and solutions
 - 📋 [FAQ](docs/guides/FAQ.md) - Frequently asked questions
-- 🔄 [Migration Guide](docs/guides/MIGRATION_GUIDE.md) - Version migration
+- 🔄 [Migration Guide](docs/advanced/MIGRATION_GUIDE_V2.md) - Version migration
 
 ### Development
 - 🤝 [Contributing](docs/contributing/CONTRIBUTING.md) - Contribution guidelines
 - 🏆 [Production Quality](docs/PRODUCTION_QUALITY.md) - CI/CD and quality metrics
 - 📊 [Performance Baselines](docs/performance/BASELINE.md) - Regression thresholds
+- 📜 [Changelog](CHANGELOG.md) - Version history
+- 🔒 [Security Policy](SECURITY.md) - Security reporting
+- 📏 [Code of Conduct](CODE_OF_CONDUCT.md) - Community guidelines
+- 📑 [Traceability](docs/TRACEABILITY.md) - Feature-Test-Module mapping
 
 ---
 

@@ -43,7 +43,7 @@ The API reference is organized into three focused documents:
 ## Further Reading
 
 - [FEATURES.md](FEATURES.md) - Feature documentation index
-- [Phase 4 Documentation](PHASE4.md) - Current implementation details
+- [Phase 4 Documentation](advanced/ARCHITECTURE_GUIDE.md#phase-4-implementation-status) <!-- TODO: PHASE4.md removed; linking to Phase 4 status section of ARCHITECTURE_GUIDE -->
 - [Architecture Guide](ARCHITECTURE.md) - System design and patterns
 - [Examples](../examples/) - Working code examples
 - [Changelog](CHANGELOG.md) - Version history and changes

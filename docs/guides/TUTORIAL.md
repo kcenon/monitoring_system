@@ -150,7 +150,7 @@ std::cout << "Metrics recorded: " << stats.metrics_recorded << std::endl;
 
 ### Complete Example
 
-See [basic_monitoring_example.cpp](basic_monitoring_example.cpp) for a complete working example.
+See [basic_monitoring_example.cpp](../../examples/basic_monitoring_example.cpp) for a complete working example.
 
 ---
 
@@ -238,7 +238,7 @@ void process_request() {
 
 ### Complete Example
 
-See [distributed_tracing_example.cpp](distributed_tracing_example.cpp) for a complete working example.
+See [distributed_tracing_example.cpp](../../examples/distributed_tracing_example.cpp) for a complete working example.
 
 ---
 
@@ -332,7 +332,7 @@ void health_endpoint(const http_request& req, http_response& res) {
 
 ### Complete Example
 
-See [health_reliability_example.cpp](health_reliability_example.cpp) for a complete working example.
+See [health_reliability_example.cpp](../../examples/health_reliability_example.cpp) for a complete working example.
 
 ---
 
@@ -512,7 +512,7 @@ public:
 
 ### Complete Example
 
-See [result_pattern_example.cpp](result_pattern_example.cpp) for more examples.
+See [result_pattern_example.cpp](../../examples/result_pattern_example.cpp) for more examples.
 
 ---
 
@@ -756,24 +756,24 @@ auto profile = monitoring.profile_overhead();
 std::cout << "Monitoring overhead: " << profile.cpu_percent << "%" << std::endl;
 ```
 
-For more troubleshooting tips, see the [Troubleshooting Guide](../docs/TROUBLESHOOTING.md).
+For more troubleshooting tips, see the [Troubleshooting Guide](TROUBLESHOOTING.md).
 
 ---
 
 ## Further Resources
 
-- [API Reference](../docs/API_REFERENCE.md) - Complete API documentation
-- [Architecture Guide](../docs/ARCHITECTURE_GUIDE.md) - System design and architecture
-- [Performance Tuning](../docs/PERFORMANCE_TUNING.md) - Optimization guide
-- [Examples](.) - Working code examples
+- [API Reference](../API_REFERENCE.md) - Complete API documentation
+- [Architecture Guide](../advanced/ARCHITECTURE_GUIDE.md) - System design and architecture
+- [Performance Tuning](../performance/PERFORMANCE_TUNING.md) - Optimization guide
+- [Examples](../../examples/) - Working code examples
 
 ---
 
 ## Getting Help
 
-- Check the [documentation](../docs/)
-- Look at the [examples](.)
-- Review the [tests](../tests/) for usage patterns
+- Check the [documentation](../)
+- Look at the [examples](../../examples/)
+- Review the [tests](../../tests/) for usage patterns
 - Report issues on GitHub
 
 ---

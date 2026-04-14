@@ -12,7 +12,7 @@ category: "PROJ"
 
 > **SSOT**: This document is the single source of truth for **Monitoring System - Project Structure**.
 
-**Version**: 0.3.0.0
+**Version**: 0.4.0.0
 **Last Updated**: 2026-01-22
 
 ---

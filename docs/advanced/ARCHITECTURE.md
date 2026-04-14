@@ -547,9 +547,9 @@ auto processed = result
 ### Continuous Integration
 
 Multi-platform testing across:
-- Ubuntu (GCC 11+, Clang 14+)
-- Windows (MSYS2, Visual Studio 2019+)
-- macOS (AppleClang)
+- Ubuntu (GCC 13+, Clang 17+)
+- Windows (MSYS2, Visual Studio 2022+)
+- macOS (Apple Clang 14+)
 
 ## Best Practices
 
@@ -595,7 +595,7 @@ monitor.record_gauge("monitoring.metrics.stored_count", count);
 ## Platform Support
 
 - **Operating Systems**: Linux, Windows, macOS
-- **Compilers**: GCC 11+, Clang 14+, MSVC 2019+
+- **Compilers**: GCC 13+, Clang 17+, MSVC 2022+, Apple Clang 14+
 - **Architectures**: x86-64 (with AVX2 optimization), ARM64
 - **C++ Standard**: C++20 required
 

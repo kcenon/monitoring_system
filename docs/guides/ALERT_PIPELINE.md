@@ -315,4 +315,4 @@ for (auto& group : groups) {
 
 - [API Reference](../API_REFERENCE.md)
 - [Architecture Guide](../ARCHITECTURE.md)
-- [Performance Tuning](../performance/TUNING.md)
+- [Performance Tuning](../performance/PERFORMANCE_TUNING.md)

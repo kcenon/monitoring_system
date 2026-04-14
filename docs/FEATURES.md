@@ -27,5 +27,5 @@ Feature documentation is organized into three focused documents:
 
 - [API Reference](API_REFERENCE.md) - Complete API documentation
 - [Architecture Guide](ARCHITECTURE.md) - System design and patterns
-- [User Guide](guides/USER_GUIDE.md) - Usage examples and best practices
+- [Quick Start Guide](guides/QUICK_START.md) - Usage examples and best practices
 - [Benchmarks](BENCHMARKS.md) - Performance metrics and comparisons

@@ -291,7 +291,7 @@ any port will fail this check before merge.
 
 - [VCPKG_OVERLAY_PORTS.md](VCPKG_OVERLAY_PORTS.md) — installation and usage guide
 - [vcpkg-ports/README.md](../../vcpkg-ports/README.md) — port inventory
-- [sync-vcpkg-registry.yml](../../.github/workflows/sync-vcpkg-registry.yml) — reusable registry sync workflow
+- sync-vcpkg-registry.yml <!-- TODO: reusable registry sync workflow not present in this repo; provided externally --> — reusable registry sync workflow
 - [on-release-sync-registry.yml](../../.github/workflows/on-release-sync-registry.yml) — caller workflow for monitoring_system
 - [#533](https://github.com/kcenon/monitoring_system/issues/533) — issue tracking the centralization decision
 - [#607](https://github.com/kcenon/monitoring_system/issues/607) — issue tracking the automation workflow

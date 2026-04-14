@@ -12,7 +12,7 @@ category: "GUID"
 
 > **SSOT**: This document is the single source of truth for **Collector Development Guide**.
 
-> **Language:** **English** | [한국어](COLLECTOR_DEVELOPMENT.kr.md)
+> **Language:** **English** <!-- TODO: COLLECTOR_DEVELOPMENT.kr.md not available -->
 
 **Version**: 0.4.0.0
 **Last Updated**: 2026-02-09

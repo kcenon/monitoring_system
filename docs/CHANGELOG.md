@@ -69,6 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- **Compiler floor raised to GCC 13+/Clang 17+/MSVC 2022+/Apple Clang 14+** due to transitive `thread_system` dependency. Older entries in this changelog (e.g., the `[4.0.0]` bump to GCC 10+/Clang 10+/MSVC 2019 16.3+) reflect historical state only; the authoritative floor is defined in `README.md` and `CLAUDE.md`.
 - **Collector consolidation refactoring** (#389)
   - Reduced collector count from 20+ to 6 core collectors plus optional plugins
   - `system_resource_collector`: Unified CPU, memory, and disk metrics (merged cpu_collector, memory_collector)
@@ -765,13 +766,13 @@ The v3.0.0 release introduces breaking changes to the API:
 2. **Configuration format**: Some configuration key names changed for clarity
 3. **Storage changes**: Time-series storage format updated for better performance
 
-For detailed migration instructions, refer to [ARCHITECTURE_GUIDE.md](ARCHITECTURE_GUIDE.md).
+For detailed migration instructions, refer to [ARCHITECTURE_GUIDE.md](advanced/ARCHITECTURE_GUIDE.md).
 
 ## Support
 
 - **Issues**: [GitHub Issues](https://github.com/kcenon/monitoring_system/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/kcenon/monitoring_system/discussions)
-- **Security**: For security-related issues, see [SECURITY.md](SECURITY.md)
+- **Security**: For security-related issues, see [SECURITY.md](guides/SECURITY.md)
 
 ---
 

@@ -517,7 +517,7 @@ system_under_test->set_logger(mock_log);
 - Interface calls have same cost as virtual functions (already used previously)
 - DI happens once at startup
 - Runtime performance: < 5% overhead
-- Benchmark results: [PHASE3_VERIFICATION_REPORT.md](../../PHASE3_VERIFICATION_REPORT.md)
+- Benchmark results: <!-- TODO: PHASE3_VERIFICATION_REPORT.md not available in repo; see BENCHMARKS.md --> see [BENCHMARKS.md](../BENCHMARKS.md)
 
 ---
 
@@ -588,8 +588,8 @@ echo "4. Fix any remaining issues manually"
 5. Future-proof architecture
 
 📚 **Additional Resources**:
-- [Phase 3 Verification Report](../../PHASE3_VERIFICATION_REPORT.md)
-- [Bidirectional DI Example](../examples/bidirectional_di_example.cpp)
+- <!-- TODO: PHASE3_VERIFICATION_REPORT.md not available; link omitted -->
+- [Bidirectional DI Example](../../examples/) <!-- TODO: bidirectional_di_example.cpp not present; see examples/ directory -->
 - [API Documentation](https://docs.example.com)
 
 🆘 **Need Help?**:

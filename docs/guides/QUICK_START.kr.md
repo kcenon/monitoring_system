@@ -38,7 +38,7 @@ Monitoring System을 5분 만에 시작하세요. 이 가이드에서는 설치,
 
 | 의존성 | 버전 | 필수 | 설명 |
 |--------|------|------|------|
-| C++20 컴파일러 | GCC 11+ / Clang 14+ / MSVC 2022+ | 예 | C++20 기능 필요 |
+| C++20 컴파일러 | GCC 13+ / Clang 17+ / MSVC 2022+ / Apple Clang 14+ | 예 | C++20 기능 필요 |
 | CMake | 3.20+ | 예 | 빌드 시스템 |
 | [common_system](https://github.com/kcenon/common_system) | latest | 예 | 공통 인터페이스 및 Result<T> |
 | [thread_system](https://github.com/kcenon/thread_system) | latest | 예 | 스레드 풀 및 비동기 작업 |
@@ -192,7 +192,7 @@ auto timer = monitor.start_timer("operation_duration_ms");
 
 ### 자세히 알아보기
 
-- **[아키텍처 가이드](../ARCHITECTURE_GUIDE.md)** - 시스템 설계 및 내부 구조
+- **[아키텍처 가이드](../advanced/ARCHITECTURE_GUIDE.md)** - 시스템 설계 및 내부 구조
 - **[API 레퍼런스](../API_REFERENCE.md)** - 전체 API 문서
 - **[FAQ](FAQ.md)** - 자주 묻는 질문 (25개 이상의 Q&A)
 - **[모범 사례](BEST_PRACTICES.md)** - 프로덕션 패턴

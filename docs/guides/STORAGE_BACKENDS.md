@@ -12,7 +12,7 @@ category: "GUID"
 
 > **SSOT**: This document is the single source of truth for **Storage Backend Implementation Guide**.
 
-> **Version**: 1.0.0
+> **Version**: 0.4.0.0
 > **Last Updated**: 2026-02-09
 > **Parent Epic**: [Documentation Gap Analysis](https://github.com/kcenon/common_system/issues/325)
 > **Related Issue**: [#457](https://github.com/kcenon/monitoring_system/issues/457)
