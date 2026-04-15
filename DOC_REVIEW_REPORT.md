@@ -169,3 +169,37 @@ Rationale: the SSOT architecture (FEATURES.md -> split trio, API_REFERENCE.md ->
    5. `docs/guides/INTEGRATION.md` - 8 broken links
    6. `docs/advanced/ARCHITECTURE_ISSUES.kr.md` - 6 bad anchors
    7. `docs/integration/README.md` - 6 broken links (all 5 sub-guides missing + 1 wrong-depth ECOSYSTEM link)
+
+---
+
+## Post-Fix Re-Validation (2026-04-15)
+
+**Fix commit**: `d0faf214` - `docs: fix 26 anchors, ~90 cross-references, compiler floor drift`
+**Scope**: Phase 1 only (anchor registry + intra-file refs + inter-file refs).
+**Files scanned**: 102 markdown files (excluding `build/`, `.git/`).
+**Methodology**: Python analyzer replicating GitHub-flavored slug algorithm with the precise whitespace rule (each whitespace char replaced 1:1 with `-`; punctuation such as `&` dropped producing `--` double-dash). Fenced code blocks, HTML comments, and inline code spans excluded from link extraction. External URLs (any target with a URI scheme) excluded.
+
+### Before / After
+
+| Phase 1 Category | Before (baseline) | After (post-fix) | Delta |
+|------------------|-------------------|------------------|-------|
+| Broken file references (inter-file) | 112 | 1 | -111 |
+| Broken intra-file anchors (incl. cross-file `#anchor`) | 26 | 1 | -25 |
+| **Total Phase 1 Must-Fix** | **138** | **2** | **-136** |
+| Affected files | 40 (38% of corpus) | 2 (2% of corpus) | -38 |
+
+**Recomputed-anchor verification (the 26 anchors highlighted in the fix)**: All 4 target files re-scanned independently — `docs/advanced/ARCHITECTURE_GUIDE.md` (17 intra refs, 0 broken, 70 anchors), `docs/advanced/ARCHITECTURE_GUIDE.kr.md` (17/0/70), `docs/advanced/ARCHITECTURE_ISSUES.md` (28/0/30), `docs/advanced/ARCHITECTURE_ISSUES.kr.md` (28/0/30). Total 90 intra-file references across these files, **0 broken**. The `& `→`--` double-dash handling and `~~ ✅ RESOLVED` strikethrough/emoji residue are correctly preserved.
+
+### Residual Phase 1 Items (2)
+
+1. **`README.md:268`** — `docs/API_REFERENCE.md#metric-factory` (cross-file anchor not found). Before fix this was listed as Item 17 in the Must-Fix list (legacy `docs/02-API_REFERENCE.md` path). The fix correctly renamed the file path, but the `#metric-factory` anchor does not exist in the post-split `docs/API_REFERENCE.md`. Classification: **incomplete fix** (file-path portion resolved, anchor portion newly exposed). Suggested fix: drop the fragment or re-point to `docs/API_REFERENCE_CORE.md#metric-factory` if that anchor exists there.
+
+2. **`docs/guides/QUICK_START.kr.md:204`** — `../../samples/` (file/directory missing — resolves outside repo root). **Not in the prior report's 138 Must-Fix list**; this is a pre-existing broken link the original Phase 1 audit missed (likely because trailing-slash directory targets were not exercised). Classification: **pre-existing residual (undetected by baseline scan)**. Suggested fix: remove the line or point at the actual `samples/` directory elsewhere, or add a TODO marker.
+
+### Regression List (0)
+
+No new broken anchors or cross-file references were introduced by `d0faf214`. The fix commit is a strict improvement over the baseline. The two residuals are not regressions: one is an incomplete fix and the other is a pre-existing miss in the baseline scan.
+
+### Verdict
+
+**PASS** — 136 of 138 Phase 1 Must-Fix items resolved (98.6%). Both remaining items are narrow, documented, and non-blocking. The 26 recomputed anchors in `ARCHITECTURE_GUIDE`/`ARCHITECTURE_ISSUES` (EN + KR) verify cleanly. No regressions introduced.
