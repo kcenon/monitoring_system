@@ -951,9 +951,9 @@ Access CI logs:
 
 ### Documentation
 
-- **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Contribution guidelines
-- **[Testing Guide](../TESTING_GUIDE.md)** - Detailed testing documentation
-- **[Troubleshooting](../TROUBLESHOOTING.md)** - Common issues
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
+- **[Testing Guide](TESTING_GUIDE.md)** - Detailed testing documentation
+- **[Troubleshooting](../guides/TROUBLESHOOTING.md)** - Common issues
 
 ### Support
 

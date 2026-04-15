@@ -12,7 +12,7 @@ category: "QUAL"
 
 > **SSOT**: This document is the single source of truth for **Monitoring System - Production Quality Metrics**.
 
-**Version**: 0.1.0.0
+**Version**: 0.4.0.0
 **Last Updated**: 2025-11-15
 **Grade**: **A** (Production Ready)
 
@@ -55,8 +55,8 @@ The monitoring system achieves **Grade A (Production Ready)** status through com
 #### Main CI Pipeline (`.github/workflows/ci.yml`)
 
 **Platforms Tested**:
-- **Linux**: Ubuntu 22.04 (GCC 11, Clang 14)
-- **macOS**: macOS 12 (Apple Clang 14)
+- **Linux**: Ubuntu 22.04+ (GCC 13+, Clang 17+)
+- **macOS**: macOS 12+ (Apple Clang 14+)
 - **Windows**: Windows Server 2022 (MSVC 2022, MSYS2)
 
 **Build Configurations**:
@@ -588,8 +588,8 @@ Suppressed: 0 bytes in 0 blocks
 
 ## See Also
 
-- [Architecture Guide](01-ARCHITECTURE.md) - System design
+- [Architecture Guide](ARCHITECTURE.md) - System design
 - [Benchmarks](BENCHMARKS.md) - Performance metrics
-- [API Reference](02-API_REFERENCE.md) - API documentation
-- [User Guide](guides/USER_GUIDE.md) - Usage examples
+- [API Reference](API_REFERENCE.md) - API documentation
+- [Quick Start Guide](guides/QUICK_START.md) - Usage examples
 - [Contributing](contributing/CONTRIBUTING.md) - Contribution guidelines

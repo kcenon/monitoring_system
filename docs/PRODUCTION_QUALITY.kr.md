@@ -43,8 +43,8 @@ monitoring system은 포괄적인 품질 보증을 통해 **등급 A (개발 중
 #### 메인 CI 파이프라인
 
 **테스트된 플랫폼**:
-- **Linux**: Ubuntu 22.04 (GCC 11, Clang 14)
-- **macOS**: macOS 12 (Apple Clang 14)
+- **Linux**: Ubuntu 22.04+ (GCC 13+, Clang 17+)
+- **macOS**: macOS 12+ (Apple Clang 14+)
 - **Windows**: Windows Server 2022 (MSVC 2022, MSYS2)
 
 **빌드 구성**:
@@ -322,9 +322,9 @@ Still reachable: 0 bytes in 0 blocks
 ---
 
 **참고 문서**:
-- [ARCHITECTURE.md](01-ARCHITECTURE.md) / [ARCHITECTURE.kr.md](ARCHITECTURE.kr.md) - 시스템 설계
+- [ARCHITECTURE.md](ARCHITECTURE.md) / [ARCHITECTURE.kr.md](ARCHITECTURE.kr.md) - 시스템 설계
 - [BENCHMARKS.md](BENCHMARKS.md) / [BENCHMARKS.kr.md](BENCHMARKS.kr.md) - 성능 메트릭
-- [API_REFERENCE.md](02-API_REFERENCE.md) / [API_REFERENCE.kr.md](API_REFERENCE.kr.md) - API 문서
+- [API_REFERENCE.md](API_REFERENCE.md) / [API_REFERENCE.kr.md](API_REFERENCE.kr.md) - API 문서
 
 ---
 

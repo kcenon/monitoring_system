@@ -31,7 +31,7 @@ We welcome contributions to the Monitoring System! This document provides guidel
 
 ### Prerequisites
 
-- C++20 capable compiler (GCC 11+, Clang 14+, MSVC 2019+)
+- C++20 capable compiler (GCC 13+, Clang 17+, MSVC 2022+, Apple Clang 14+)
 - CMake 3.16 or later
 - Git
 - Basic understanding of monitoring systems and observability

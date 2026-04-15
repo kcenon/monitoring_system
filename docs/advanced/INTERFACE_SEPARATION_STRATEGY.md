@@ -12,7 +12,7 @@ category: "ARCH"
 
 > **SSOT**: This document is the single source of truth for **Interface Separation Strategy**.
 
-**Version**: 0.1.0.0
+**Version**: 0.4.0.0
 **Last Updated**: 2025-11-08
 **Status**: Planning Document
 **Priority**: P1 (High)

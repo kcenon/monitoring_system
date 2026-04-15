@@ -21,15 +21,14 @@ Monitoring System - C++ 애플리케이션을 위한 개발 중인 모니터링 
 ### 핵심 문서
 - **[README.md](../README.md)** - 프로젝트 개요, 기능 및 빠른 시작
 - **[API_REFERENCE.md](API_REFERENCE.md)** - 예제가 포함된 완전한 API 문서
-- **[ARCHITECTURE_GUIDE.md](ARCHITECTURE_GUIDE.md)** - 시스템 디자인 및 아키텍처 패턴
-- **[PHASE3.md](PHASE3.md)** - Phase 3 구현 세부 사항 (알림 및 대시보드)
+- **[ARCHITECTURE_GUIDE.md](advanced/ARCHITECTURE_GUIDE.md)** - 시스템 디자인 및 아키텍처 패턴
 - **[CHANGELOG.md](CHANGELOG.md)** - 버전 히스토리 및 릴리스 노트
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** - 기여 가이드라인 및 개발 설정
-- **[SECURITY.md](SECURITY.md)** - 보안 정책 및 취약점 보고
+- **[CONTRIBUTING.md](contributing/CONTRIBUTING.md)** - 기여 가이드라인 및 개발 설정
+- **[SECURITY.md](guides/SECURITY.md)** - 보안 정책 및 취약점 보고
 
 ### 운영 가이드
-- **[PERFORMANCE_TUNING.md](PERFORMANCE_TUNING.md)** - 성능 최적화 전략
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - 일반적인 문제 및 해결 방법
+- **[PERFORMANCE_TUNING.md](performance/PERFORMANCE_TUNING.md)** - 성능 최적화 전략
+- **[TROUBLESHOOTING.md](guides/TROUBLESHOOTING.md)** - 일반적인 문제 및 해결 방법
 
 ### 사용자 가이드 (`docs/guides/`)
 - **[TUTORIAL.md](guides/TUTORIAL.md)** - 단계별 튜토리얼 및 예제
@@ -42,19 +41,18 @@ Monitoring System - C++ 애플리케이션을 위한 개발 중인 모니터링 
 3. 상세한 API 사용법을 위해 **[API_REFERENCE.md](API_REFERENCE.md)** 참조
 
 ### 운영자 및 DevOps
-1. 최적화를 위해 **[PERFORMANCE_TUNING.md](PERFORMANCE_TUNING.md)** 검토
-2. 문제 해결을 위해 **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** 학습
-3. 보안 모범 사례를 위해 **[SECURITY.md](SECURITY.md)** 확인
+1. 최적화를 위해 **[PERFORMANCE_TUNING.md](performance/PERFORMANCE_TUNING.md)** 검토
+2. 문제 해결을 위해 **[TROUBLESHOOTING.md](guides/TROUBLESHOOTING.md)** 학습
+3. 보안 모범 사례를 위해 **[SECURITY.md](guides/SECURITY.md)** 확인
 
 ### 기여자 및 개발자
-1. 개발 가이드라인을 위해 **[CONTRIBUTING.md](CONTRIBUTING.md)** 읽기
-2. 시스템 디자인을 위해 **[ARCHITECTURE_GUIDE.md](ARCHITECTURE_GUIDE.md)** 학습
+1. 개발 가이드라인을 위해 **[CONTRIBUTING.md](contributing/CONTRIBUTING.md)** 읽기
+2. 시스템 디자인을 위해 **[ARCHITECTURE_GUIDE.md](advanced/ARCHITECTURE_GUIDE.md)** 학습
 3. 최근 변경 사항을 위해 **[CHANGELOG.md](CHANGELOG.md)** 검토
 
-### Phase 3 사용자 (알림 및 대시보드)
-1. 알림 시스템 세부 사항을 위해 **[PHASE3.md](PHASE3.md)** 학습
-2. 알림 API를 위해 **[API_REFERENCE.md](API_REFERENCE.md)** 참조
-3. 알림 관련 문제를 위해 **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** 확인
+### 알림 및 대시보드 사용자
+1. 알림 API를 위해 **[API_REFERENCE.md](API_REFERENCE.md)** 참조
+2. 알림 관련 문제를 위해 **[TROUBLESHOOTING.md](guides/TROUBLESHOOTING.md)** 확인
 
 ## 🏗️ 시스템 개요
 
@@ -83,17 +81,17 @@ README.md → TUTORIAL.md → API_REFERENCE.md
 
 #### **시스템 관리자** (배포 및 유지 관리)
 ```
-README.md → ARCHITECTURE_GUIDE.md → PERFORMANCE_TUNING.md → TROUBLESHOOTING.md → SECURITY.md
+README.md → advanced/ARCHITECTURE_GUIDE.md → performance/PERFORMANCE_TUNING.md → guides/TROUBLESHOOTING.md → guides/SECURITY.md
 ```
 
 #### **개발자** (프로젝트에 기여)
 ```
-README.md → ARCHITECTURE_GUIDE.md → CONTRIBUTING.md → API_REFERENCE.md → CHANGELOG.md
+README.md → advanced/ARCHITECTURE_GUIDE.md → contributing/CONTRIBUTING.md → API_REFERENCE.md → CHANGELOG.md
 ```
 
-#### **알림 및 대시보드 사용자** (Phase 3 기능)
+#### **알림 및 대시보드 사용자**
 ```
-README.md → PHASE3.md → API_REFERENCE.md → TROUBLESHOOTING.md
+README.md → API_REFERENCE.md → guides/TROUBLESHOOTING.md
 ```
 
 ### 기능별
@@ -141,7 +139,7 @@ README.md → PHASE3.md → API_REFERENCE.md → TROUBLESHOOTING.md
 
 ## 🤝 문서에 기여하기
 
-문서 개선을 환영합니다! 다음 사항은 [CONTRIBUTING.md](CONTRIBUTING.md)를 참조하세요:
+문서 개선을 환영합니다! 다음 사항은 [CONTRIBUTING.md](contributing/CONTRIBUTING.md)를 참조하세요:
 
 - 문서 스타일 가이드라인
 - 문서 변경 사항에 대한 검토 프로세스
@@ -166,7 +164,7 @@ README.md → PHASE3.md → API_REFERENCE.md → TROUBLESHOOTING.md
 
 - **Issues**: [GitHub Issues](https://github.com/kcenon/monitoring_system/issues)에서 버그 보고 및 기능 요청
 - **Questions**: [GitHub Discussions](https://github.com/kcenon/monitoring_system/discussions)에서 질문하기
-- **Security**: [SECURITY.md](SECURITY.md) 가이드라인에 따라 보안 문제 보고
+- **Security**: [SECURITY.md](guides/SECURITY.md) 가이드라인에 따라 보안 문제 보고
 - **Email**: kcenon@naver.com으로 유지 관리자에게 문의
 
 ---

@@ -36,7 +36,7 @@ Get up and running with monitoring_system in 5 minutes. This guide covers instal
 ## Prerequisites
 
 **Required:**
-- C++20 compiler (GCC 11+, Clang 14+, MSVC 2019+)
+- C++20 compiler (GCC 13+, Clang 17+, MSVC 2022+, Apple Clang 14+)
 - CMake 3.16+
 - Git
 
@@ -644,20 +644,20 @@ monitor->add_trace_exporter(otlp_exporter);
 ### 4. Learn More
 
 **Documentation:**
-- 📘 **[Architecture Guide](../ARCHITECTURE_GUIDE.md)** - System design and internals
+- 📘 **[Architecture Guide](../advanced/ARCHITECTURE_GUIDE.md)** - System design and internals
 - 📖 **[API Reference](../API_REFERENCE.md)** - Complete API documentation
 - ❓ **[FAQ](FAQ.md)** - Frequently asked questions (25+ Q&A)
 - ✨ **[Best Practices](BEST_PRACTICES.md)** - Production patterns
-- 🐛 **[Troubleshooting](../TROUBLESHOOTING.md)** - Common issues
+- 🐛 **[Troubleshooting](TROUBLESHOOTING.md)** - Common issues
 
 **Examples:**
 - **[Tutorial](TUTORIAL.md)** - Step-by-step tutorial with examples
-- **[Samples](../../samples/)** - Example applications
+- **[Samples](../../examples/)** - Example applications
 
 **Community:**
 - **GitHub Issues**: [Report bugs](https://github.com/kcenon/monitoring_system/issues)
 - **Discussions**: [Ask questions](https://github.com/kcenon/monitoring_system/discussions)
-- **Contributing**: [CONTRIBUTING.md](../CONTRIBUTING.md)
+- **Contributing**: [CONTRIBUTING.md](../contributing/CONTRIBUTING.md)
 
 ---
 

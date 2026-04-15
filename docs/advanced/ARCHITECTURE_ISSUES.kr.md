@@ -22,18 +22,18 @@ category: "ARCH"
     - [Issue ARC-001: 낮은 테스트 커버리지](#issue-arc-001-낮은-테스트-커버리지)
     - [Issue ARC-002: 성능 벤치마크 누락](#issue-arc-002-성능-벤치마크-누락)
   - [2. 동시성 및 스레드 안전성](#2-동시성-및-스레드-안전성)
-    - [Issue ARC-003: 모니터 스레드 안전성 검증](#issue-arc-003-모니터-스레드-안전성-검증)
+    - [Issue ARC-003: 모니터 스레드 안전성 검증 (해결됨)](#issue-arc-003-모니터-스레드-안전성-검증--해결됨)
   - [3. 성능 및 최적화](#3-성능-및-최적화)
     - [Issue ARC-004: 메트릭 수집 오버헤드](#issue-arc-004-메트릭-수집-오버헤드)
-    - [Issue ARC-005: Adaptive Monitor 임계값 튜닝](#issue-arc-005-adaptive-monitor-임계값-튜닝)
+    - [Issue ARC-005: Adaptive Monitor 임계값 튜닝 (해결됨)](#issue-arc-005-adaptive-monitor-임계값-튜닝--해결됨)
   - [4. 기능 및 기능성](#4-기능-및-기능성)
     - [Issue ARC-006: 분산 추적 불완전](#issue-arc-006-분산-추적-불완전)
-    - [Issue ARC-007: 제한된 메트릭 유형](#issue-arc-007-제한된-메트릭-유형)
+    - [Issue ARC-007: 제한된 메트릭 유형 (해결됨)](#issue-arc-007-제한된-메트릭-유형--해결됨)
   - [5. 문서화](#5-문서화)
     - [Issue ARC-008: 불완전한 API 문서](#issue-arc-008-불완전한-api-문서)
-    - [Issue ARC-009: 통합 예제 누락](#issue-arc-009-통합-예제-누락)
+    - [Issue ARC-009: 통합 예제 누락 (해결됨)](#issue-arc-009-통합-예제-누락--해결됨)
   - [6. 통합](#6-통합)
-    - [Issue ARC-010: Common System 통합](#issue-arc-010-common-system-통합)
+    - [Issue ARC-010: Common System 통합 (해결됨)](#issue-arc-010-common-system-통합--해결됨)
 - [문제 추적](#문제-추적)
   - [Phase 0 작업](#phase-0-작업)
   - [Phase 1 작업](#phase-1-작업)
@@ -284,7 +284,7 @@ category: "ARCH"
 
 - [CURRENT_STATE.md](./CURRENT_STATE.md)
 - [ARCHITECTURE_GUIDE.md](./ARCHITECTURE_GUIDE.md)
-- [API_REFERENCE.md](./API_REFERENCE.md)
+- [API_REFERENCE.md](../API_REFERENCE.md)
 
 ---
 

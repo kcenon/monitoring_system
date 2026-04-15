@@ -817,4 +817,4 @@ auto collect() -> std::vector<metric> override {
 
 - [Plugin API Reference](plugin_api_reference.md) - Complete API documentation
 - [Dynamic Plugin Example](../examples/plugin_example/README.md) - Shared library plugin example
-- [Migration Guide](migration_guide.md) - Migrating existing collectors
+- [Migration Guide](advanced/MIGRATION.md) - Migrating existing collectors

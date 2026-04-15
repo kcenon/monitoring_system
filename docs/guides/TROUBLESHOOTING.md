@@ -728,8 +728,8 @@ report.save("/tmp/diagnostic_report.json");
 ### Support Channels
 
 - GitHub Issues: [Report bugs and request features]
-- Documentation: [API Reference](API_REFERENCE.md)
-- Examples: [Code examples](../examples/)
+- Documentation: [API Reference](../API_REFERENCE.md)
+- Examples: [Code examples](../../examples/)
 
 ## Conclusion
 

@@ -12,7 +12,7 @@ category: "PERF"
 
 > **SSOT**: This document is the single source of truth for **Monitoring System - Performance Benchmarks**.
 
-**Version**: 0.1.0.0
+**Version**: 0.4.0.0
 **Last Updated**: 2025-11-15
 **Platform**: Apple M1 (8-core) @ 3.2GHz, 16GB RAM, macOS Sonoma
 
@@ -480,6 +480,6 @@ cmake --build build
 ## See Also
 
 - [Performance Baselines](performance/BASELINE.md) - CI/CD regression thresholds
-- [Architecture Guide](01-ARCHITECTURE.md) - System design for performance
-- [API Reference](02-API_REFERENCE.md) - Performance characteristics of APIs
-- [User Guide](guides/USER_GUIDE.md) - Performance optimization examples
+- [Architecture Guide](ARCHITECTURE.md) - System design for performance
+- [API Reference](API_REFERENCE.md) - Performance characteristics of APIs
+- [Quick Start Guide](guides/QUICK_START.md) - Getting started with monitoring

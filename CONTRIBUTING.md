@@ -15,7 +15,7 @@ Thank you for considering contributing to the Monitoring System! This document p
 
 ### Prerequisites
 
-- C++20 compatible compiler (GCC 10+, Clang 12+, MSVC 2019+)
+- C++20 compatible compiler (GCC 13+, Clang 17+, MSVC 2022+, Apple Clang 14+)
 - CMake 3.20 or higher
 - Git
 

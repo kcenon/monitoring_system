@@ -525,7 +525,7 @@ system_under_test->set_logger(mock_log);
 - 인터페이스 호출은 가상 함수와 동일한 비용 (이미 이전에 사용됨)
 - DI는 시작 시 한 번 발생
 - 런타임 성능: < 5% 오버헤드
-- 벤치마크 결과: [PHASE3_VERIFICATION_REPORT.md](../../PHASE3_VERIFICATION_REPORT.md)
+- 벤치마크 결과: <!-- TODO: PHASE3_VERIFICATION_REPORT.md 없음; BENCHMARKS.md 참조 --> [BENCHMARKS.md](../BENCHMARKS.md) 참조
 
 ---
 
@@ -596,8 +596,8 @@ echo "4. 남은 문제는 수동으로 수정"
 5. 미래 지향적 아키텍처
 
 📚 **추가 리소스**:
-- [Phase 3 Verification Report](../../PHASE3_VERIFICATION_REPORT.md)
-- [Bidirectional DI Example](../examples/bidirectional_di_example.cpp)
+- <!-- TODO: PHASE3_VERIFICATION_REPORT.md 없음; 링크 제거됨 -->
+- [Bidirectional DI Example](../../examples/) <!-- TODO: bidirectional_di_example.cpp 없음; examples/ 참조 -->
 - [API Documentation](https://docs.example.com)
 
 🆘 **도움이 필요하신가요?**:
