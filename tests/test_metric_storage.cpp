@@ -408,3 +408,44 @@ TEST_F(MetricStorageTest, ConfigurationValidation) {
     validation = invalid_storage_config.validate();
     EXPECT_FALSE(validation.is_ok());
 }
+
+// Factory method tests for v1.0 Result-based API
+
+TEST_F(MetricStorageTest, RingBufferCreateWithValidConfig) {
+    ring_buffer_config config;
+    config.capacity = 16;
+    config.batch_size = 8;
+
+    auto result = ring_buffer<int>::create(config);
+    EXPECT_TRUE(result.is_ok());
+
+    auto& buffer = result.value();
+    EXPECT_NE(buffer, nullptr);
+    EXPECT_EQ(buffer->capacity(), 16);
+    EXPECT_TRUE(buffer->empty());
+}
+
+TEST_F(MetricStorageTest, RingBufferCreateWithInvalidConfig) {
+    ring_buffer_config config;
+    config.capacity = 7;  // Not a power of 2
+
+    auto result = ring_buffer<int>::create(config);
+    EXPECT_TRUE(result.is_err());
+}
+
+TEST_F(MetricStorageTest, MetricStorageCreateWithValidConfig) {
+    metric_storage_config config;
+    config.enable_background_processing = false;
+
+    auto result = metric_storage::create(config);
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_NE(result.value(), nullptr);
+}
+
+TEST_F(MetricStorageTest, MetricStorageCreateWithInvalidConfig) {
+    metric_storage_config config;
+    config.max_metrics = 0;
+
+    auto result = metric_storage::create(config);
+    EXPECT_TRUE(result.is_err());
+}

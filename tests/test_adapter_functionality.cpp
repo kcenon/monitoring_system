@@ -208,3 +208,31 @@ TEST(AdapterFunctionalityTest, MultipleAdaptersIndependent) {
 
     EXPECT_NE(adapter1->get_logger(), adapter2->get_logger());
 }
+
+// v1.0 Result-based factory method tests for performance_monitor_adapter
+
+#include <kcenon/monitoring/adapters/performance_monitor_adapter.h>
+
+TEST(PerformanceMonitorAdapterFactoryTest, CreateWithValidMonitor) {
+    auto monitor = std::make_shared<performance_monitor>("test_monitor");
+    auto result = performance_monitor_adapter::create(monitor);
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_NE(result.value(), nullptr);
+}
+
+TEST(PerformanceMonitorAdapterFactoryTest, CreateWithNullMonitor) {
+    auto result = performance_monitor_adapter::create(nullptr);
+    EXPECT_TRUE(result.is_err());
+}
+
+TEST(PerformanceMonitorAdapterFactoryTest, MakeMonitorAdapterWithValidMonitor) {
+    auto monitor = std::make_shared<performance_monitor>("test_monitor");
+    auto result = make_monitor_adapter(monitor);
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_NE(result.value(), nullptr);
+}
+
+TEST(PerformanceMonitorAdapterFactoryTest, MakeMonitorAdapterWithNullMonitor) {
+    auto result = make_monitor_adapter(nullptr);
+    EXPECT_TRUE(result.is_err());
+}
