@@ -7,13 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-04-16
+
 ### Added
 
+- Result-based static factory methods (`create()`) for `ring_buffer`, `metric_storage`, `time_series_buffer`, and `performance_monitor_adapter` to eliminate `throw` in public API construction paths ([#667](https://github.com/kcenon/monitoring_system/issues/667))
 - Add reusable GitHub Actions workflow for automated vcpkg registry synchronization ([#607](https://github.com/kcenon/monitoring_system/issues/607))
 
 ### Changed
 
+- Bump version to 1.0.0 — public API freeze ([#667](https://github.com/kcenon/monitoring_system/issues/667))
+- CMake export target `monitoring_system::monitoring_system` is now the stable public target name
 - Consolidate 8 bidirectional adapter files into 3 umbrella headers with backward-compatible includes ([#599](https://github.com/kcenon/monitoring_system/issues/599))
+
+### Deprecated
+
+- Throwing constructors in `ring_buffer`, `metric_storage`, `time_series_buffer`, and `performance_monitor_adapter` — use `create()` static factory methods instead
 
 ## [0.1.0] - 2026-03-11
 
