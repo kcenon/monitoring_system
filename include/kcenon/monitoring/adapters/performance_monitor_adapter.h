@@ -45,9 +45,28 @@ namespace kcenon { namespace monitoring {
 class performance_monitor_adapter : public common::interfaces::IMonitor {
 public:
     /**
+     * @brief Create an adapter with validated monitor pointer
+     * @param monitor Shared pointer to the performance_monitor to wrap
+     * @return Result containing the adapter or error if monitor is nullptr
+     */
+    static common::Result<std::shared_ptr<performance_monitor_adapter>> create(
+        std::shared_ptr<performance_monitor> monitor) {
+        if (!monitor) {
+            return common::Result<std::shared_ptr<performance_monitor_adapter>>::err(
+                common::error_info{
+                    static_cast<int>(monitoring_error_code::invalid_configuration),
+                    "performance_monitor cannot be null",
+                    "performance_monitor_adapter"});
+        }
+        return common::ok(std::shared_ptr<performance_monitor_adapter>(
+            new performance_monitor_adapter(std::move(monitor), validated_tag{})));
+    }
+
+    /**
      * @brief Construct adapter with existing performance_monitor
      * @param monitor Shared pointer to the performance_monitor to wrap
      * @throws std::invalid_argument if monitor is nullptr
+     * @deprecated Use create() for Result-based error handling
      */
     explicit performance_monitor_adapter(std::shared_ptr<performance_monitor> monitor)
         : monitor_(std::move(monitor)) {
@@ -214,17 +233,29 @@ public:
     }
 
 private:
+    struct validated_tag {};
+
+    // Private constructor for validated creation via create()
+    performance_monitor_adapter(std::shared_ptr<performance_monitor> monitor, validated_tag)
+        : monitor_(std::move(monitor)) {}
+
     std::shared_ptr<performance_monitor> monitor_;
 };
 
 /**
  * @brief Factory function to create performance_monitor_adapter
  * @param monitor The performance_monitor to wrap
- * @return Shared pointer to the adapter implementing IMonitor
+ * @return Result containing shared pointer to the adapter implementing IMonitor, or error
  */
-inline std::shared_ptr<common::interfaces::IMonitor> make_monitor_adapter(
+inline common::Result<std::shared_ptr<common::interfaces::IMonitor>> make_monitor_adapter(
     std::shared_ptr<performance_monitor> monitor) {
-    return std::make_shared<performance_monitor_adapter>(std::move(monitor));
+    auto result = performance_monitor_adapter::create(std::move(monitor));
+    if (result.is_err()) {
+        return common::Result<std::shared_ptr<common::interfaces::IMonitor>>::err(
+            result.error());
+    }
+    return common::ok(
+        std::shared_ptr<common::interfaces::IMonitor>(result.value()));
 }
 
 } } // namespace kcenon::monitoring

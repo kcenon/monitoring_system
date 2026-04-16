@@ -332,13 +332,38 @@ class time_series_buffer {
     static_assert(std::is_arithmetic_v<T>, "T must be an arithmetic type");
 
   private:
+    struct validated_tag {};
     detail::time_series_ring_buffer<time_series_sample<T>> buffer_;
 
+    // Private constructor for validated creation via create()
+    time_series_buffer(const time_series_buffer_config& config, validated_tag)
+        : buffer_(config.max_samples) {}
+
   public:
+    /**
+     * @brief Create a time series buffer with validated configuration
+     * @param config Time series buffer configuration options
+     * @return Result containing the buffer or error
+     */
+    static common::Result<std::unique_ptr<time_series_buffer>> create(
+        const time_series_buffer_config& config = {}) {
+        auto validation = config.validate();
+        if (validation.is_err()) {
+            return common::Result<std::unique_ptr<time_series_buffer>>::err(
+                error_info(monitoring_error_code::invalid_configuration,
+                           "Invalid time_series_buffer configuration: " +
+                               validation.error().message)
+                    .to_common_error());
+        }
+        return common::ok(std::unique_ptr<time_series_buffer>(
+            new time_series_buffer(config, validated_tag{})));
+    }
+
     /**
      * @brief Constructor with configuration
      * @param config Time series buffer configuration options
      * @throws std::invalid_argument if configuration validation fails
+     * @deprecated Use create() for Result-based error handling
      */
     explicit time_series_buffer(const time_series_buffer_config& config = {})
         : buffer_(config.max_samples) {

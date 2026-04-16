@@ -94,6 +94,8 @@ struct metric_storage_stats {
  */
 class metric_storage {
 private:
+    struct validated_tag {};
+
     mutable std::shared_mutex mutex_;
     metric_storage_config config_;
     mutable metric_storage_stats stats_;
@@ -157,11 +159,51 @@ private:
         return ptr;
     }
 
+    void init_internals() {
+        ring_buffer_config rb_config;
+        rb_config.capacity = config_.ring_buffer_capacity;
+        rb_config.overwrite_old = true;
+        rb_config.batch_size = (std::min)(rb_config.capacity / 2, size_t(64));
+        if (rb_config.batch_size == 0) rb_config.batch_size = 1;
+        incoming_buffer_ = std::make_unique<ring_buffer<compact_metric_value>>(rb_config);
+
+        if (config_.enable_background_processing) {
+            running_.store(true, std::memory_order_release);
+            background_thread_ = std::thread(&metric_storage::background_processor, this);
+        }
+    }
+
+    // Private constructor for validated creation via create()
+    metric_storage(const metric_storage_config& config, validated_tag)
+        : config_(config) {
+        init_internals();
+    }
+
 public:
+    /**
+     * @brief Create a metric storage with validated configuration
+     * @param config Metric storage configuration options
+     * @return Result containing the metric storage or error
+     */
+    static common::Result<std::unique_ptr<metric_storage>> create(
+        const metric_storage_config& config = {}) {
+        auto validation = config.validate();
+        if (validation.is_err()) {
+            return common::Result<std::unique_ptr<metric_storage>>::err(
+                error_info(monitoring_error_code::invalid_configuration,
+                           "Invalid metric storage configuration: " +
+                               validation.error().message)
+                    .to_common_error());
+        }
+        return common::ok(std::unique_ptr<metric_storage>(
+            new metric_storage(config, validated_tag{})));
+    }
+
     /**
      * @brief Constructor with configuration
      * @param config Metric storage configuration options
      * @throws std::invalid_argument if configuration validation fails
+     * @deprecated Use create() for Result-based error handling
      */
     explicit metric_storage(const metric_storage_config& config = {})
         : config_(config) {
@@ -172,20 +214,12 @@ public:
                                        validation.error().message);
         }
 
-        // Initialize ring buffer
-        ring_buffer_config rb_config;
-        rb_config.capacity = config_.ring_buffer_capacity;
-        rb_config.overwrite_old = true;
-        rb_config.batch_size = (std::min)(rb_config.capacity / 2, size_t(64));
-        if (rb_config.batch_size == 0) rb_config.batch_size = 1;
-        incoming_buffer_ = std::make_unique<ring_buffer<compact_metric_value>>(rb_config);
-
-        // Start background processing if enabled
-        if (config_.enable_background_processing) {
-            running_.store(true, std::memory_order_release);
-            background_thread_ = std::thread(&metric_storage::background_processor, this);
-        }
+        init_internals();
     }
+
+    // metric_storage is non-copyable, non-moveable (has thread member)
+    metric_storage(const metric_storage&) = delete;
+    metric_storage& operator=(const metric_storage&) = delete;
 
     /**
      * @brief Destructor
