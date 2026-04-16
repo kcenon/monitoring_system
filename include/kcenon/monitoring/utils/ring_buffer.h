@@ -143,12 +143,19 @@ private:
     static_assert(std::is_move_constructible_v<T>, "T must be move constructible");
     static_assert(std::is_move_assignable_v<T>, "T must be move assignable");
 
+    struct validated_tag {};
+
     alignas(64) std::atomic<size_t> write_index_{0};  // Cache line aligned
     alignas(64) std::atomic<size_t> read_index_{0};   // Cache line aligned
 
     std::unique_ptr<T[]> buffer_;
     ring_buffer_config config_;
     mutable ring_buffer_stats stats_;
+
+    // Private constructor for validated creation via create()
+    ring_buffer(const ring_buffer_config& config, validated_tag)
+        : buffer_(std::make_unique<T[]>(config.capacity))
+        , config_(config) {}
 
     /**
      * @brief Get the mask for efficient modulo operation
@@ -173,9 +180,29 @@ private:
 
 public:
     /**
+     * @brief Create a ring buffer with validated configuration
+     * @param config Ring buffer configuration options
+     * @return Result containing the ring buffer or error
+     */
+    static common::Result<std::unique_ptr<ring_buffer>> create(
+        const ring_buffer_config& config = {}) {
+        auto validation = config.validate();
+        if (validation.is_err()) {
+            return common::Result<std::unique_ptr<ring_buffer>>::err(
+                error_info(monitoring_error_code::invalid_configuration,
+                           "Invalid ring buffer configuration: " +
+                               validation.error().message)
+                    .to_common_error());
+        }
+        return common::ok(std::unique_ptr<ring_buffer>(
+            new ring_buffer(config, validated_tag{})));
+    }
+
+    /**
      * @brief Constructor with configuration
      * @param config Ring buffer configuration options
      * @throws std::invalid_argument if configuration validation fails
+     * @deprecated Use create() for Result-based error handling
      */
     explicit ring_buffer(const ring_buffer_config& config = {})
         : buffer_(std::make_unique<T[]>(config.capacity))

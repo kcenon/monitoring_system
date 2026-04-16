@@ -666,7 +666,7 @@ Phase 4 focuses on **core foundation stability** rather than feature completenes
 - [API_REFERENCE.md](API_REFERENCE.md) - API Reference index
 - [API_REFERENCE_COLLECTORS.md](API_REFERENCE_COLLECTORS.md) - Collector class APIs
 - [API_REFERENCE_ALERTS_EXPORT.md](API_REFERENCE_ALERTS_EXPORT.md) - Alerts, exporters, tracing, reliability, storage APIs
-- [Phase 4 Documentation](advanced/ARCHITECTURE_GUIDE.md#phase-4-implementation-status) <!-- TODO: PHASE4.md removed; linking to Phase 4 status section -->
+- [Phase 4 Documentation](advanced/ARCHITECTURE_GUIDE.md) - Phase 4 implementation status and architecture decisions
 - [Architecture Guide](ARCHITECTURE.md) - System design and patterns
 - [Examples](../examples/) - Working code examples
 - [Changelog](CHANGELOG.md) - Version history and changes

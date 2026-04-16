@@ -24,6 +24,7 @@
 - [예제](#예제)
 - [성능](#성능)
 - [생태계 통합](#생태계-통합)
+- [API 안정성 (v1.0)](#api-안정성-v10)
 - [기여하기](#기여하기)
 - [라이선스](#라이선스)
 
@@ -278,6 +279,49 @@ network_system   (Tier 4) [선택] -- 내보내기 HTTP 전송
 | **Linux** | GCC 13+, Clang 17+ | 완전 지원 |
 | **macOS** | Apple Clang 14+ | 완전 지원 |
 | **Windows** | MSVC 2022+ | 완전 지원 |
+
+---
+
+## API 안정성 (v1.0)
+
+v1.0.0부터 공개 API는 [Semantic Versioning](https://semver.org/)에 따라 **동결**됩니다:
+
+- **패치 릴리스** (1.0.x): 버그 수정만, API 변경 없음.
+- **마이너 릴리스** (1.x.0): 하위 호환 가능한 추가; 기존 코드는 계속 컴파일됨.
+- **메이저 릴리스** (2.0.0): 호환되지 않는 변경을 위해 예약되며, 이전 마이너 시리즈에서 폐기 주기가 진행됨.
+
+### 안정화된 공개 인터페이스
+
+| 컴포넌트 | 헤더 | 보증 |
+|----------|------|------|
+| `performance_monitor` | `core/performance_monitor.h` | 안정 |
+| `distributed_tracer` | `tracing/distributed_tracer.h` | 안정 |
+| `central_collector` | `core/central_collector.h` | 안정 |
+| `metric_factory` | `factory/metric_factory.h` | 안정 |
+| `health_monitor` | `health/health_monitor.h` | 안정 |
+| `circuit_breaker` | `reliability/circuit_breaker.h` | 안정 |
+| `ring_buffer` | `utils/ring_buffer.h` | 안정 |
+| `metric_storage` | `utils/metric_storage.h` | 안정 |
+| `time_series_buffer` | `utils/time_series_buffer.h` | 안정 |
+
+### 생성 API
+
+공개 유틸리티 타입은 이제 잘못된 인수에 대해 예외를 던지는 대신 `Result<T>`를 반환하는 `create()` 정적 팩토리 메서드를 제공합니다. 예외를 던지는 생성자는 **폐기 예정**이며 향후 메이저 릴리스에서 제거될 예정입니다.
+
+```cpp
+// 권장 (v1.0+)
+ring_buffer_config cfg;
+cfg.capacity = 1024;
+auto result = ring_buffer<double>::create(cfg);
+if (result.is_err()) { /* 오류 처리 */ }
+
+// 폐기 예정 — 아직 동작하지만 v2.0에서 제거 예정
+ring_buffer<double> buf(cfg); // 예외 발생 가능
+```
+
+### CMake 타겟
+
+안정적인 CMake 내보내기 타겟은 `monitoring_system::monitoring_system`입니다.
 
 ---
 
