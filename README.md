@@ -26,6 +26,7 @@
 - [CMake Integration](#cmake-integration)
 - [Configuration](#configuration)
 - [Testing](#testing)
+- [API Stability (v1.0)](#api-stability-v10)
 - [Production Quality](#production-quality)
 - [Support & Contributing](#support--contributing)
 - [License](#license)
@@ -439,7 +440,7 @@ include(FetchContent)
 FetchContent_Declare(
     monitoring_system
     GIT_REPOSITORY https://github.com/kcenon/monitoring_system.git
-    GIT_TAG v0.1.0 # Pin to a specific release tag; do NOT use main
+    GIT_TAG v1.0.0 # Pin to a specific release tag; do NOT use main
 )
 
 FetchContent_MakeAvailable(monitoring_system)
@@ -514,6 +515,47 @@ make coverage
 - Line Coverage: 87.3%
 - Function Coverage: 92.1%
 - Branch Coverage: 78.5%
+
+---
+
+## API Stability (v1.0)
+
+Starting with v1.0.0, the public API is **frozen** under [Semantic Versioning](https://semver.org/):
+
+- **Patch releases** (1.0.x): Bug fixes only, no API changes.
+- **Minor releases** (1.x.0): Backward-compatible additions; existing code continues to compile.
+- **Major releases** (2.0.0): Reserved for breaking changes, with a deprecation cycle in the prior minor series.
+
+### Stable Public Interfaces
+
+| Component | Header | Guarantee |
+|-----------|--------|-----------|
+| `performance_monitor` | `core/performance_monitor.h` | Stable |
+| `distributed_tracer` | `tracing/distributed_tracer.h` | Stable |
+| `central_collector` | `core/central_collector.h` | Stable |
+| `metric_factory` | `factory/metric_factory.h` | Stable |
+| `health_monitor` | `health/health_monitor.h` | Stable |
+| `circuit_breaker` | `reliability/circuit_breaker.h` | Stable |
+| `ring_buffer` | `utils/ring_buffer.h` | Stable |
+| `metric_storage` | `utils/metric_storage.h` | Stable |
+| `time_series_buffer` | `utils/time_series_buffer.h` | Stable |
+
+### Construction API
+
+Public utility types now provide `create()` static factory methods that return `Result<T>` instead of throwing on invalid arguments. The throwing constructors are **deprecated** and will be removed in a future major release.
+
+```cpp
+// Preferred (v1.0+)
+auto buf = ring_buffer<double>::create(1024);
+if (!buf) { /* handle error */ }
+
+// Deprecated — still works but will be removed in v2.0
+ring_buffer<double> buf(1024); // may throw
+```
+
+### CMake Target
+
+The stable CMake export target is `monitoring_system::monitoring_system`.
 
 ---
 
