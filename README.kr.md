@@ -310,11 +310,13 @@ v1.0.0부터 공개 API는 [Semantic Versioning](https://semver.org/)에 따라 
 
 ```cpp
 // 권장 (v1.0+)
-auto buf = ring_buffer<double>::create(1024);
-if (!buf) { /* 오류 처리 */ }
+ring_buffer_config cfg;
+cfg.capacity = 1024;
+auto result = ring_buffer<double>::create(cfg);
+if (result.is_err()) { /* 오류 처리 */ }
 
 // 폐기 예정 — 아직 동작하지만 v2.0에서 제거 예정
-ring_buffer<double> buf(1024); // 예외 발생 가능
+ring_buffer<double> buf(cfg); // 예외 발생 가능
 ```
 
 ### CMake 타겟

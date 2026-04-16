@@ -546,11 +546,13 @@ Public utility types now provide `create()` static factory methods that return `
 
 ```cpp
 // Preferred (v1.0+)
-auto buf = ring_buffer<double>::create(1024);
-if (!buf) { /* handle error */ }
+ring_buffer_config cfg;
+cfg.capacity = 1024;
+auto result = ring_buffer<double>::create(cfg);
+if (result.is_err()) { /* handle error */ }
 
 // Deprecated — still works but will be removed in v2.0
-ring_buffer<double> buf(1024); // may throw
+ring_buffer<double> buf(cfg); // may throw
 ```
 
 ### CMake Target
