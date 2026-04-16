@@ -233,10 +233,6 @@ public:
         }
     }
 
-    // Non-copyable
-    metric_storage(const metric_storage&) = delete;
-    metric_storage& operator=(const metric_storage&) = delete;
-
     /**
      * @brief Store a single metric value
      * @param name Metric name
