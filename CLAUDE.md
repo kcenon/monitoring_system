@@ -95,7 +95,11 @@ network_system   (Tier 4) [optional] — HTTP transport for exporters
 
 - C++20 required; GCC 13+, Clang 17+, MSVC 2022+, Apple Clang 14+
 - Build requires sibling repos: common_system, thread_system must be cloned alongside
-- Jaeger/Zipkin protobuf serialization still stub implementations
+- Jaeger (`Batch`/`Span`) and Zipkin (`ListOfSpans`/`Span`) protobuf wire formats
+  are implemented via a zero-dependency encoder in
+  `include/kcenon/monitoring/exporters/internal/`; full end-to-end Docker
+  integration tests against jaegertracing/all-in-one and openzipkin/zipkin
+  containers remain a follow-up
 - Some tests have platform-specific timing sensitivity (macOS sleep adjustments)
 - C++20 modules experimental (CMake 3.28+)
 - Hardware/container plugins disabled by default; Kubernetes support is stub

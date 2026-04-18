@@ -374,6 +374,212 @@ TEST_F(TraceExportersTest, LargeSpanBatch) {
 }
 
 // ==============================================================
+// Jaeger / Zipkin Protobuf Round-Trip Tests (Issue #670)
+// ==============================================================
+
+#include <kcenon/monitoring/exporters/internal/jaeger_proto.h>
+#include <kcenon/monitoring/exporters/internal/zipkin_proto.h>
+
+TEST(ProtobufWireTest, VarintRoundTrip) {
+    using namespace kcenon::monitoring::protobuf_wire;
+    const std::uint64_t values[] = {
+        0, 1, 127, 128, 255, 16383, 16384,
+        1000000000ULL, (std::uint64_t{1} << 63)
+    };
+    for (std::uint64_t v : values) {
+        std::vector<std::uint8_t> buf;
+        encode_varint(buf, v);
+        reader r(buf.data(), buf.size());
+        auto got = r.read_varint();
+        ASSERT_TRUE(got.has_value()) << "failed for value " << v;
+        EXPECT_EQ(*got, v);
+        EXPECT_TRUE(r.eof());
+    }
+}
+
+TEST(ProtobufWireTest, HexBytesRoundTrip) {
+    using namespace kcenon::monitoring::protobuf_wire;
+    const std::string hex = "0123456789abcdef";
+    auto bytes = hex_to_bytes(hex);
+    EXPECT_EQ(bytes.size(), 8u);
+    EXPECT_EQ(bytes_to_hex(bytes), hex);
+
+    // Invalid hex yields empty
+    EXPECT_TRUE(hex_to_bytes("xyz").empty());
+
+    // Left-padding to 16 bytes
+    auto padded = left_pad(bytes, 16);
+    EXPECT_EQ(padded.size(), 16u);
+    for (std::size_t i = 0; i < 8; ++i) EXPECT_EQ(padded[i], 0u);
+    for (std::size_t i = 0; i < 8; ++i) EXPECT_EQ(padded[8 + i], bytes[i]);
+}
+
+TEST_F(TraceExportersTest, JaegerSpanProtobufRoundTrip) {
+    trace_export_config config;
+    config.endpoint = "http://jaeger:14268";
+    config.format = trace_export_format::jaeger_grpc;
+    config.service_name = "test_service";
+
+    jaeger_exporter exporter(config);
+    auto jaeger_span = exporter.convert_span(test_spans_[0]);
+    auto wire = jaeger_span.to_protobuf();
+    ASSERT_FALSE(wire.empty());
+
+    kcenon::monitoring::jaeger_proto::span decoded;
+    ASSERT_TRUE(kcenon::monitoring::jaeger_proto::decode_span(
+        wire.data(), wire.size(), decoded));
+
+    // Core identifiers: 16-byte trace ID, 8-byte span ID
+    EXPECT_EQ(decoded.trace_id.size(), 16u);
+    EXPECT_EQ(decoded.span_id.size(), 8u);
+    EXPECT_EQ(decoded.operation_name, test_spans_[0].operation_name);
+
+    // Tags preserved (STRING ValueType).
+    bool found_method = false, found_url = false, found_kind = false;
+    for (const auto& kv : decoded.tags) {
+        if (kv.key == "http.method") {
+            EXPECT_EQ(kv.v_str, "GET");
+            EXPECT_EQ(static_cast<int>(kv.v_type), 0);
+            found_method = true;
+        } else if (kv.key == "http.url") {
+            EXPECT_EQ(kv.v_str, "/api/users");
+            found_url = true;
+        } else if (kv.key == "span.kind") {
+            EXPECT_EQ(kv.v_str, "server");
+            found_kind = true;
+        }
+    }
+    EXPECT_TRUE(found_method);
+    EXPECT_TRUE(found_url);
+    EXPECT_TRUE(found_kind);
+
+    // Process service name overridden from config.
+    EXPECT_EQ(decoded.proc.service_name, "test_service");
+}
+
+TEST_F(TraceExportersTest, JaegerSpanProtobufParentReference) {
+    trace_export_config config;
+    config.endpoint = "http://jaeger:14268";
+    config.format = trace_export_format::jaeger_grpc;
+
+    jaeger_exporter exporter(config);
+    // Second test span has parent_span_id set.
+    auto jaeger_span = exporter.convert_span(test_spans_[1]);
+    auto wire = jaeger_span.to_protobuf();
+
+    kcenon::monitoring::jaeger_proto::span decoded;
+    ASSERT_TRUE(kcenon::monitoring::jaeger_proto::decode_span(
+        wire.data(), wire.size(), decoded));
+
+    ASSERT_EQ(decoded.references.size(), 1u);
+    EXPECT_EQ(decoded.references[0].ref_type, 0);  // CHILD_OF
+    EXPECT_EQ(decoded.references[0].span_id.size(), 8u);
+}
+
+TEST_F(TraceExportersTest, JaegerBatchProtobufRoundTrip) {
+    trace_export_config config;
+    config.endpoint = "http://jaeger:14268";
+    config.format = trace_export_format::jaeger_grpc;
+    config.service_name = "batch_service";
+
+    jaeger_exporter exporter(config);
+    std::vector<jaeger_span_data> jaeger_spans;
+    for (const auto& s : test_spans_) {
+        jaeger_spans.push_back(exporter.convert_span(s));
+    }
+    auto wire = encode_jaeger_batch(jaeger_spans, "batch_service");
+    ASSERT_FALSE(wire.empty());
+
+    kcenon::monitoring::jaeger_proto::batch decoded;
+    ASSERT_TRUE(kcenon::monitoring::jaeger_proto::decode_batch(
+        wire.data(), wire.size(), decoded));
+    EXPECT_EQ(decoded.spans.size(), test_spans_.size());
+    EXPECT_TRUE(decoded.has_process);
+    EXPECT_EQ(decoded.proc.service_name, "batch_service");
+}
+
+TEST_F(TraceExportersTest, ZipkinSpanProtobufRoundTrip) {
+    trace_export_config config;
+    config.endpoint = "http://zipkin:9411";
+    config.format = trace_export_format::zipkin_protobuf;
+    config.service_name = "test_service";
+
+    zipkin_exporter exporter(config);
+    auto zipkin_span = exporter.convert_span(test_spans_[0]);
+    auto wire = zipkin_span.to_protobuf();
+    ASSERT_FALSE(wire.empty());
+
+    kcenon::monitoring::zipkin_proto::span decoded;
+    ASSERT_TRUE(kcenon::monitoring::zipkin_proto::decode_span(
+        wire.data(), wire.size(), decoded));
+
+    // Trace ID length: 8 or 16; span ID: 8 bytes.
+    EXPECT_TRUE(decoded.trace_id.size() == 8u || decoded.trace_id.size() == 16u);
+    EXPECT_EQ(decoded.id.size(), 8u);
+    EXPECT_EQ(decoded.name, "http_request");
+    EXPECT_EQ(decoded.kind, kcenon::monitoring::zipkin_proto::span_kind::server);
+    EXPECT_EQ(decoded.local_endpoint.service_name, "test_service");
+
+    // Tags preserved; span.kind excluded by convert_span.
+    bool found_method = false, found_url = false, found_kind = false;
+    for (const auto& [k, v] : decoded.tags) {
+        if (k == "http.method") { EXPECT_EQ(v, "GET"); found_method = true; }
+        if (k == "http.url") { EXPECT_EQ(v, "/api/users"); found_url = true; }
+        if (k == "span.kind") { found_kind = true; }
+    }
+    EXPECT_TRUE(found_method);
+    EXPECT_TRUE(found_url);
+    EXPECT_FALSE(found_kind);
+}
+
+TEST_F(TraceExportersTest, ZipkinSpanProtobufParent) {
+    trace_export_config config;
+    config.endpoint = "http://zipkin:9411";
+    config.format = trace_export_format::zipkin_protobuf;
+
+    zipkin_exporter exporter(config);
+    auto zipkin_span = exporter.convert_span(test_spans_[1]);
+    auto wire = zipkin_span.to_protobuf();
+
+    kcenon::monitoring::zipkin_proto::span decoded;
+    ASSERT_TRUE(kcenon::monitoring::zipkin_proto::decode_span(
+        wire.data(), wire.size(), decoded));
+    EXPECT_EQ(decoded.parent_id.size(), 8u);
+    EXPECT_EQ(decoded.kind, kcenon::monitoring::zipkin_proto::span_kind::client);
+}
+
+TEST_F(TraceExportersTest, ZipkinListOfSpansRoundTrip) {
+    trace_export_config config;
+    config.endpoint = "http://zipkin:9411";
+    config.format = trace_export_format::zipkin_protobuf;
+    config.service_name = "test_service";
+
+    zipkin_exporter exporter(config);
+    std::vector<zipkin_span_data> zipkin_spans;
+    for (const auto& s : test_spans_) {
+        zipkin_spans.push_back(exporter.convert_span(s));
+    }
+    auto wire = encode_zipkin_list_of_spans(zipkin_spans);
+    ASSERT_FALSE(wire.empty());
+
+    kcenon::monitoring::zipkin_proto::list_of_spans decoded;
+    ASSERT_TRUE(kcenon::monitoring::zipkin_proto::decode_list_of_spans(
+        wire.data(), wire.size(), decoded));
+    EXPECT_EQ(decoded.spans.size(), test_spans_.size());
+}
+
+TEST(ZipkinProtoTest, SpanKindParsing) {
+    using kcenon::monitoring::zipkin_proto::parse_kind;
+    using kcenon::monitoring::zipkin_proto::span_kind;
+    EXPECT_EQ(parse_kind("CLIENT"), span_kind::client);
+    EXPECT_EQ(parse_kind("server"), span_kind::server);
+    EXPECT_EQ(parse_kind("Producer"), span_kind::producer);
+    EXPECT_EQ(parse_kind("CONSUMER"), span_kind::consumer);
+    EXPECT_EQ(parse_kind(""), span_kind::unspecified);
+    EXPECT_EQ(parse_kind("INTERNAL"), span_kind::unspecified);
+}
+
+// ==============================================================
 // OTLP gRPC Exporter Tests
 // ==============================================================
 

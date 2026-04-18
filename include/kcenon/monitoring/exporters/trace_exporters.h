@@ -24,6 +24,8 @@
 #include "opentelemetry_adapter.h"
 #include "http_transport.h"
 #include "grpc_transport.h"
+#include "internal/jaeger_proto.h"
+#include "internal/zipkin_proto.h"
 #include <vector>
 #include <string>
 #include <memory>
@@ -151,14 +153,110 @@ struct jaeger_span_data {
     }
 
     /**
-     * @brief Convert to Jaeger protobuf format (stub)
+     * @brief Convert this span to a Jaeger api_v2 `Span` protobuf message.
+     *
+     * Field numbers follow `jaeger-idl/proto/api_v2/model.proto`. Trace IDs
+     * are zero-padded to 16 bytes and span IDs to 8 bytes, matching the
+     * conventions enforced by the Jaeger collector.
      */
     std::vector<uint8_t> to_protobuf() const {
-        // Protobuf serialization requires generated code
-        // Return empty for now - full implementation would use protobuf library
-        return {};
+        jaeger_proto::span out;
+        out.trace_id = protobuf_wire::left_pad(
+            protobuf_wire::hex_to_bytes(trace_id), 16);
+        out.span_id = protobuf_wire::left_pad(
+            protobuf_wire::hex_to_bytes(span_id), 8);
+        out.operation_name = operation_name;
+
+        if (!parent_span_id.empty()) {
+            jaeger_proto::span_ref ref;
+            ref.trace_id = out.trace_id;
+            ref.span_id = protobuf_wire::left_pad(
+                protobuf_wire::hex_to_bytes(parent_span_id), 8);
+            ref.ref_type = 0;  // CHILD_OF
+            out.references.push_back(std::move(ref));
+        }
+
+        // Timestamp / duration split into (seconds, nanos).
+        auto st_ns = std::chrono::nanoseconds(start_time);
+        out.start_time_seconds = static_cast<std::int64_t>(
+            std::chrono::duration_cast<std::chrono::seconds>(st_ns).count());
+        out.start_time_nanos = static_cast<std::int32_t>(
+            (st_ns - std::chrono::seconds(out.start_time_seconds)).count());
+
+        auto du_ns = std::chrono::nanoseconds(duration);
+        out.duration_seconds = static_cast<std::int64_t>(
+            std::chrono::duration_cast<std::chrono::seconds>(du_ns).count());
+        out.duration_nanos = static_cast<std::int32_t>(
+            (du_ns - std::chrono::seconds(out.duration_seconds)).count());
+
+        for (const auto& [key, value] : tags) {
+            jaeger_proto::key_value kv;
+            kv.key = key;
+            kv.v_type = jaeger_proto::value_type::string_type;
+            kv.v_str = value;
+            out.tags.push_back(std::move(kv));
+        }
+
+        out.proc.service_name = service_name;
+        for (const auto& [key, value] : process_tags) {
+            jaeger_proto::key_value kv;
+            kv.key = key;
+            kv.v_type = jaeger_proto::value_type::string_type;
+            kv.v_str = value;
+            out.proc.tags.push_back(std::move(kv));
+        }
+
+        return jaeger_proto::encode_span(out);
     }
 };
+
+/**
+ * @brief Encode a batch of Jaeger spans (with shared process) into a Jaeger
+ *        api_v2 `Batch` protobuf message.
+ */
+inline std::vector<uint8_t> encode_jaeger_batch(
+    const std::vector<jaeger_span_data>& spans,
+    const std::string& service_name) {
+    jaeger_proto::batch b;
+    b.spans.reserve(spans.size());
+    for (const auto& s : spans) {
+        jaeger_proto::span ps;
+        ps.trace_id = protobuf_wire::left_pad(
+            protobuf_wire::hex_to_bytes(s.trace_id), 16);
+        ps.span_id = protobuf_wire::left_pad(
+            protobuf_wire::hex_to_bytes(s.span_id), 8);
+        ps.operation_name = s.operation_name;
+        if (!s.parent_span_id.empty()) {
+            jaeger_proto::span_ref ref;
+            ref.trace_id = ps.trace_id;
+            ref.span_id = protobuf_wire::left_pad(
+                protobuf_wire::hex_to_bytes(s.parent_span_id), 8);
+            ref.ref_type = 0;
+            ps.references.push_back(std::move(ref));
+        }
+        auto st_ns = std::chrono::nanoseconds(s.start_time);
+        ps.start_time_seconds = static_cast<std::int64_t>(
+            std::chrono::duration_cast<std::chrono::seconds>(st_ns).count());
+        ps.start_time_nanos = static_cast<std::int32_t>(
+            (st_ns - std::chrono::seconds(ps.start_time_seconds)).count());
+        auto du_ns = std::chrono::nanoseconds(s.duration);
+        ps.duration_seconds = static_cast<std::int64_t>(
+            std::chrono::duration_cast<std::chrono::seconds>(du_ns).count());
+        ps.duration_nanos = static_cast<std::int32_t>(
+            (du_ns - std::chrono::seconds(ps.duration_seconds)).count());
+        for (const auto& [key, value] : s.tags) {
+            jaeger_proto::key_value kv;
+            kv.key = key;
+            kv.v_type = jaeger_proto::value_type::string_type;
+            kv.v_str = value;
+            ps.tags.push_back(std::move(kv));
+        }
+        b.spans.push_back(std::move(ps));
+    }
+    b.proc.service_name = service_name;
+    b.has_process = !service_name.empty();
+    return jaeger_proto::encode_batch(b);
+}
 
 /**
  * @struct zipkin_span_data
@@ -220,14 +318,78 @@ struct zipkin_span_data {
     }
 
     /**
-     * @brief Convert to Zipkin protobuf format (stub)
+     * @brief Convert this span to a Zipkin `Span` protobuf message.
+     *
+     * Field numbers follow `openzipkin/zipkin-api/zipkin.proto`. Trace IDs are
+     * expected to be 8 or 16 hex bytes; shorter inputs are zero-padded.
      */
     std::vector<uint8_t> to_protobuf() const {
-        // Protobuf serialization requires generated code
-        // Return empty for now - full implementation would use protobuf library
-        return {};
+        zipkin_proto::span out;
+        auto trace_bytes = protobuf_wire::hex_to_bytes(trace_id);
+        // Zipkin accepts 8 or 16 byte trace IDs; normalize the common
+        // shorter cases by padding to 8 bytes.
+        if (!trace_bytes.empty() && trace_bytes.size() != 16) {
+            out.trace_id = protobuf_wire::left_pad(trace_bytes, 8);
+        } else {
+            out.trace_id = trace_bytes;
+        }
+        out.id = protobuf_wire::left_pad(
+            protobuf_wire::hex_to_bytes(span_id), 8);
+        if (!parent_id.empty()) {
+            out.parent_id = protobuf_wire::left_pad(
+                protobuf_wire::hex_to_bytes(parent_id), 8);
+        }
+        out.kind = zipkin_proto::parse_kind(kind);
+        out.name = name;
+        out.timestamp = static_cast<std::uint64_t>(timestamp.count());
+        out.duration = static_cast<std::uint64_t>(duration.count());
+        out.local_endpoint.service_name = local_endpoint_service_name;
+        out.remote_endpoint.service_name = remote_endpoint_service_name;
+        out.shared = shared;
+        for (const auto& [key, value] : tags) {
+            out.tags.emplace_back(key, value);
+        }
+        return zipkin_proto::encode_span(out);
     }
 };
+
+/**
+ * @brief Encode a batch of Zipkin spans into a `ListOfSpans` protobuf message
+ *        suitable for POST /api/v2/spans with Content-Type
+ *        application/x-protobuf.
+ */
+inline std::vector<uint8_t> encode_zipkin_list_of_spans(
+    const std::vector<zipkin_span_data>& spans) {
+    zipkin_proto::list_of_spans list;
+    list.spans.reserve(spans.size());
+    for (const auto& s : spans) {
+        zipkin_proto::span ps;
+        auto trace_bytes = protobuf_wire::hex_to_bytes(s.trace_id);
+        if (!trace_bytes.empty() && trace_bytes.size() != 16) {
+            ps.trace_id = protobuf_wire::left_pad(trace_bytes, 8);
+        } else {
+            ps.trace_id = trace_bytes;
+        }
+        ps.id = protobuf_wire::left_pad(
+            protobuf_wire::hex_to_bytes(s.span_id), 8);
+        if (!s.parent_id.empty()) {
+            ps.parent_id = protobuf_wire::left_pad(
+                protobuf_wire::hex_to_bytes(s.parent_id), 8);
+        }
+        ps.kind = zipkin_proto::parse_kind(s.kind);
+        ps.name = s.name;
+        ps.timestamp = static_cast<std::uint64_t>(s.timestamp.count());
+        ps.duration = static_cast<std::uint64_t>(s.duration.count());
+        ps.local_endpoint.service_name = s.local_endpoint_service_name;
+        ps.remote_endpoint.service_name = s.remote_endpoint_service_name;
+        ps.shared = s.shared;
+        for (const auto& [key, value] : s.tags) {
+            ps.tags.emplace_back(key, value);
+        }
+        list.spans.push_back(std::move(ps));
+    }
+    return zipkin_proto::encode_list_of_spans(list);
+}
 
 /**
  * @class trace_exporter_interface
@@ -396,18 +558,23 @@ private:
     }
 
     common::VoidResult send_grpc_batch(const std::vector<jaeger_span_data>& spans) {
-        // gRPC would require a different transport mechanism
-        // For now, fall back to HTTP POST with protobuf
-        std::vector<uint8_t> payload;
-        for (const auto& span : spans) {
-            auto proto = span.to_protobuf();
-            payload.insert(payload.end(), proto.begin(), proto.end());
+        // Serialize as a Jaeger api_v2 `Batch` protobuf message. Real gRPC
+        // transport would additionally wrap this in a 5-byte gRPC length
+        // prefix and multiplex over HTTP/2; when a gRPC transport is
+        // available the raw `Batch` bytes below can be used as the message
+        // payload directly.
+        std::string resolved_service;
+        if (config_.service_name) {
+            resolved_service = *config_.service_name;
+        } else if (!spans.empty()) {
+            resolved_service = spans.front().service_name;
         }
+        auto payload = encode_jaeger_batch(spans, resolved_service);
 
         http_request request;
         request.url = config_.endpoint;
         request.method = "POST";
-        request.headers["Content-Type"] = "application/grpc+proto";
+        request.headers["Content-Type"] = "application/x-protobuf";
         for (const auto& [key, value] : config_.headers) {
             request.headers[key] = value;
         }
@@ -598,12 +765,9 @@ private:
     }
 
     common::VoidResult send_protobuf_batch(const std::vector<zipkin_span_data>& spans) {
-        // Build protobuf payload
-        std::vector<uint8_t> payload;
-        for (const auto& span : spans) {
-            auto proto = span.to_protobuf();
-            payload.insert(payload.end(), proto.begin(), proto.end());
-        }
+        // Serialize as a Zipkin `ListOfSpans` protobuf message. POST target
+        // accepts application/x-protobuf per Zipkin v2 API.
+        auto payload = encode_zipkin_list_of_spans(spans);
 
         http_request request;
         request.url = config_.endpoint + "/api/v2/spans";
