@@ -410,6 +410,9 @@ int main() {
 - 📏 [Code of Conduct](CODE_OF_CONDUCT.md) - Community guidelines
 - 📑 [Traceability](docs/TRACEABILITY.md) - Feature-Test-Module mapping
 
+### Compliance
+- 📋 [ISO/IEC 27001 and 20000 Mapping](docs/compliance/iso-mapping.md) - Which features help satisfy which clauses (and what remains the operator's responsibility)
+
 ---
 
 ## CMake Integration
