@@ -13,7 +13,7 @@ category: "GUID"
 > **SSOT**: This file is the single source of truth for the documentation index
 > of **monitoring_system**.
 
-Total documents: **80**
+Total documents: **81**
 
 ## Document Index
 
@@ -99,6 +99,7 @@ Total documents: **80**
 | 78 | MON-PROJ-005 | SOUP List &mdash; monitoring_system | [SOUP.md](./SOUP.md) | Released |
 | 79 | MON-PROJ-006 | Monitoring System에 기여하기 | [CONTRIBUTING.kr.md](./contributing/CONTRIBUTING.kr.md) | Released |
 | 80 | MON-PROJ-007 | Contributing to Monitoring System | [CONTRIBUTING.md](./contributing/CONTRIBUTING.md) | Released |
+| 81 | MON-COMP-001 | ISO/IEC 27001 and 20000 Compliance Mapping | [iso-mapping.md](./compliance/iso-mapping.md) | Released |
 
 ## Documents by Category
 
@@ -224,6 +225,12 @@ Total documents: **80**
 |--------|-------|----------|--------|
 | MON-ADR-001 | ADR-001: Collector Factory Pattern | [ADR-001-collector-factory-pattern.md](./adr/ADR-001-collector-factory-pattern.md) | Accepted |
 | MON-ADR-002 | ADR-002: Distributed Tracing Integration | [ADR-002-distributed-tracing-integration.md](./adr/ADR-002-distributed-tracing-integration.md) | Accepted |
+
+### Compliance (1)
+
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-COMP-001 | ISO/IEC 27001 and 20000 Compliance Mapping | [iso-mapping.md](./compliance/iso-mapping.md) | Released |
 
 ### Project (7)
 
