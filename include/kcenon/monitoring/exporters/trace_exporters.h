@@ -327,11 +327,12 @@ struct zipkin_span_data {
         zipkin_proto::span out;
         auto trace_bytes = protobuf_wire::hex_to_bytes(trace_id);
         // Zipkin accepts 8 or 16 byte trace IDs; normalize the common
-        // shorter cases by padding to 8 bytes.
-        if (!trace_bytes.empty() && trace_bytes.size() != 16) {
-            out.trace_id = protobuf_wire::left_pad(trace_bytes, 8);
+        // shorter/empty/non-hex inputs to 8 bytes so the wire always carries
+        // a valid ID (Zipkin rejects spans without a trace ID).
+        if (trace_bytes.size() == 16) {
+            out.trace_id = std::move(trace_bytes);
         } else {
-            out.trace_id = trace_bytes;
+            out.trace_id = protobuf_wire::left_pad(trace_bytes, 8);
         }
         out.id = protobuf_wire::left_pad(
             protobuf_wire::hex_to_bytes(span_id), 8);
@@ -365,10 +366,10 @@ inline std::vector<uint8_t> encode_zipkin_list_of_spans(
     for (const auto& s : spans) {
         zipkin_proto::span ps;
         auto trace_bytes = protobuf_wire::hex_to_bytes(s.trace_id);
-        if (!trace_bytes.empty() && trace_bytes.size() != 16) {
-            ps.trace_id = protobuf_wire::left_pad(trace_bytes, 8);
+        if (trace_bytes.size() == 16) {
+            ps.trace_id = std::move(trace_bytes);
         } else {
-            ps.trace_id = trace_bytes;
+            ps.trace_id = protobuf_wire::left_pad(trace_bytes, 8);
         }
         ps.id = protobuf_wire::left_pad(
             protobuf_wire::hex_to_bytes(s.span_id), 8);
