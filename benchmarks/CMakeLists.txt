@@ -17,14 +17,15 @@ endif()
 if(benchmark_FOUND OR BENCHMARK_FOUND)
     message(STATUS "Google Benchmark found. Building monitoring_system benchmarks...")
 
+    # Collect benchmark sources via glob.
+    # CONFIGURE_DEPENDS picks up newly-added benchmark files on reconfigure.
+    file(GLOB MONITORING_BENCHMARK_SOURCES CONFIGURE_DEPENDS
+        ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
+    )
+
     # Benchmark executable
     add_executable(monitoring_benchmarks
-        core_metrics_bench.cpp
-        metric_collection_bench.cpp
-        event_bus_bench.cpp
-        collector_overhead_bench.cpp
-        adaptive_monitor_bench.cpp
-        main_bench.cpp
+        ${MONITORING_BENCHMARK_SOURCES}
     )
 
     target_link_libraries(monitoring_benchmarks

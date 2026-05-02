@@ -40,10 +40,11 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/sources
 )
 
-# Collect all test source files
-file(GLOB SCENARIO_TESTS scenarios/*.cpp)
-file(GLOB PERFORMANCE_TESTS performance/*.cpp)
-file(GLOB FAILURE_TESTS failures/*.cpp)
+# Collect all test source files.
+# CONFIGURE_DEPENDS makes CMake re-run the glob on build when files are added/removed.
+file(GLOB SCENARIO_TESTS CONFIGURE_DEPENDS scenarios/*.cpp)
+file(GLOB PERFORMANCE_TESTS CONFIGURE_DEPENDS performance/*.cpp)
+file(GLOB FAILURE_TESTS CONFIGURE_DEPENDS failures/*.cpp)
 
 # Create integration test executable
 add_executable(monitoring_integration_tests

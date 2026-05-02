@@ -519,11 +519,13 @@ set(MONITORING_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(MONITORING_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 # Collect source files
-file(GLOB_RECURSE MONITORING_HEADERS
+# CONFIGURE_DEPENDS makes CMake re-run the glob check at build time, so newly
+# added/removed files are picked up without manually re-running cmake.
+file(GLOB_RECURSE MONITORING_HEADERS CONFIGURE_DEPENDS
     ${MONITORING_INCLUDE_DIR}/kcenon/monitoring/*.h
 )
 
-file(GLOB_RECURSE MONITORING_SOURCES
+file(GLOB_RECURSE MONITORING_SOURCES CONFIGURE_DEPENDS
     ${MONITORING_SOURCE_DIR}/*.cpp
 )
 
@@ -558,12 +560,10 @@ target_link_libraries(monitoring_system PUBLIC
 #   kcenon.monitoring.adaptive - Adaptive monitoring
 ##################################################
 if(MONITORING_ENABLE_MODULES)
-    # Define module source files
-    set(MONITORING_MODULE_SOURCES
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/monitoring.cppm
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/core.cppm
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/collectors.cppm
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/adaptive.cppm
+    # Collect module source files
+    # CONFIGURE_DEPENDS picks up new .cppm files on reconfigure without manual list edits.
+    file(GLOB_RECURSE MONITORING_MODULE_SOURCES CONFIGURE_DEPENDS
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/*.cppm
     )
 
     # Create module library
@@ -719,12 +719,17 @@ endif()
 if(MONITORING_BUILD_HARDWARE_PLUGIN)
     message(STATUS "=== Building Hardware Monitoring Plugin ===")
 
+    # Hardware plugin sources (plugin wrapper only).
+    # Collector implementations (battery, power, temperature, gpu) are already
+    # compiled into monitoring_system (the main library) via the MONITORING_SOURCES
+    # GLOB; they are linked transitively through the PUBLIC dependency declared
+    # below, so the plugin library only needs to compile the plugin wrapper itself.
+    file(GLOB_RECURSE MONITORING_HARDWARE_PLUGIN_SOURCES CONFIGURE_DEPENDS
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/plugins/hardware/*.cpp
+    )
+
     add_library(monitoring_hardware_plugin STATIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/plugins/hardware/hardware_plugin.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/collectors/battery_collector.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/power_collector.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/temperature_collector.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/gpu_collector.cpp
+        ${MONITORING_HARDWARE_PLUGIN_SOURCES}
     )
 
     target_include_directories(monitoring_hardware_plugin
@@ -768,8 +773,15 @@ endif()
 if(MONITORING_BUILD_CONTAINER_PLUGIN)
     message(STATUS "=== Building Container Monitoring Plugin ===")
 
+    # Container plugin sources (plugin wrapper). Underlying collector
+    # implementations are compiled into monitoring_system via MONITORING_SOURCES
+    # and linked transitively through the PUBLIC dependency below.
+    file(GLOB_RECURSE MONITORING_CONTAINER_PLUGIN_SOURCES CONFIGURE_DEPENDS
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/plugins/container/*.cpp
+    )
+
     add_library(monitoring_container_plugin STATIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/plugins/container/container_plugin.cpp
+        ${MONITORING_CONTAINER_PLUGIN_SOURCES}
     )
 
     target_include_directories(monitoring_container_plugin
@@ -833,16 +845,14 @@ install(DIRECTORY include/kcenon/monitoring
     FILES_MATCHING PATTERN "*.h"
 )
 
+# Adapter headers are also collected via the install(DIRECTORY ...) call above,
+# but this explicit install is retained for the COMPONENT Development tag.
+file(GLOB MONITORING_ADAPTER_HEADERS CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/*.h
+)
+
 install(FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_adapters.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_adapters.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_adapters.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_to_monitoring_adapter.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/monitoring_to_common_adapter.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_to_monitoring_adapter.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_to_monitoring_adapter.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/monitor_adapter.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/performance_monitor_adapter.h
+    ${MONITORING_ADAPTER_HEADERS}
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon/monitoring/adapters
     COMPONENT Development
 )
