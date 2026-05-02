@@ -7,7 +7,7 @@
  * @brief Adaptive monitoring implementation
  */
 
-#include "adaptive_monitor.h"
+#include <kcenon/monitoring/adaptive/adaptive_monitor.h>
 #include <random>
 #include <algorithm>
 #include <shared_mutex>
