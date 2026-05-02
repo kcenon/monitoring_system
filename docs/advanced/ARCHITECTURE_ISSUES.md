@@ -106,7 +106,7 @@ This document catalogs known architectural issues in monitoring_system identifie
   - ✅ Confirmed metric aggregation thread safety
   - ✅ Added thread_safety_tests.cpp with ThreadSanitizer validation
 - **References**:
-  - Tests: `tests/thread_safety_tests.cpp`
+  - Tests: `tests/core/thread_safety_tests.cpp`
   - Sanitizer workflow: `.github/workflows/sanitizers.yml`
 
 ---
@@ -151,7 +151,7 @@ This document catalogs known architectural issues in monitoring_system identifie
   - `enable_cooldown`: Enable/disable cooldown (default: true)
 - **References**:
   - Implementation: `src/impl/adaptive_monitor.h`
-  - Tests: `tests/test_adaptive_monitoring.cpp` (12 new workload scenario tests)
+  - Tests: `tests/core/test_adaptive_monitoring.cpp` (12 new workload scenario tests)
 
 ---
 
@@ -175,7 +175,7 @@ This document catalogs known architectural issues in monitoring_system identifie
 - **References**:
   - Implementation: `src/impl/tracing/distributed_tracer.cpp`
   - Header: `src/impl/tracing/distributed_tracer.h`
-  - Tests: `tests/test_distributed_tracing.cpp` (ExporterIntegrationTest)
+  - Tests: `tests/core/test_distributed_tracing.cpp` (ExporterIntegrationTest)
 
 #### ~~Issue ARC-007: Limited Metric Types~~ ✅ RESOLVED
 - **Priority**: P2 (Low)
@@ -194,7 +194,7 @@ This document catalogs known architectural issues in monitoring_system identifie
   - ✅ Comprehensive tests in `test_timer_metrics.cpp`
 - **References**:
   - Implementation: `include/kcenon/monitoring/utils/metric_types.h`
-  - Tests: `tests/test_timer_metrics.cpp`
+  - Tests: `tests/utils/test_timer_metrics.cpp`
 
 ---
 
@@ -250,7 +250,7 @@ This document catalogs known architectural issues in monitoring_system identifie
   - ✅ All 8 cross-system integration tests passing
 - **References**:
   - Adapter: `include/kcenon/monitoring/adapters/common_system_adapter.h`
-  - Tests: `tests/test_cross_system_integration.cpp`
+  - Tests: `tests/core/test_cross_system_integration.cpp`
   - Result types: `include/kcenon/monitoring/core/result_types.h`
 
 ---

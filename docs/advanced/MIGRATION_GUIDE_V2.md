@@ -535,8 +535,8 @@ system_under_test->set_logger(mock_log);
 
 **A**: Check these files:
 - `examples/bidirectional_di_example.cpp` - Full DI demonstration
-- `tests/test_cross_system_integration.cpp` - Integration tests
-- `tests/test_adapter_functionality.cpp` - Adapter tests
+- `tests/core/test_cross_system_integration.cpp` - Integration tests
+- `tests/core/test_adapter_functionality.cpp` - Adapter tests
 
 ---
 

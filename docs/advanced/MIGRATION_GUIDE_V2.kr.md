@@ -543,8 +543,8 @@ system_under_test->set_logger(mock_log);
 
 **A**: 다음 파일을 확인하세요:
 - `examples/bidirectional_di_example.cpp` - 전체 DI 데모
-- `tests/test_cross_system_integration.cpp` - 통합 테스트
-- `tests/test_adapter_functionality.cpp` - 어댑터 테스트
+- `tests/core/test_cross_system_integration.cpp` - 통합 테스트
+- `tests/core/test_adapter_functionality.cpp` - 어댑터 테스트
 
 ---
 
