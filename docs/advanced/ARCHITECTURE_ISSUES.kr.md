@@ -100,7 +100,7 @@ category: "ARCH"
   - ✅ 메트릭 집계 스레드 안전성 검증 완료
   - ✅ ThreadSanitizer 검증을 위한 thread_safety_tests.cpp 추가
 - **참조**:
-  - 테스트: `tests/thread_safety_tests.cpp`
+  - 테스트: `tests/core/thread_safety_tests.cpp`
   - Sanitizer 워크플로우: `.github/workflows/sanitizers.yml`
 
 ---
@@ -136,7 +136,7 @@ category: "ARCH"
   - `enable_cooldown`: 쿨다운 활성화/비활성화 (기본값: true)
 - **참조**:
   - 구현: `src/impl/adaptive_monitor.h`
-  - 테스트: `tests/test_adaptive_monitoring.cpp` (12개의 새로운 워크로드 시나리오 테스트)
+  - 테스트: `tests/core/test_adaptive_monitoring.cpp` (12개의 새로운 워크로드 시나리오 테스트)
 
 ---
 
@@ -170,7 +170,7 @@ category: "ARCH"
   - ✅ `test_timer_metrics.cpp`의 포괄적인 테스트
 - **참조**:
   - 구현: `include/kcenon/monitoring/utils/metric_types.h`
-  - 테스트: `tests/test_timer_metrics.cpp`
+  - 테스트: `tests/utils/test_timer_metrics.cpp`
 
 ---
 
@@ -226,7 +226,7 @@ category: "ARCH"
   - ✅ 8개의 크로스 시스템 통합 테스트 모두 통과
 - **참조**:
   - 어댑터: `include/kcenon/monitoring/adapters/common_system_adapter.h`
-  - 테스트: `tests/test_cross_system_integration.cpp`
+  - 테스트: `tests/core/test_cross_system_integration.cpp`
   - Result 타입: `include/kcenon/monitoring/core/result_types.h`
 
 ---
