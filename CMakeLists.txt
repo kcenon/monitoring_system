@@ -514,88 +514,31 @@ if(MONITORING_ENABLE_UBSAN)
     target_link_options(monitoring_system_interface INTERFACE -fsanitize=undefined)
 endif()
 
-# Check for new structure
+# Source layout (canonical, post src/impl consolidation)
 set(MONITORING_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(MONITORING_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-if(EXISTS ${MONITORING_INCLUDE_DIR}/kcenon/monitoring AND EXISTS ${MONITORING_SOURCE_DIR})
-    message(STATUS "Monitoring System: Using new directory structure")
+# Collect source files
+file(GLOB_RECURSE MONITORING_HEADERS
+    ${MONITORING_INCLUDE_DIR}/kcenon/monitoring/*.h
+)
 
-    # Collect source files from new structure
-    file(GLOB_RECURSE MONITORING_HEADERS
-        ${MONITORING_INCLUDE_DIR}/kcenon/monitoring/*.h
-    )
+file(GLOB_RECURSE MONITORING_SOURCES
+    ${MONITORING_SOURCE_DIR}/*.cpp
+)
 
-    file(GLOB_RECURSE MONITORING_SOURCES
-        ${MONITORING_SOURCE_DIR}/*.cpp
-    )
+add_library(monitoring_system STATIC
+    ${MONITORING_SOURCES}
+    ${MONITORING_HEADERS}
+)
 
-    # Check if new structure has sources
-    list(LENGTH MONITORING_SOURCES SOURCE_COUNT)
-    if(SOURCE_COUNT GREATER 0)
-        # Create library with new structure
-        add_library(monitoring_system STATIC
-            ${MONITORING_SOURCES}
-            ${MONITORING_HEADERS}
-        )
-
-        target_include_directories(monitoring_system
-            PUBLIC
-                $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
-                $<INSTALL_INTERFACE:include>
-            PRIVATE
-                $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
-        )
-    else()
-        # Fall back to legacy structure
-        message(STATUS "Monitoring System: New structure incomplete, using src sources")
-        add_library(monitoring_system STATIC
-            src/context/thread_context.cpp
-            src/core/distributed_tracer.cpp
-            src/core/performance_monitor.cpp
-            src/core/thread_local_buffer.cpp
-            src/core/central_collector.cpp
-            src/core/adaptive_monitor.cpp
-            src/collectors/container_collector.cpp
-            src/platform/linux_metrics.cpp
-            src/platform/windows_metrics.cpp
-            src/platform/cgroup_metrics.cpp
-            src/platform/docker_metrics.cpp
-        )
-
-        target_include_directories(monitoring_system
-            PUBLIC
-                $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
-                $<INSTALL_INTERFACE:include>
-            PRIVATE
-                $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
-        )
-    endif()
-else()
-    # Use legacy structure
-    message(STATUS "Monitoring System: Using legacy directory structure")
-    add_library(monitoring_system STATIC
-        src/context/thread_context.cpp
-        src/core/distributed_tracer.cpp
-        src/core/performance_monitor.cpp
-        src/core/thread_local_buffer.cpp
-        src/core/central_collector.cpp
-        src/core/adaptive_monitor.cpp
-        src/collectors/container_collector.cpp
-        src/platform/linux_metrics.cpp
-        src/platform/windows_metrics.cpp
-        src/platform/cgroup_metrics.cpp
-        src/platform/docker_metrics.cpp
-    )
-
-    target_include_directories(monitoring_system
-        PUBLIC
-            $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
-            $<INSTALL_INTERFACE:include>
-        PRIVATE
-            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
-    )
-endif()
+target_include_directories(monitoring_system
+    PUBLIC
+        $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
+        $<INSTALL_INTERFACE:include>
+    PRIVATE
+        $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
+)
 
 target_link_libraries(monitoring_system PUBLIC
     monitoring_system_interface
