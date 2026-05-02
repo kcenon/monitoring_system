@@ -23,128 +23,33 @@ if(NOT GTest_FOUND)
     message(STATUS "GTest fetched successfully")
 endif()
 
+# Collect test sources via glob, then exclude tests that have their own
+# executable target or are intentionally not part of the main test binary.
+# CONFIGURE_DEPENDS makes CMake re-run the glob when files are added/removed.
+file(GLOB MONITORING_TEST_SOURCES_ALL CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_*.cpp
+)
+
+# Tests with their own add_executable() targets defined later in this file.
+list(REMOVE_ITEM MONITORING_TEST_SOURCES_ALL
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_interfaces_compile.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_container_plugin.cpp
+)
+
+# Tests intentionally excluded from monitoring_system_tests:
+#   - test_buffering_strategies.cpp: depends on internal headers under src/utils/
+#     that are not part of the public include path of the test target.
+#   - test_collector_registry.cpp: superseded by test_collector_registry_integration.cpp.
+#   - test_thread_context.cpp: superseded by test_thread_context_simple.cpp.
+list(REMOVE_ITEM MONITORING_TEST_SOURCES_ALL
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_buffering_strategies.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_collector_registry.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_thread_context.cpp
+)
+
 # Create test executable
 add_executable(monitoring_system_tests
-    # Core working tests (verified compiling and passing)
-    test_result_types.cpp
-    test_di_container.cpp
-    test_monitorable_interface.cpp
-    test_thread_context_simple.cpp
-    test_lock_free_collector.cpp
-    test_distributed_tracing.cpp
-    test_performance_monitoring.cpp
-    test_event_bus.cpp
-    test_trace_exporters.cpp
-    test_adapter_functionality.cpp
-    test_cross_system_integration.cpp
-
-    test_adaptive_monitoring.cpp
-    test_timer_metrics.cpp
-    test_service_registration.cpp
-
-    # Container metrics monitoring (Issue #228)
-    test_container_collector.cpp
-
-    # SMART disk health monitoring (Issue #227)
-    test_smart_collector.cpp
-
-    # Hardware temperature monitoring (Issue #215)
-    test_temperature_collector.cpp
-
-    # Process metrics monitoring (consolidated FD, inode, context switch - Issue #392)
-    test_process_metrics_collector.cpp
-
-    # Network metrics monitoring (consolidated from Issue #225, #226)
-    test_network_metrics_collector.cpp
-
-    # Interrupt statistics monitoring (Issue #223)
-    test_interrupt_collector.cpp
-
-    # Power consumption monitoring (Issue #216)
-    test_power_collector.cpp
-
-    # GPU metrics monitoring (Issue #221)
-    test_gpu_collector.cpp
-
-    # System resource monitoring (Issue #222)
-    test_system_resource_collector.cpp
-
-    # Security event monitoring (Issue #230)
-    test_security_collector.cpp
-
-    # Virtualization metrics monitoring (Issue #229)
-    test_vm_collector.cpp
-
-    # System uptime monitoring (Issue #217)
-    test_uptime_collector.cpp
-
-    # Battery status monitoring (Issue #218)
-    test_battery_collector.cpp
-
-    # Collector registry integration (Issue #446)
-    test_collector_registry_integration.cpp
-
-    # Load average history tracking (Issue #219)
-    test_time_series_buffer.cpp
-
-    # Platform metrics provider (Issue #295)
-    test_metrics_provider.cpp
-
-    # Platform metrics collector (Issue #393 - unified platform metrics using Strategy pattern)
-    test_platform_metrics_collector.cpp
-
-    # Metric exporters and OpenTelemetry adapter tests (Issue #320 - Phase 1)
-    test_metric_exporters.cpp
-    test_opentelemetry_adapter.cpp
-
-    # Storage backends test (Issue #326 - Phase 2, #343)
-    test_storage_backends.cpp
-
-    # Fault tolerance tests (Issue #329 - ARC-001 Phase 1)
-    test_fault_tolerance.cpp
-
-    # Error boundaries and graceful degradation tests (Issue #338)
-    test_error_boundaries.cpp
-
-    # Metric storage tests (Issue #339 - ring_buffer.h, metric_storage.h implemented)
-    test_metric_storage.cpp
-
-    # Resource management tests (Issue #341 - resource_manager.h implemented)
-    test_resource_management.cpp
-
-    # Health monitoring tests (Issue #330 - health_check, composite_health_check,
-    # health_dependency_graph, health_check_builder, global_health_monitor() implemented)
-    test_health_monitoring.cpp
-
-    # Data consistency tests (Issue #342 - data_consistency.h implemented)
-    test_data_consistency.cpp
-
-    # Stress performance tests (Issue #345 - headers fixed)
-    test_stress_performance.cpp
-
-    # Optimization tests (Issue #340 - optimization/ folder implemented)
-    test_optimization.cpp
-
-    # =========================================================================
-    # Phase 3 P2: Stream aggregation
-    test_stream_aggregation.cpp
-
-    # Integration E2E tests (Issue #346)
-    test_integration_e2e.cpp
-
-    # Metric factory tests (Issue #366)
-    test_metric_factory.cpp
-
-    # Statistics utilities tests (Issue #381)
-    test_statistics_utils.cpp
-
-    # Hot-path helper tests (Issue #387)
-    test_hot_path_helper.cpp
-
-    # Alert system tests (alert types, triggers, manager)
-    test_alert_types.cpp
-    test_alert_triggers.cpp
-    test_alert_manager.cpp
+    ${MONITORING_TEST_SOURCES_ALL}
 )
 
 # Interface compilation test (standalone executable with main())
