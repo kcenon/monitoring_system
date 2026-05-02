@@ -7,7 +7,7 @@
  * @brief Implementation of distributed tracing functionality
  */
 
-#include "distributed_tracer.h"
+#include <kcenon/monitoring/tracing/distributed_tracer.h>
 #include <kcenon/monitoring/exporters/trace_exporters.h>
 #include <thread>
 #include <algorithm>

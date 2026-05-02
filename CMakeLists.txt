@@ -551,12 +551,12 @@ if(EXISTS ${MONITORING_INCLUDE_DIR}/kcenon/monitoring AND EXISTS ${MONITORING_SO
         message(STATUS "Monitoring System: New structure incomplete, using src sources")
         add_library(monitoring_system STATIC
             src/context/thread_context.cpp
-            src/impl/tracing/distributed_tracer.cpp
+            src/core/distributed_tracer.cpp
             src/core/performance_monitor.cpp
             src/core/thread_local_buffer.cpp
             src/core/central_collector.cpp
-            src/impl/adaptive_monitor.cpp
-            src/impl/container_collector.cpp
+            src/core/adaptive_monitor.cpp
+            src/collectors/container_collector.cpp
             src/platform/linux_metrics.cpp
             src/platform/windows_metrics.cpp
             src/platform/cgroup_metrics.cpp
@@ -576,12 +576,12 @@ else()
     message(STATUS "Monitoring System: Using legacy directory structure")
     add_library(monitoring_system STATIC
         src/context/thread_context.cpp
-        src/impl/tracing/distributed_tracer.cpp
+        src/core/distributed_tracer.cpp
         src/core/performance_monitor.cpp
         src/core/thread_local_buffer.cpp
         src/core/central_collector.cpp
-        src/impl/adaptive_monitor.cpp
-        src/impl/container_collector.cpp
+        src/core/adaptive_monitor.cpp
+        src/collectors/container_collector.cpp
         src/platform/linux_metrics.cpp
         src/platform/windows_metrics.cpp
         src/platform/cgroup_metrics.cpp
@@ -778,7 +778,7 @@ if(MONITORING_BUILD_HARDWARE_PLUGIN)
 
     add_library(monitoring_hardware_plugin STATIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src/plugins/hardware/hardware_plugin.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/impl/battery_collector.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/collectors/battery_collector.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/power_collector.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/temperature_collector.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/gpu_collector.cpp
