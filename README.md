@@ -268,6 +268,11 @@ factory.register_collector("my_collector", []() {
 
 📖 [Factory API Reference →](docs/API_REFERENCE.md#metric-factory)
 
+> **Support status**: Not every collector, plugin, or exporter is production-ready.
+> Before integrating a component, check the code-verified classification in
+> [Component Support Status](docs/SUPPORT_STATUS.md) — it distinguishes
+> `production`, `experimental`, and `test-only` components.
+
 ---
 
 ## Architecture Overview
