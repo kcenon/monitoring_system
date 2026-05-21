@@ -6,6 +6,12 @@
  * @file plugin_metric_collector.h
  * @brief Plugin-based metric collector with dynamic discovery and registration.
  *
+ * @warning Support level: test-only. This header declares the collector
+ *          interface, but no implementation is compiled or linked, the
+ *          collector is not registered in builtin_collectors.h, and it has
+ *          no test. Do not treat it as a usable runtime collector.
+ *          See docs/SUPPORT_STATUS.md.
+ *
  * @see metric_collector_interface
  */
 
