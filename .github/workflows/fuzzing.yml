@@ -1,0 +1,63 @@
+name: Fuzzing
+
+on:
+  schedule:
+    # Weekly, Monday 03:17 UTC. Off-peak minute to avoid the top-of-hour rush.
+    - cron: '17 3 * * 1'
+  workflow_dispatch:
+    inputs:
+      max_total_time:
+        description: 'Per-target fuzzing duration in seconds'
+        required: false
+        default: '300'
+
+jobs:
+  fuzz:
+    name: libFuzzer (${{ matrix.target }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - json_import_fuzzer
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build clang
+
+      - name: Configure with fuzzers
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DBUILD_FUZZERS=ON \
+            -DBUILD_TESTS=OFF \
+            -DCMAKE_C_COMPILER=clang \
+            -DCMAKE_CXX_COMPILER=clang++
+
+      - name: Build fuzz target
+        run: cmake --build build --target ${{ matrix.target }} --parallel
+
+      - name: Run fuzzer
+        run: |
+          MAX_TIME="${{ github.event.inputs.max_total_time || '300' }}"
+          mkdir -p fuzz_artifacts
+          ./build/fuzz/${{ matrix.target }} \
+            fuzz/corpus/json_import \
+            -max_total_time="${MAX_TIME}" \
+            -print_final_stats=1 \
+            -artifact_prefix=fuzz_artifacts/ \
+            2>&1 | tee fuzz_run.log
+
+      - name: Upload crash artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-artifacts-${{ matrix.target }}
+          path: |
+            fuzz_artifacts/
+            fuzz_run.log
+          if-no-files-found: ignore

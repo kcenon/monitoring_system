@@ -244,6 +244,44 @@ Benchmarks are run in CI on every PR to detect performance regressions.
 
 See `.github/workflows/benchmarks.yml` for configuration.
 
+### Committed-baseline regression gate
+
+In addition to the workflow-dispatch baseline snapshots, the CI job runs a
+deterministic regression gate against a **version-controlled** baseline:
+
+- **Baselines:** `benchmarks/baselines/<runner>.json` (Google Benchmark JSON),
+  e.g. `benchmarks/baselines/ubuntu-24.04.json`.
+- **Comparator:** `benchmarks/scripts/compare_benchmarks.py`.
+- **Default policy:** metric `cpu_time`, regression threshold `10%`.
+
+Run it locally:
+
+```bash
+python3 benchmarks/scripts/compare_benchmarks.py \
+  --baseline benchmarks/baselines/ubuntu-24.04.json \
+  --current  build/benchmarks/benchmark_results.json \
+  --metric   cpu_time \
+  --threshold 0.10
+```
+
+Exit codes: `0` = no regression, `1` = regression detected, `2` = usage/IO
+error. An empty current-results file is treated as inconclusive (exit `0`).
+
+#### Updating the committed baseline
+
+Update `benchmarks/baselines/<runner>.json` only for a **justified, reviewed**
+performance change that has landed on the mainline:
+
+1. Run the `Benchmarks` workflow (or the benchmarks locally on a comparable
+   runner) and capture the `--benchmark_format=json` output.
+2. Replace the relevant baseline file with the new numbers, preserving the
+   `context.note` field.
+3. Commit the baseline update alongside the change that justifies it and explain
+   the delta in the PR description.
+
+> The baseline values currently committed are seeded placeholders; refresh them
+> from a real CI measurement before treating the gate as authoritative.
+
 ## Troubleshooting
 
 ### Google Benchmark Not Found
