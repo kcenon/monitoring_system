@@ -10,3 +10,8 @@ endif()
 if(MONITORING_BUILD_BENCHMARKS)
     add_subdirectory(benchmarks)
 endif()
+
+# Fuzzing harnesses (libFuzzer, Clang only)
+if(BUILD_FUZZERS)
+    add_subdirectory(fuzz)
+endif()

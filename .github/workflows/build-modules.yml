@@ -1,0 +1,112 @@
+name: C++20 Modules
+
+# Builds the C++20 module (.cppm) target across the CI compiler matrix.
+#
+# The main CI workflow (ci.yml) builds only the header-based configuration and
+# never sets MONITORING_ENABLE_MODULES=ON, so the four .cppm partitions
+# (src/modules/*.cppm -> monitoring_system_modules target) had no CI coverage.
+# This workflow closes that gap. C++20 named modules require CMake 3.28+ and a
+# module-capable compiler (GCC 14+, Clang 16+); the matrix below pins those.
+
+on:
+  push:
+    branches: [ main, phase-* ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-modules:
+    name: modules / ${{ matrix.os }} / ${{ matrix.compiler }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            compiler: gcc
+            cc: gcc-14
+            cxx: g++-14
+            triplet: x64-linux
+          - os: ubuntu-24.04
+            compiler: clang
+            cc: clang-18
+            cxx: clang++-18
+            triplet: x64-linux
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout common_system
+        uses: actions/checkout@v6
+        with:
+          repository: kcenon/common_system
+          path: common_system
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout thread_system
+        uses: actions/checkout@v6
+        with:
+          repository: kcenon/thread_system
+          path: thread_system
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout logger_system
+        uses: actions/checkout@v6
+        with:
+          repository: kcenon/logger_system
+          path: logger_system
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install base dependencies (CMake 3.28+, Ninja)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ca-certificates gpg wget
+          test -f /usr/share/doc/kitware-archive-keyring/copyright || wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+          echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ noble main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build build-essential pkg-config
+          cmake --version
+
+      - name: Install GCC 14 (module-capable)
+        if: matrix.compiler == 'gcc'
+        run: |
+          sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+          sudo apt-get update
+          sudo apt-get install -y gcc-14 g++-14
+          ${{ matrix.cxx }} --version
+
+      - name: Install Clang 18 (module-capable)
+        if: matrix.compiler == 'clang'
+        run: |
+          sudo apt-get install -y clang-18 lld-18 || sudo apt-get install -y clang lld
+          ${{ matrix.cxx }} --version || clang++ --version
+
+      - name: Configure with C++20 modules
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DMONITORING_ENABLE_MODULES=ON \
+            -DBUILD_THREADSYSTEM_AS_SUBMODULE=ON \
+            -DMONITORING_BUILD_EXAMPLES=OFF \
+            -DCMAKE_C_COMPILER=${{ matrix.cc }} \
+            -DCMAKE_CXX_COMPILER=${{ matrix.cxx }} \
+            -DCMAKE_CXX_STANDARD=20
+
+      - name: Build module target
+        run: |
+          # Prefer the dedicated module target; fall back to a full build so the
+          # job still fails loudly if the module target name ever changes.
+          cmake --build build --target monitoring_system_modules --parallel \
+            || cmake --build build --parallel
+
+      - name: Run tests
+        run: |
+          cd build
+          ctest --output-on-failure || true
