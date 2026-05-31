@@ -11,8 +11,6 @@
  * - system_resource_collector (CPU, memory, disk)
  * - network_metrics_collector (socket buffers, TCP states)
  * - process_metrics_collector (file descriptors, inodes, context switches)
- * - thread_system_collector integration
- * - logger_system_collector integration
  * - Collector lifecycle management (start/stop/collect)
  */
 
@@ -24,14 +22,6 @@
 #include "kcenon/monitoring/collectors/system_resource_collector.h"
 #include "kcenon/monitoring/collectors/network_metrics_collector.h"
 #include "kcenon/monitoring/collectors/process_metrics_collector.h"
-
-#ifdef THREAD_SYSTEM_AVAILABLE
-#include "kcenon/monitoring/collectors/thread_system_collector.h"
-#endif
-
-#ifdef LOGGER_SYSTEM_AVAILABLE
-#include "kcenon/monitoring/collectors/logger_system_collector.h"
-#endif
 
 using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
@@ -190,40 +180,8 @@ int main() {
         std::cout << "   Initialized: " << proc_collector.name() << std::endl;
         std::cout << "   Health: " << (proc_collector.is_available() ? "OK" : "UNHEALTHY") << std::endl;
 
-#ifdef THREAD_SYSTEM_AVAILABLE
-        // Step 4: Create thread_system_collector (if available)
-        std::cout << "\n4. Creating thread_system_collector..." << std::endl;
-
-        thread_system_collector thread_collector;
-        if (!thread_collector.initialize(init_config)) {
-            std::cerr << "Failed to initialize thread_system_collector" << std::endl;
-            return 1;
-        }
-
-        std::cout << "   Initialized: " << thread_collector.name() << std::endl;
-        std::cout << "   Health: " << (thread_collector.is_available() ? "OK" : "UNHEALTHY") << std::endl;
-#else
-        std::cout << "\n4. thread_system_collector not available (THREAD_SYSTEM_AVAILABLE not defined)" << std::endl;
-#endif
-
-#ifdef LOGGER_SYSTEM_AVAILABLE
-        // Step 5: Create logger_system_collector (if available)
-        std::cout << "\n5. Creating logger_system_collector..." << std::endl;
-
-        logger_system_collector logger_collector;
-        if (!logger_collector.initialize(init_config)) {
-            std::cerr << "Failed to initialize logger_system_collector" << std::endl;
-            return 1;
-        }
-
-        std::cout << "   Initialized: " << logger_collector.name() << std::endl;
-        std::cout << "   Health: " << (logger_collector.is_available() ? "OK" : "UNHEALTHY") << std::endl;
-#else
-        std::cout << "\n5. logger_system_collector not available (LOGGER_SYSTEM_AVAILABLE not defined)" << std::endl;
-#endif
-
-        // Step 6: Collector lifecycle demonstration
-        std::cout << "\n6. Demonstrating collector lifecycle (3 iterations)..." << std::endl;
+        // Step 4: Collector lifecycle demonstration
+        std::cout << "\n4. Demonstrating collector lifecycle (3 iterations)..." << std::endl;
 
         for (int i = 0; i < 3; ++i) {
             std::cout << "\n--- Iteration " << (i + 1) << "/3 ---" << std::endl;
@@ -246,18 +204,6 @@ int main() {
             std::cout << "Process metrics collected: " << proc_metrics.size() << std::endl;
             display_process_collector_metrics(proc_metrics);
 
-#ifdef THREAD_SYSTEM_AVAILABLE
-            // Collect thread system metrics
-            auto thread_metrics = thread_collector.collect();
-            std::cout << "Thread system metrics collected: " << thread_metrics.size() << std::endl;
-#endif
-
-#ifdef LOGGER_SYSTEM_AVAILABLE
-            // Collect logger system metrics
-            auto logger_metrics = logger_collector.collect();
-            std::cout << "Logger system metrics collected: " << logger_metrics.size() << std::endl;
-#endif
-
             // Wait before next collection
             if (i < 2) {
                 std::cout << "\nWaiting 2 seconds before next collection..." << std::endl;
@@ -265,8 +211,8 @@ int main() {
             }
         }
 
-        // Step 7: Display collector statistics
-        std::cout << "\n7. Collector Statistics:" << std::endl;
+        // Step 5: Display collector statistics
+        std::cout << "\n5. Collector Statistics:" << std::endl;
 
         auto sys_stats = sys_collector.get_statistics();
         std::cout << "\nSystem Resource Collector:" << std::endl;
@@ -286,9 +232,9 @@ int main() {
             std::cout << "  " << key << ": " << value << std::endl;
         }
 
-        // Step 8: Load history demonstration (if enabled)
+        // Step 6: Load history demonstration (if enabled)
         if (sys_config.enable_load_history) {
-            std::cout << "\n8. Load Average History:" << std::endl;
+            std::cout << "\n6. Load Average History:" << std::endl;
 
             auto load_history = sys_collector.get_all_load_history();
             std::cout << "   Total samples: " << load_history.size() << std::endl;

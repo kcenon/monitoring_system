@@ -21,7 +21,6 @@ list(REMOVE_ITEM MONITORING_EXAMPLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/event_bus_example.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/facade_adapter_poc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/monitor_factory_pattern_example.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/plugin_collector_example.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/storage_example.cpp
 )
 
