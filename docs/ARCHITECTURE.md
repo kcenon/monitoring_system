@@ -405,7 +405,7 @@ private:
 
 **Benefits**: No virtual function overhead. The compiler inlines `do_collect()` calls directly, achieving the same performance as hand-written code while eliminating boilerplate for initialization, error handling, statistics tracking, and health monitoring.
 
-### Core Collectors (6 built-in)
+### Core Collectors (4 built-in)
 
 | Collector | Metrics | Platform |
 |-----------|---------|----------|
@@ -413,8 +413,6 @@ private:
 | `network_metrics_collector` | TCP states, socket buffers | Linux, macOS |
 | `process_metrics_collector` | FD count, inodes, context switches | Linux, macOS |
 | `platform_metrics_collector` | Platform-specific metrics (Strategy pattern) | All |
-| `thread_system_collector` | Thread pool utilization | All |
-| `logger_system_collector` | Logger throughput metrics | All |
 
 ### Plugin Registry and Loader
 
