@@ -50,7 +50,7 @@ The marker counts that matter are in `include/` and `src/`.
 
 ## Collectors
 
-`include/kcenon/monitoring/collectors/` — 17 collector headers + `collector_base.h`.
+`include/kcenon/monitoring/collectors/` — 15 collector headers + `collector_base.h`.
 
 | Component | Kind | Support | Evidence | Notes |
 |-----------|------|---------|----------|-------|
@@ -69,14 +69,29 @@ The marker counts that matter are in `include/` and `src/`.
 | `temperature_collector` | collector | `production` | `src/platform/temperature_collector.cpp`; test present. | |
 | `uptime_collector` | collector | `production` | `src/collectors/uptime_collector.cpp`; test present; registered. | |
 | `vm_collector` | collector | `production` | `src/collectors/vm_collector.cpp`; test present; registered. | Windows path stubbed; CPU-steal is a documented placeholder. |
-| `logger_system_collector` | collector | `test-only` | Header `logger_system_collector.h` declares ctor/`collect()`/`initialize()`/`get_statistics()`/`get_metric_types()`, but **no `.cpp` defines them**, no header inline body, no file includes it, no test, not in `builtin_collectors.h`. | Interface sketch only. Not compiled into the library. See follow-up issue. |
-| `thread_system_collector` | collector | `test-only` | Header declares `collect()` etc.; **no implementation**, no test, not registered. | Interface sketch only. See follow-up issue. |
-| `plugin_metric_collector` | collector | `test-only` | Header declares `force_collect()` and management API; **no implementation**, no test, not registered. | Interface sketch only. See follow-up issue. |
+
+The three previously `test-only` collectors flagged in #689 were resolved under
+[issue #690](https://github.com/kcenon/monitoring_system/issues/690):
+
+- `logger_system_collector` — **removed**. Its declared API promised rich
+  `logging_stats` (buffer bytes, per-level counts, latency, rotation metrics)
+  that no available data source produces; the `logger_to_monitoring_adapter`
+  only surfaces generic `ILogger`/`IMonitorable` metrics. Implementing faithfully
+  would have required speculative new APIs, so the header was deleted.
+- `thread_system_collector` — **removed**. Same rationale: the declared
+  `thread_pool_stats` surface plus the `thread_pool_health_monitor` /
+  `thread_pool_auto_scaler` sketches had no concrete data source; the
+  `thread_to_monitoring_adapter` only exposes generic `IMonitorable` metrics.
+- `plugin_metric_collector` — **slimmed**. The unimplemented
+  `plugin_metric_collector` manager class and `plugin_factory` were removed; the
+  header now retains only the production `metric_collector_plugin` pure-virtual
+  interface, which is implemented by `system_resource_collector`,
+  `container_plugin` and `hardware_plugin`.
 
 ### Collector summary
 
 - `production`: 15 (`collector_base` + 14 runtime collectors)
-- `test-only`: 3 (`logger_system_collector`, `thread_system_collector`, `plugin_metric_collector`)
+- `test-only`: 0
 - `experimental`: 0
 - `remove`: 0
 
@@ -152,16 +167,17 @@ Storage backend gaps are tracked separately; this table records them so the audi
 | `tests/` | 69 | Harmless test scaffolding (mocks, fixtures). Not production gaps. |
 | `benchmarks/` | 7 | Harmless benchmark scaffolding. Not production gaps. |
 
-No marker indicates an undocumented production gap. The only true unimplemented
-components are the three `test-only` collectors, which carry follow-up issues.
+No marker indicates an undocumented production gap. The three former `test-only`
+collectors have been resolved (see the collector table above); no `test-only`
+components remain.
 
 ## Follow-up Issues
 
-Components shipped as if production but backed by no implementation:
-
-- `logger_system_collector`, `thread_system_collector`, `plugin_metric_collector` —
-  tracked by [issue #690](https://github.com/kcenon/monitoring_system/issues/690)
-  (implement or remove the three `test-only` stub collectors).
+The three `test-only` stub collectors flagged during the #689 audit were resolved
+in [issue #690](https://github.com/kcenon/monitoring_system/issues/690):
+`logger_system_collector` and `thread_system_collector` were removed, and
+`plugin_metric_collector` was slimmed to its production
+`metric_collector_plugin` interface. No follow-up items remain open.
 
 ---
 

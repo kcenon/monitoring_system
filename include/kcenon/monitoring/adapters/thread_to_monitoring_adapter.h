@@ -1,8 +1,6 @@
 /**
  * @file thread_to_monitoring_adapter.h
  * @brief Thread system adapter for pulling metrics from thread_system.
- *
- * @see thread_system_collector.h
  */
 
 #pragma once

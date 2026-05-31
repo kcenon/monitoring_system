@@ -14,10 +14,11 @@ category: "API"
 
 > **Support status**: The plugin infrastructure (`collector_plugin`, `plugin_api`,
 > `collector_registry`, `plugin_loader`, `container_plugin`, `hardware_plugin`) is
-> `production`. Note that the `logger_system_collector`, `thread_system_collector`,
-> and `plugin_metric_collector` headers under `collectors/`/`plugins/` are
-> `test-only` interface sketches with no compiled implementation — do not treat
-> them as usable plugins. See [Component Support Status](./SUPPORT_STATUS.md).
+> `production`. The former `test-only` `logger_system_collector` and
+> `thread_system_collector` headers were removed in #690, and
+> `plugin_metric_collector.h` now provides only the production
+> `metric_collector_plugin` interface. See
+> [Component Support Status](./SUPPORT_STATUS.md).
 
 Complete reference for the collector plugin API.
 
