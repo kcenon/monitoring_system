@@ -21,103 +21,118 @@ namespace kcenon { namespace monitoring {
 /**
  * @enum monitoring_error_code
  * @brief Comprehensive error codes for monitoring system operations
+ *
+ * Values are NEGATIVE and confined to the [-399, -300] range that
+ * common_system reserves for monitoring_system (see
+ * kcenon::common::error::category::monitoring_system and the
+ * -300..-399 band documented in common's error_codes.h). Because these
+ * codes are funneled into common's shared error_info.code via
+ * result_types.h::to_common_error() (a plain static_cast<int>), they must
+ * land in common's monitoring band so that
+ * kcenon::common::error::get_category_name() classifies them as
+ * "MonitoringSystem" rather than "Invalid" (any code > 0 is rejected as
+ * invalid after the common classifier change). The underlying type is
+ * therefore SIGNED (std::int32_t).
+ *
+ * The 100-slot window holds 69 distinct negative error codes plus
+ * success (0); unknown_error is pinned to the band floor (-399).
  */
-enum class monitoring_error_code : std::uint32_t {
+enum class monitoring_error_code : std::int32_t {
     // Success
     success = 0,
-    
-    // Collection errors (1000-1999)
-    collector_not_found = 1000,
-    collection_failed = 1001,
-    collector_initialization_failed = 1002,
-    collector_already_exists = 1003,
-    collector_disabled = 1004,
-    invalid_collector_config = 1005,
-    monitoring_disabled = 1006,
-    
-    // Storage errors (2000-2999)
-    storage_full = 2000,
-    storage_corrupted = 2001,
-    compression_failed = 2002,
-    storage_not_initialized = 2003,
-    storage_write_failed = 2004,
-    storage_read_failed = 2005,
-    storage_empty = 2006,
-    
-    // Configuration errors (3000-3999)
-    invalid_configuration = 3000,
-    invalid_interval = 3001,
-    invalid_capacity = 3002,
-    configuration_not_found = 3003,
-    configuration_parse_error = 3004,
-    
-    // System errors (4000-4999)
-    system_resource_unavailable = 4000,
-    permission_denied = 4001,
-    out_of_memory = 4002,
-    memory_allocation_failed = 4003,
-    operation_timeout = 4004,
-    operation_cancelled = 4005,
-    
-    // Integration errors (5000-5999)
-    thread_system_not_available = 5000,
-    logger_system_not_available = 5001,
-    incompatible_version = 5002,
-    adapter_initialization_failed = 5003,
-    
-    // Metrics errors (6000-6999)
-    metric_not_found = 6000,
-    invalid_metric_type = 6001,
-    metric_overflow = 6002,
-    aggregation_failed = 6003,
-    processing_failed = 6004,
-    
-    // Health check errors (7000-7999)
-    health_check_failed = 7000,
-    health_check_timeout = 7001,
-    health_check_not_registered = 7002,
-    
-    // Fault tolerance errors (8000-8099)
-    circuit_breaker_open = 8000,
-    circuit_breaker_half_open = 8001,
-    retry_attempts_exhausted = 8002,
-    operation_failed = 8003,
-    network_error = 8004,
-    service_unavailable = 8005,
-    service_degraded = 8006,
-    error_boundary_triggered = 8007,
-    fallback_failed = 8008,
-    recovery_failed = 8009,
-    
-    // General errors (8100-8999)
-    invalid_argument = 8100,
-    invalid_state = 8101,
-    not_found = 8102,
-    already_exists = 8103,
-    resource_exhausted = 8104,
-    already_started = 8105,
-    dependency_missing = 8106,
-    
-    // Resource management errors (8200-8299)
-    quota_exceeded = 8200,
-    rate_limit_exceeded = 8201,
-    cpu_throttled = 8202,
-    memory_quota_exceeded = 8203,
-    bandwidth_exceeded = 8204,
-    resource_unavailable = 8205,
-    
-    // Data consistency errors (8300-8399)
-    transaction_failed = 8300,
-    transaction_timeout = 8301,
-    transaction_aborted = 8302,
-    validation_failed = 8303,
-    data_corrupted = 8304,
-    state_inconsistent = 8305,
-    deadlock_detected = 8306,
-    rollback_failed = 8307,
-    
-    // Unknown error
-    unknown_error = 9999
+
+    // Collection errors (-300 to -306)
+    collector_not_found = -300,
+    collection_failed = -301,
+    collector_initialization_failed = -302,
+    collector_already_exists = -303,
+    collector_disabled = -304,
+    invalid_collector_config = -305,
+    monitoring_disabled = -306,
+
+    // Storage errors (-310 to -316)
+    storage_full = -310,
+    storage_corrupted = -311,
+    compression_failed = -312,
+    storage_not_initialized = -313,
+    storage_write_failed = -314,
+    storage_read_failed = -315,
+    storage_empty = -316,
+
+    // Configuration errors (-320 to -324)
+    invalid_configuration = -320,
+    invalid_interval = -321,
+    invalid_capacity = -322,
+    configuration_not_found = -323,
+    configuration_parse_error = -324,
+
+    // System errors (-330 to -335)
+    system_resource_unavailable = -330,
+    permission_denied = -331,
+    out_of_memory = -332,
+    memory_allocation_failed = -333,
+    operation_timeout = -334,
+    operation_cancelled = -335,
+
+    // Integration errors (-340 to -343)
+    thread_system_not_available = -340,
+    logger_system_not_available = -341,
+    incompatible_version = -342,
+    adapter_initialization_failed = -343,
+
+    // Metrics errors (-345 to -349)
+    metric_not_found = -345,
+    invalid_metric_type = -346,
+    metric_overflow = -347,
+    aggregation_failed = -348,
+    processing_failed = -349,
+
+    // Health check errors (-350 to -352)
+    health_check_failed = -350,
+    health_check_timeout = -351,
+    health_check_not_registered = -352,
+
+    // Fault tolerance errors (-355 to -364)
+    circuit_breaker_open = -355,
+    circuit_breaker_half_open = -356,
+    retry_attempts_exhausted = -357,
+    operation_failed = -358,
+    network_error = -359,
+    service_unavailable = -360,
+    service_degraded = -361,
+    error_boundary_triggered = -362,
+    fallback_failed = -363,
+    recovery_failed = -364,
+
+    // General errors (-365 to -371)
+    invalid_argument = -365,
+    invalid_state = -366,
+    not_found = -367,
+    already_exists = -368,
+    resource_exhausted = -369,
+    already_started = -370,
+    dependency_missing = -371,
+
+    // Resource management errors (-375 to -380)
+    quota_exceeded = -375,
+    rate_limit_exceeded = -376,
+    cpu_throttled = -377,
+    memory_quota_exceeded = -378,
+    bandwidth_exceeded = -379,
+    resource_unavailable = -380,
+
+    // Data consistency errors (-385 to -392)
+    transaction_failed = -385,
+    transaction_timeout = -386,
+    transaction_aborted = -387,
+    validation_failed = -388,
+    data_corrupted = -389,
+    state_inconsistent = -390,
+    deadlock_detected = -391,
+    rollback_failed = -392,
+
+    // Unknown error (band floor)
+    unknown_error = -399
 };
 
 /**

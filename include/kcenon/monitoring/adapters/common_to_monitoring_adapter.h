@@ -58,7 +58,7 @@ public:
         double value) override {
         if (!monitor_) {
             return ::kcenon::common::VoidResult(
-                ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system"));
+                ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::monitoring_disabled), "Monitor not initialized", "monitoring_system"));
         }
 
         // Create metric value and add to current collection
@@ -80,7 +80,7 @@ public:
         const std::unordered_map<std::string, std::string>& tags) override {
         if (!monitor_) {
             return ::kcenon::common::VoidResult(
-                ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system"));
+                ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::monitoring_disabled), "Monitor not initialized", "monitoring_system"));
         }
 
         metric_value metric(name, value);
@@ -95,12 +95,12 @@ public:
      */
     ::kcenon::common::Result<::kcenon::common::interfaces::metrics_snapshot> get_metrics() override {
         if (!monitor_) {
-            return ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::monitoring_disabled), "Monitor not initialized", "monitoring_system");
         }
 
         auto result = monitor_->collect_now();
         if (result.is_err()) {
-            return ::kcenon::common::error_info(2, "Failed to collect metrics", "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::collection_failed), "Failed to collect metrics", "monitoring_system");
         }
 
         // Convert monitoring_system snapshot to common snapshot
@@ -127,12 +127,12 @@ public:
      */
     ::kcenon::common::Result<::kcenon::common::interfaces::health_check_result> check_health() override {
         if (!monitor_) {
-            return ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::monitoring_disabled), "Monitor not initialized", "monitoring_system");
         }
 
         auto result = monitor_->check_health();
         if (result.is_err()) {
-            return ::kcenon::common::error_info(2, "Health check failed", "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::health_check_failed), "Health check failed", "monitoring_system");
         }
 
         // Convert monitoring_system health to common health

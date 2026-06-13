@@ -91,14 +91,14 @@ public:
      */
     ::kcenon::common::VoidResult record_metric(const std::string& name, double value) override {
         if (!monitor_) {
-            return ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::monitoring_disabled), "Monitor not initialized", "monitoring_system");
         }
 
         try {
             monitor_->record_metric(name, value);
             return ::kcenon::common::VoidResult(std::monostate{});
         } catch (const std::exception& e) {
-            return ::kcenon::common::error_info(2, e.what(), "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::operation_failed), e.what(), "monitoring_system");
         }
     }
 
@@ -110,7 +110,7 @@ public:
         double value,
         const std::unordered_map<std::string, std::string>& tags) override {
         if (!monitor_) {
-            return ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::monitoring_disabled), "Monitor not initialized", "monitoring_system");
         }
 
         try {
@@ -118,7 +118,7 @@ public:
             monitor_->record_metric_with_tags(name, value, tags);
             return ::kcenon::common::VoidResult(std::monostate{});
         } catch (const std::exception& e) {
-            return ::kcenon::common::error_info(2, e.what(), "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::operation_failed), e.what(), "monitoring_system");
         }
     }
 
@@ -127,7 +127,7 @@ public:
      */
     ::kcenon::common::Result<::kcenon::common::interfaces::metrics_snapshot> get_metrics() override {
         if (!monitor_) {
-            return ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::monitoring_disabled), "Monitor not initialized", "monitoring_system");
         }
 
         try {
@@ -148,7 +148,7 @@ public:
             snapshot.source_id = "monitoring_system";
             return snapshot;
         } catch (const std::exception& e) {
-            return ::kcenon::common::error_info(2, e.what(), "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::operation_failed), e.what(), "monitoring_system");
         }
     }
 
@@ -157,7 +157,7 @@ public:
      */
     ::kcenon::common::Result<::kcenon::common::interfaces::health_check_result> check_health() override {
         if (!monitor_) {
-            return ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::monitoring_disabled), "Monitor not initialized", "monitoring_system");
         }
 
         try {
@@ -177,7 +177,7 @@ public:
 
             return result;
         } catch (const std::exception& e) {
-            return ::kcenon::common::error_info(2, e.what(), "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::operation_failed), e.what(), "monitoring_system");
         }
     }
 
@@ -186,7 +186,7 @@ public:
      */
     ::kcenon::common::VoidResult reset() override {
         if (!monitor_) {
-            return ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::monitoring_disabled), "Monitor not initialized", "monitoring_system");
         }
 
         try {
@@ -196,7 +196,7 @@ public:
             }
             return ::kcenon::common::VoidResult(std::monostate{});
         } catch (const std::exception& e) {
-            return ::kcenon::common::error_info(2, e.what(), "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::operation_failed), e.what(), "monitoring_system");
         }
     }
 
@@ -332,7 +332,7 @@ public:
      */
     ::kcenon::common::Result<::kcenon::common::interfaces::metrics_snapshot> get_monitoring_data() override {
         if (!monitor_) {
-            return ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::monitoring_disabled), "Monitor not initialized", "monitoring_system");
         }
 
         try {
@@ -346,7 +346,7 @@ public:
 
             return snapshot;
         } catch (const std::exception& e) {
-            return ::kcenon::common::error_info(2, e.what(), "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::operation_failed), e.what(), "monitoring_system");
         }
     }
 
@@ -370,7 +370,7 @@ public:
 
             return result;
         } catch (const std::exception& e) {
-            return ::kcenon::common::error_info(2, e.what(), "monitoring_system");
+            return ::kcenon::common::error_info(static_cast<int>(monitoring_error_code::operation_failed), e.what(), "monitoring_system");
         }
     }
 
