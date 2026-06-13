@@ -6,6 +6,7 @@
 #include "kcenon/monitoring/core/result_types.h"
 #include "kcenon/monitoring/core/error_codes.h"
 #include "kcenon/monitoring/interfaces/monitoring_core.h"
+#include <kcenon/common/error/error_codes.h>
 
 using namespace kcenon::monitoring;
 
@@ -153,6 +154,53 @@ TEST_F(ResultTypesTest, MonitoringConfigValidation) {
     result = config.validate();
     EXPECT_FALSE(result.is_ok());
     EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::invalid_capacity);
+}
+
+/**
+ * @brief Verify monitoring error codes land in common's reserved
+ *        negative band [-399, -300] and classify as "MonitoringSystem".
+ *
+ * Regression guard for issue #697: monitoring_error_code was a positive
+ * enum, which common's classifier (after #698) rejects as "Invalid" because
+ * any code > 0 is out of range. Codes must be negative and within
+ * common_system's reserved monitoring band so they are correctly attributed.
+ */
+TEST_F(ResultTypesTest, ErrorCodesAreInCommonMonitoringBand) {
+    // Representative codes spanning several category sub-bands.
+    const monitoring_error_code samples[] = {
+        monitoring_error_code::collector_not_found,
+        monitoring_error_code::storage_full,
+        monitoring_error_code::invalid_configuration,
+        monitoring_error_code::circuit_breaker_open,
+        monitoring_error_code::transaction_failed,
+        monitoring_error_code::unknown_error,
+    };
+
+    for (auto code : samples) {
+        const int value = static_cast<int>(code);
+        EXPECT_LT(value, 0) << "code must be negative";
+        EXPECT_GE(value, -399) << "code must be >= -399";
+        EXPECT_LE(value, -300) << "code must be <= -300";
+        EXPECT_EQ(kcenon::common::error::get_category_name(value),
+                  "MonitoringSystem")
+            << "common must classify code " << value << " as MonitoringSystem";
+    }
+}
+
+/**
+ * @brief Verify to_common_error() preserves the negative code unchanged
+ *        and that the result classifies as "MonitoringSystem".
+ */
+TEST_F(ResultTypesTest, ToCommonErrorPreservesNegativeCode) {
+    error_info err(monitoring_error_code::collection_failed,
+                   "Failed to collect");
+    kcenon::common::error_info common_err = err.to_common_error();
+
+    EXPECT_EQ(common_err.code,
+              static_cast<int>(monitoring_error_code::collection_failed));
+    EXPECT_LT(common_err.code, 0);
+    EXPECT_EQ(kcenon::common::error::get_category_name(common_err.code),
+              "MonitoringSystem");
 }
 
 TEST_F(ResultTypesTest, HealthCheckResult) {
