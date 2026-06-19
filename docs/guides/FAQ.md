@@ -78,10 +78,10 @@ auto system = monitoring_system::builder()
 - Enhanced constexpr for compile-time optimization
 
 **Compiler Support:**
-- GCC 11+
-- Clang 14+
-- MSVC 2019 16.11+
-- Apple Clang 13+
+- GCC 13+
+- Clang 17+
+- MSVC 2022+
+- Apple Clang 14+
 
 ---
 
@@ -988,14 +988,14 @@ scrape_configs:
 ### Documentation
 - **[Quick Start Guide](QUICK_START.md)** - Get started in 5 minutes
 - **[API Reference](../API_REFERENCE.md)** - Complete API documentation
-- **[Architecture Guide](../ARCHITECTURE_GUIDE.md)** - System design
+- **[Architecture Guide](../advanced/ARCHITECTURE_GUIDE.md)** - System design
 - **[Best Practices](BEST_PRACTICES.md)** - Production patterns
-- **[Troubleshooting](../TROUBLESHOOTING.md)** - Common issues
+- **[Troubleshooting](TROUBLESHOOTING.md)** - Common issues
 
 ### Support
 - **GitHub Issues**: [Report bugs](https://github.com/kcenon/monitoring_system/issues)
 - **GitHub Discussions**: [Ask questions](https://github.com/kcenon/monitoring_system/discussions)
-- **Contributing**: [CONTRIBUTING.md](../CONTRIBUTING.md)
+- **Contributing**: [CONTRIBUTING.md](../contributing/CONTRIBUTING.md)
 
 ---
 

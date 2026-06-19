@@ -131,25 +131,25 @@ monitoring_system/
 │   └── CMakeLists.txt
 ├── 📁 docs/                        # 문서
 │   ├── 📁 guides/                  # 사용자 가이드
-│   │   ├── USER_GUIDE.md
+│   │   ├── QUICK_START.md
 │   │   ├── INTEGRATION.md
 │   │   ├── BEST_PRACTICES.md
 │   │   ├── TROUBLESHOOTING.md
 │   │   ├── FAQ.md
-│   │   └── MIGRATION_GUIDE.md
+│   │   └── TUTORIAL.md
 │   ├── 📁 advanced/                # 고급 주제
-│   │   ├── CUSTOM_STORAGE.md
-│   │   ├── CUSTOM_METRICS.md
-│   │   └── PERFORMANCE_TUNING.md
+│   │   ├── ARCHITECTURE_GUIDE.md
+│   │   ├── MIGRATION_GUIDE_V2.md
+│   │   └── ARCHITECTURE.md
 │   ├── 📁 performance/             # 성능 문서
 │   │   ├── BASELINE.md
-│   │   └── BENCHMARKS.md
+│   │   └── PERFORMANCE_BASELINE.md
 │   ├── 📁 contributing/            # 기여 가이드라인
 │   │   ├── CONTRIBUTING.md
-│   │   ├── CODE_STYLE.md
-│   │   └── DEVELOPMENT_SETUP.md
-│   ├── 01-ARCHITECTURE.md
-│   ├── 02-API_REFERENCE.md
+│   │   ├── CI_CD_GUIDE.md
+│   │   └── TESTING_GUIDE.md
+│   ├── ARCHITECTURE.md
+│   ├── API_REFERENCE.md
 │   ├── FEATURES.md
 │   ├── BENCHMARKS.md
 │   ├── PROJECT_STRUCTURE.md
@@ -470,11 +470,11 @@ build/
 
 ## 참고 문서
 
-- [아키텍처 가이드](01-ARCHITECTURE.md) / [아키텍처 (한국어)](ARCHITECTURE.kr.md) - 시스템 설계 및 패턴
-- [API 레퍼런스](02-API_REFERENCE.md) / [API 레퍼런스 (한국어)](API_REFERENCE.kr.md) - 완전한 API 문서
+- [아키텍처 가이드](ARCHITECTURE.md) / [아키텍처 (한국어)](ARCHITECTURE.kr.md) - 시스템 설계 및 패턴
+- [API 레퍼런스](API_REFERENCE.md) / [API 레퍼런스 (한국어)](API_REFERENCE.kr.md) - 완전한 API 문서
 - [기능](FEATURES.md) / [기능 (한국어)](FEATURES.kr.md) - 상세 기능 문서
 - [벤치마크](BENCHMARKS.md) / [벤치마크 (한국어)](BENCHMARKS.kr.md) - 성능 메트릭
-- [사용자 가이드](guides/USER_GUIDE.md) - 사용 예제
+- [빠른 시작 가이드](guides/QUICK_START.md) - 사용 예제
 
 ---
 

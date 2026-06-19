@@ -150,7 +150,7 @@ std::cout << "Metrics recorded: " << stats.metrics_recorded << std::endl;
 
 ### 완전한 예제
 
-완전한 작동 예제는 [basic_monitoring_example.cpp](basic_monitoring_example.cpp)를 참조하세요.
+완전한 작동 예제는 [basic_monitoring_example.cpp](../../examples/basic_monitoring_example.cpp)를 참조하세요.
 
 ---
 
@@ -238,7 +238,7 @@ void process_request() {
 
 ### 완전한 예제
 
-완전한 작동 예제는 [distributed_tracing_example.cpp](distributed_tracing_example.cpp)를 참조하세요.
+완전한 작동 예제는 [distributed_tracing_example.cpp](../../examples/distributed_tracing_example.cpp)를 참조하세요.
 
 ---
 
@@ -332,7 +332,7 @@ void health_endpoint(const http_request& req, http_response& res) {
 
 ### 완전한 예제
 
-완전한 작동 예제는 [health_reliability_example.cpp](health_reliability_example.cpp)를 참조하세요.
+완전한 작동 예제는 [health_reliability_example.cpp](../../examples/health_reliability_example.cpp)를 참조하세요.
 
 ---
 
@@ -512,7 +512,7 @@ public:
 
 ### 완전한 예제
 
-더 많은 예제는 [result_pattern_example.cpp](result_pattern_example.cpp)를 참조하세요.
+더 많은 예제는 [result_pattern_example.cpp](../../examples/result_pattern_example.cpp)를 참조하세요.
 
 ---
 
@@ -756,24 +756,24 @@ auto profile = monitoring.profile_overhead();
 std::cout << "Monitoring overhead: " << profile.cpu_percent << "%" << std::endl;
 ```
 
-더 많은 문제 해결 팁은 [Troubleshooting Guide](../docs/TROUBLESHOOTING.md)를 참조하세요.
+더 많은 문제 해결 팁은 [Troubleshooting Guide](TROUBLESHOOTING.md)를 참조하세요.
 
 ---
 
 ## 추가 리소스
 
-- [API Reference](../docs/API_REFERENCE.md) - 완전한 API 문서
-- [Architecture Guide](../docs/ARCHITECTURE_GUIDE.md) - 시스템 설계 및 아키텍처
-- [Performance Tuning](../docs/PERFORMANCE_TUNING.md) - 최적화 가이드
-- [Examples](.) - 작동하는 코드 예제
+- [API Reference](../API_REFERENCE.md) - 완전한 API 문서
+- [Architecture Guide](../advanced/ARCHITECTURE_GUIDE.md) - 시스템 설계 및 아키텍처
+- [Performance Tuning](../performance/PERFORMANCE_TUNING.md) - 최적화 가이드
+- [Examples](../../examples/) - 작동하는 코드 예제
 
 ---
 
 ## 도움 받기
 
-- [문서](../docs/) 확인
-- [예제](.) 살펴보기
-- 사용 패턴을 위해 [테스트](../tests/) 검토
+- [문서](../) 확인
+- [예제](../../examples/) 살펴보기
+- 사용 패턴을 위해 [테스트](../../tests/) 검토
 - GitHub에 이슈 보고
 
 ---

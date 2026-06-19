@@ -18,22 +18,22 @@ category: "ARCH"
 
 - [Overview](#overview)
 - [Issue Categories](#issue-categories)
-  - [1. Testing & Quality](#1-testing-quality)
+  - [1. Testing & Quality](#1-testing--quality)
     - [Issue ARC-001: Low Test Coverage](#issue-arc-001-low-test-coverage)
-    - [Issue ARC-002: Missing Performance Benchmarks](#issue-arc-002-missing-performance-benchmarks)
-  - [2. Concurrency & Thread Safety](#2-concurrency-thread-safety)
-    - [Issue ARC-003: Monitor Thread Safety Verification](#issue-arc-003-monitor-thread-safety-verification)
-  - [3. Performance & Optimization](#3-performance-optimization)
-    - [Issue ARC-004: Metric Collection Overhead](#issue-arc-004-metric-collection-overhead)
-    - [Issue ARC-005: Adaptive Monitor Threshold Tuning](#issue-arc-005-adaptive-monitor-threshold-tuning)
-  - [4. Features & Functionality](#4-features-functionality)
-    - [Issue ARC-006: Distributed Tracing Incomplete](#issue-arc-006-distributed-tracing-incomplete)
-    - [Issue ARC-007: Limited Metric Types](#issue-arc-007-limited-metric-types)
+    - [Issue ARC-002: Missing Performance Benchmarks (RESOLVED)](#issue-arc-002-missing-performance-benchmarks--resolved)
+  - [2. Concurrency & Thread Safety](#2-concurrency--thread-safety)
+    - [Issue ARC-003: Monitor Thread Safety Verification (RESOLVED)](#issue-arc-003-monitor-thread-safety-verification--resolved)
+  - [3. Performance & Optimization](#3-performance--optimization)
+    - [Issue ARC-004: Metric Collection Overhead (RESOLVED)](#issue-arc-004-metric-collection-overhead--resolved)
+    - [Issue ARC-005: Adaptive Monitor Threshold Tuning (RESOLVED)](#issue-arc-005-adaptive-monitor-threshold-tuning--resolved)
+  - [4. Features & Functionality](#4-features--functionality)
+    - [Issue ARC-006: Distributed Tracing Incomplete (RESOLVED)](#issue-arc-006-distributed-tracing-incomplete--resolved)
+    - [Issue ARC-007: Limited Metric Types (RESOLVED)](#issue-arc-007-limited-metric-types--resolved)
   - [5. Documentation](#5-documentation)
     - [Issue ARC-008: Incomplete API Documentation](#issue-arc-008-incomplete-api-documentation)
-    - [Issue ARC-009: Missing Integration Examples](#issue-arc-009-missing-integration-examples)
+    - [Issue ARC-009: Missing Integration Examples (RESOLVED)](#issue-arc-009-missing-integration-examples--resolved)
   - [6. Integration](#6-integration)
-    - [Issue ARC-010: Common System Integration](#issue-arc-010-common-system-integration)
+    - [Issue ARC-010: Common System Integration (RESOLVED)](#issue-arc-010-common-system-integration--resolved)
 - [Issue Tracking](#issue-tracking)
   - [Phase 0 Actions](#phase-0-actions)
   - [Phase 1 Actions](#phase-1-actions)
@@ -106,7 +106,7 @@ This document catalogs known architectural issues in monitoring_system identifie
   - ✅ Confirmed metric aggregation thread safety
   - ✅ Added thread_safety_tests.cpp with ThreadSanitizer validation
 - **References**:
-  - Tests: `tests/thread_safety_tests.cpp`
+  - Tests: `tests/core/thread_safety_tests.cpp`
   - Sanitizer workflow: `.github/workflows/sanitizers.yml`
 
 ---
@@ -151,7 +151,7 @@ This document catalogs known architectural issues in monitoring_system identifie
   - `enable_cooldown`: Enable/disable cooldown (default: true)
 - **References**:
   - Implementation: `src/impl/adaptive_monitor.h`
-  - Tests: `tests/test_adaptive_monitoring.cpp` (12 new workload scenario tests)
+  - Tests: `tests/core/test_adaptive_monitoring.cpp` (12 new workload scenario tests)
 
 ---
 
@@ -175,7 +175,7 @@ This document catalogs known architectural issues in monitoring_system identifie
 - **References**:
   - Implementation: `src/impl/tracing/distributed_tracer.cpp`
   - Header: `src/impl/tracing/distributed_tracer.h`
-  - Tests: `tests/test_distributed_tracing.cpp` (ExporterIntegrationTest)
+  - Tests: `tests/core/test_distributed_tracing.cpp` (ExporterIntegrationTest)
 
 #### ~~Issue ARC-007: Limited Metric Types~~ ✅ RESOLVED
 - **Priority**: P2 (Low)
@@ -194,7 +194,7 @@ This document catalogs known architectural issues in monitoring_system identifie
   - ✅ Comprehensive tests in `test_timer_metrics.cpp`
 - **References**:
   - Implementation: `include/kcenon/monitoring/utils/metric_types.h`
-  - Tests: `tests/test_timer_metrics.cpp`
+  - Tests: `tests/utils/test_timer_metrics.cpp`
 
 ---
 
@@ -250,7 +250,7 @@ This document catalogs known architectural issues in monitoring_system identifie
   - ✅ All 8 cross-system integration tests passing
 - **References**:
   - Adapter: `include/kcenon/monitoring/adapters/common_system_adapter.h`
-  - Tests: `tests/test_cross_system_integration.cpp`
+  - Tests: `tests/core/test_cross_system_integration.cpp`
   - Result types: `include/kcenon/monitoring/core/result_types.h`
 
 ---
@@ -308,7 +308,7 @@ This document catalogs known architectural issues in monitoring_system identifie
 
 - [CURRENT_STATE.md](./CURRENT_STATE.md)
 - [ARCHITECTURE_GUIDE.md](./ARCHITECTURE_GUIDE.md)
-- [API_REFERENCE.md](./API_REFERENCE.md)
+- [API_REFERENCE.md](../API_REFERENCE.md)
 
 ---
 

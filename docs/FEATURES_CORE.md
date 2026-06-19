@@ -1170,5 +1170,5 @@ aggregator->reset_statistics();
 - [FEATURES_ALERTS_TRACING.md](FEATURES_ALERTS_TRACING.md) - Alert pipeline, distributed tracing, exporters
 - [API Reference](API_REFERENCE.md) - Complete API documentation
 - [Architecture Guide](ARCHITECTURE.md) - System design and patterns
-- [User Guide](guides/USER_GUIDE.md) - Usage examples and best practices
+- [Quick Start Guide](guides/QUICK_START.md) - Usage examples and best practices
 - [Benchmarks](BENCHMARKS.md) - Performance metrics and comparisons

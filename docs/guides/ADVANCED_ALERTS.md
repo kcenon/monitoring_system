@@ -12,7 +12,7 @@ category: "GUID"
 
 > **SSOT**: This document is the single source of truth for **Advanced Alert Configuration Guide**.
 
-> **Version**: 0.1.0
+> **Version**: 0.4.0.0
 > **Module**: `kcenon::monitoring::alert`
 > **Audience**: Developers integrating the alerting framework into monitoring pipelines
 

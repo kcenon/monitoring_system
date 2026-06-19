@@ -728,8 +728,8 @@ report.save("/tmp/diagnostic_report.json");
 ### 지원 채널
 
 - GitHub Issues: [버그 보고 및 기능 요청]
-- 문서: [API Reference](API_REFERENCE.md)
-- 예제: [코드 예제](../examples/)
+- 문서: [API Reference](../API_REFERENCE.md)
+- 예제: [코드 예제](../../examples/)
 
 ## 결론
 

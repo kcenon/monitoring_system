@@ -381,6 +381,45 @@ TEST(LoadAverageHistoryThreadSafety, ConcurrentReadWrite) {
     EXPECT_GT(read_count.load(), 0);
 }
 
+// Factory method tests for v1.0 Result-based API
+
+TEST(TimeSeriesBufferFactoryTest, CreateWithValidConfig) {
+    time_series_buffer_config config;
+    config.max_samples = 50;
+
+    auto result = time_series_buffer<double>::create(config);
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_NE(result.value(), nullptr);
+    EXPECT_EQ(result.value()->capacity(), 50);
+}
+
+TEST(TimeSeriesBufferFactoryTest, CreateWithInvalidConfig) {
+    time_series_buffer_config config;
+    config.max_samples = 0;
+
+    auto result = time_series_buffer<double>::create(config);
+    EXPECT_TRUE(result.is_err());
+}
+
+TEST(TimeSeriesBufferFactoryTest, CreateAndUseSamples) {
+    time_series_buffer_config config;
+    config.max_samples = 10;
+
+    auto result = time_series_buffer<double>::create(config);
+    ASSERT_TRUE(result.is_ok());
+
+    auto& buffer = result.value();
+    buffer->add_sample(1.0);
+    buffer->add_sample(2.0);
+    buffer->add_sample(3.0);
+
+    EXPECT_EQ(buffer->size(), 3);
+
+    auto latest = buffer->get_latest();
+    EXPECT_TRUE(latest.is_ok());
+    EXPECT_DOUBLE_EQ(latest.value(), 3.0);
+}
+
 }  // namespace
 }  // namespace monitoring
 }  // namespace kcenon

@@ -23,6 +23,7 @@ module;
 // Standard library includes (global module fragment)
 #include <atomic>
 #include <chrono>
+#include <cstdint>
 #include <functional>
 #include <memory>
 #include <mutex>
@@ -51,24 +52,31 @@ export namespace kcenon::monitoring {
  * @enum monitoring_error_code
  * @brief Error codes for monitoring operations
  */
-enum class monitoring_error_code {
+// Values are NEGATIVE and confined to common_system's reserved
+// monitoring band [-399, -300] so that codes funneled through common's
+// shared error_info.code classify as "MonitoringSystem". Names shared with
+// the header in core/error_codes.h keep identical values; module-only names
+// occupy distinct unused slots inside the band. Underlying type is SIGNED.
+enum class monitoring_error_code : std::int32_t {
     success = 0,
-    invalid_configuration,
-    collector_not_found,
-    metric_not_found,
-    storage_error,
-    export_error,
-    timeout,
-    resource_exhausted,
-    invalid_state,
-    not_initialized,
-    already_initialized,
-    internal_error,
-    invalid_argument,
-    unsupported_operation,
-    permission_denied,
-    network_error,
-    serialization_error
+    // Shared with core/error_codes.h (same value)
+    invalid_configuration = -320,
+    collector_not_found = -300,
+    metric_not_found = -345,
+    resource_exhausted = -369,
+    invalid_state = -366,
+    invalid_argument = -365,
+    permission_denied = -331,
+    network_error = -359,
+    // Module-only names (distinct in-band slots)
+    storage_error = -317,
+    export_error = -344,
+    timeout = -336,
+    not_initialized = -337,
+    already_initialized = -372,
+    internal_error = -398,
+    unsupported_operation = -373,
+    serialization_error = -318
 };
 
 /**

@@ -12,7 +12,7 @@ category: "PROJ"
 
 > **SSOT**: This document is the single source of truth for **Monitoring System - Project Structure**.
 
-**Version**: 0.3.0.0
+**Version**: 0.4.0.0
 **Last Updated**: 2026-01-22
 
 ---
@@ -52,16 +52,14 @@ monitoring_system/
 │   ├── collectors/              # Metric collectors (core + optional plugins)
 │   │   ├── collector_base.h          # CRTP base class for collectors
 │   │   │
-│   │   │   # Core Collectors (6) - Always included
+│   │   │   # Core Collectors (4) - Always included
 │   │   ├── system_resource_collector.h # Unified CPU, memory, disk metrics
 │   │   ├── network_metrics_collector.h # Socket buffer + TCP state (consolidated)
 │   │   ├── process_metrics_collector.h # FD, inode, context switch (consolidated)
 │   │   ├── platform_metrics_collector.h # Linux/macOS/Windows via Strategy pattern
-│   │   ├── thread_system_collector.h # Thread pool metrics
-│   │   ├── logger_system_collector.h # Logger system integration
 │   │   │
 │   │   │   # Utility Collectors
-│   │   ├── plugin_metric_collector.h # Plugin system interface
+│   │   ├── plugin_metric_collector.h # metric_collector_plugin interface
 │   │   ├── uptime_collector.h        # System uptime
 │   │   ├── vm_collector.h            # Virtualization metrics
 │   │   ├── interrupt_collector.h     # Interrupt statistics
@@ -346,8 +344,6 @@ monitoring_system/
 | `network_metrics_collector` | Network socket & TCP states | socket_buffer_collector, tcp_state_collector | Linux, macOS |
 | `process_metrics_collector` | FD, inode, context switches | fd_collector, inode_collector, context_switch_collector | Linux, macOS |
 | `platform_metrics_collector` | Platform-specific metrics | linux_metrics, macos_metrics, windows_metrics | All (Strategy pattern) |
-| `thread_system_collector` | Thread pool metrics | - | All |
-| `logger_system_collector` | Logger system integration | - | All |
 
 ### Utility Collectors
 

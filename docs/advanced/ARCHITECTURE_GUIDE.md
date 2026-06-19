@@ -26,10 +26,19 @@ The Monitoring System is a modular and extensible framework designed for high-pe
 2. [Phase 4 Implementation Status](#phase-4-implementation-status)
 3. [Core Foundation Architecture](#core-foundation-architecture)
 4. [System Components](#system-components)
-5. [Design Patterns](#design-patterns)
-6. [Test Architecture](#test-architecture)
-7. [Build and Integration](#build-and-integration)
-8. [Future Architecture](#future-architecture)
+5. [Core Design Patterns](#core-design-patterns)
+6. [Component Architecture](#component-architecture)
+7. [Data Flow](#data-flow)
+8. [Deployment Architecture](#deployment-architecture)
+9. [Integration Points](#integration-points)
+10. [Performance Architecture](#performance-architecture)
+11. [Security Architecture](#security-architecture)
+12. [Scalability Considerations](#scalability-considerations)
+13. [Anti-Patterns to Avoid](#anti-patterns-to-avoid)
+14. [Troubleshooting Architecture Issues](#troubleshooting-architecture-issues)
+15. [Future Architecture Directions](#future-architecture-directions)
+16. [Architecture Decision Records (ADRs)](#architecture-decision-records-adrs)
+17. [Conclusion](#conclusion)
 
 ---
 
@@ -807,7 +816,7 @@ The Monitoring System architecture is designed to be:
 - **Extensible**: Easy to add new features and integrations
 - **Maintainable**: Clean architecture with clear boundaries
 
-For implementation details, see the [API Reference](API_REFERENCE.md).  
+For implementation details, see the [API Reference](../API_REFERENCE.md).  
 For practical examples, see the [Examples Directory](../examples/).
 ---
 

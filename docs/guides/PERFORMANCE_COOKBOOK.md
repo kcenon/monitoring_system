@@ -1679,7 +1679,7 @@ Some ARM embedded CPUs use 32-byte cache lines — adjust `alignas` if targeting
 
 - [Performance Tuning Guide](../performance/PERFORMANCE_TUNING.md) — System-wide performance configuration
 - [Best Practices](BEST_PRACTICES.md) — General monitoring best practices
-- [Plugin Development](../plugins/PLUGIN_DEVELOPMENT.md) — Writing performance-aware plugins
+- [Plugin Development](../plugin_development_guide.md) — Writing performance-aware plugins
 - [Collector Development](COLLECTOR_DEVELOPMENT.md) — Building custom collectors
 
 ---

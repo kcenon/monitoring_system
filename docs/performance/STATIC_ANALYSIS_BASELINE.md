@@ -15,7 +15,7 @@ category: "PERF"
 > **Language:** **English** | [한국어](STATIC_ANALYSIS_BASELINE.kr.md)
 
 **Date**: 2025-10-03
-**Version**: 0.1.0.0  
+**Version**: 0.4.0.0  
 **Tool Versions**:
 - clang-tidy: 18.x
 - cppcheck: 2.x

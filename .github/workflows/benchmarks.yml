@@ -123,6 +123,25 @@ jobs:
         path: monitoring_system/build/benchmarks/benchmark_results_${{ matrix.os }}.json
         retention-days: 30
 
+    - name: Regression gate vs committed baseline
+      # Compares this run against the version-controlled baseline under
+      # benchmarks/baselines/ and fails on any regression beyond the threshold.
+      # Skips gracefully when no committed baseline exists for this runner.
+      run: |
+        cd monitoring_system
+        BASELINE="benchmarks/baselines/${{ matrix.os }}.json"
+        RESULTS="build/benchmarks/benchmark_results_${{ matrix.os }}.json"
+        if [ ! -f "$BASELINE" ]; then
+          echo "No committed baseline for ${{ matrix.os }} ($BASELINE); skipping regression gate."
+          exit 0
+        fi
+        python3 benchmarks/scripts/compare_benchmarks.py \
+          --baseline "$BASELINE" \
+          --current  "$RESULTS" \
+          --metric   cpu_time \
+          --threshold 0.10 \
+          | tee -a "$GITHUB_STEP_SUMMARY"
+
     - name: Save baseline (if requested)
       if: github.event.inputs.save_baseline == 'true' && github.ref == 'refs/heads/main'
       run: |

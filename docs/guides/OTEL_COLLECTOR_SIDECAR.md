@@ -587,5 +587,5 @@ When monitoring_system's native gRPC support is available (Issue #325), you can 
 
 ---
 
-**Last Updated**: 2025-01-09
+**Last Updated**: 2026-04-15
 **Maintainer**: kcenon@naver.com

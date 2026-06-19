@@ -544,7 +544,7 @@ assert(results.p99_latency_ms < 10.0);
 - 자동 최적화를 위한 적응형 기능 사용
 - 정기적으로 구성 검토 및 조정
 
-자세한 내용은 [Architecture Guide](ARCHITECTURE_GUIDE.md)를 참조하세요.
+자세한 내용은 [Architecture Guide](../advanced/ARCHITECTURE_GUIDE.md)를 참조하세요.
 
 ---
 

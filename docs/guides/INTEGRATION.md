@@ -12,7 +12,7 @@ category: "INTR"
 
 > **SSOT**: This document is the single source of truth for **Integration Guide - Monitoring System**.
 
-> **Language:** **English** | [한국어](INTEGRATION.kr.md)
+> **Language:** **English** <!-- TODO: INTEGRATION.kr.md not available -->
 
 ## Overview
 
@@ -535,7 +535,7 @@ config.enable_distributed_tracing = false;
 
 ### Complete Integration Example
 
-See [examples/](examples/) for complete applications demonstrating:
+See [examples/](../../examples/) for complete applications demonstrating:
 - Performance monitoring with common_system Result<T>
 - Thread pool monitoring via thread_system integration
 - Distributed tracing with logger_system correlation
@@ -562,9 +562,9 @@ make
 
 ## Support
 
-- **Documentation**: [docs/](docs/)
-- **API Reference**: [docs/API_REFERENCE.md](docs/API_REFERENCE.md)
-- **Architecture Guide**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- **Documentation**: [docs/](../)
+- **API Reference**: [docs/API_REFERENCE.md](../API_REFERENCE.md)
+- **Architecture Guide**: [docs/ARCHITECTURE.md](../ARCHITECTURE.md)
 - **Issues**: [GitHub Issues](https://github.com/kcenon/monitoring_system/issues)
 - **Email**: kcenon@naver.com
 

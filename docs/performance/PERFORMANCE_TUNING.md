@@ -544,7 +544,7 @@ Optimal performance requires balancing observability needs with system resources
 - Use adaptive features for automatic optimization
 - Regularly review and adjust configuration
 
-For more details, see the [Architecture Guide](ARCHITECTURE_GUIDE.md).
+For more details, see the [Architecture Guide](../advanced/ARCHITECTURE_GUIDE.md).
 ---
 
 *Last Updated: 2025-10-20*

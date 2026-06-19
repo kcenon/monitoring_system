@@ -12,7 +12,7 @@ category: "GUID"
 
 > **SSOT**: This document is the single source of truth for **Stream Processing and Aggregation Framework**.
 
-> **Version**: 0.1.0
+> **Version**: 0.4.0.0
 > **Status**: Active
 > **Last Updated**: 2025-12-01
 

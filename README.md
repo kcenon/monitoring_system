@@ -26,8 +26,9 @@
 - [CMake Integration](#cmake-integration)
 - [Configuration](#configuration)
 - [Testing](#testing)
+- [API Stability (v1.0)](#api-stability-v10)
 - [Production Quality](#production-quality)
-- [Contributing](#contributing)
+- [Support & Contributing](#support--contributing)
 - [License](#license)
 
 ## Overview
@@ -40,7 +41,7 @@ Modern C++20 observability platform with comprehensive monitoring, distributed t
 - **Developer Productivity**: Intuitive API, rich telemetry, modular components
 - **Enterprise-Ready**: Distributed tracing, health monitoring, reliability patterns
 
-**Latest Status**: ✅ All CI/CD pipelines green, 37/37 tests passing (100% pass rate)
+**Latest Status**: ✅ All CI/CD pipelines green, 1,118 test cases across 55 suites passing (100% pass rate)
 
 ---
 
@@ -91,7 +92,7 @@ cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
 
-📖 **[Quick Start Guide →](docs/guides/QUICK_START.md)** | **[빠른 시작 가이드 →](docs/guides/QUICK_START_KO.md)**
+📖 **[Quick Start Guide →](docs/guides/QUICK_START.md)** | **[빠른 시작 가이드 →](docs/guides/QUICK_START.kr.md)**
 
 ---
 
@@ -113,7 +114,7 @@ common_system (interfaces) ← monitoring_system implements IMonitor
 
 **Benefits**: Interface-only dependencies, independent compilation, runtime DI, clean separation
 
-📖 [Complete Ecosystem Integration Guide →](../ECOSYSTEM.md)
+📖 [Complete Ecosystem Integration Guide →](docs/ECOSYSTEM.md)
 
 ---
 
@@ -186,7 +187,7 @@ int main() {
 }
 ```
 
-📖 [Complete User Guide →](docs/guides/USER_GUIDE.md)
+📖 [Complete Quick Start Guide →](docs/guides/QUICK_START.md)
 
 ---
 
@@ -265,7 +266,12 @@ factory.register_collector("my_collector", []() {
 - Support for plugin, CRTP, and standalone collector types
 - Consistent error handling and initialization
 
-📖 [Factory API Reference →](docs/02-API_REFERENCE.md#metric-factory)
+📖 [Factory API Reference →](docs/API_REFERENCE.md#metric-factory)
+
+> **Support status**: Not every collector, plugin, or exporter is production-ready.
+> Before integrating a component, check the code-verified classification in
+> [Component Support Status](docs/SUPPORT_STATUS.md) — it distinguishes
+> `production`, `experimental`, and `test-only` components.
 
 ---
 
@@ -290,7 +296,7 @@ factory.register_collector("my_collector", []() {
 - **Zero Circular Dependencies**: Interface-only dependencies via common_system
 - **Production Grade**: 100% test pass rate, <10% overhead
 
-🏗️ [Architecture Guide →](docs/01-ARCHITECTURE.md)
+🏗️ [Architecture Guide →](docs/ARCHITECTURE.md)
 
 ---
 
@@ -325,7 +331,7 @@ cmake --build build
 
 | Platform | Compilers | Status |
 |----------|-----------|--------|
-| **Linux** | GCC 13+, Clang 14+ | ✅ Fully supported |
+| **Linux** | GCC 13+, Clang 17+ | ✅ Fully supported |
 | **macOS** | Apple Clang 14+ | ✅ Fully supported |
 | **Windows** | MSVC 2022+ | ✅ Fully supported |
 
@@ -383,27 +389,34 @@ int main() {
 ## Documentation
 
 ### Getting Started
-- 📖 [User Guide](docs/guides/USER_GUIDE.md) - Comprehensive usage guide
+- 📖 [Quick Start Guide](docs/guides/QUICK_START.md) - Comprehensive usage guide
 - 🚀 [Quick Start Examples](examples/) - Working code examples
 - 🔧 [Integration Guide](docs/guides/INTEGRATION.md) - Ecosystem integration
 
 ### Core Documentation
-- 📘 [API Reference](docs/02-API_REFERENCE.md) - Complete API documentation
+- 📘 [API Reference](docs/API_REFERENCE.md) - Complete API documentation
 - 📚 [Features](docs/FEATURES.md) - Detailed feature descriptions
 - ⚡ [Benchmarks](docs/BENCHMARKS.md) - Performance metrics and comparisons
-- 🏗️ [Architecture](docs/01-ARCHITECTURE.md) - System design and patterns
+- 🏗️ [Architecture](docs/ARCHITECTURE.md) - System design and patterns
 - 📦 [Project Structure](docs/PROJECT_STRUCTURE.md) - File organization
 
 ### Advanced Topics
 - ✅ [Best Practices](docs/guides/BEST_PRACTICES.md) - Usage recommendations
 - 🔍 [Troubleshooting](docs/guides/TROUBLESHOOTING.md) - Common issues and solutions
 - 📋 [FAQ](docs/guides/FAQ.md) - Frequently asked questions
-- 🔄 [Migration Guide](docs/guides/MIGRATION_GUIDE.md) - Version migration
+- 🔄 [Migration Guide](docs/advanced/MIGRATION_GUIDE_V2.md) - Version migration
 
 ### Development
 - 🤝 [Contributing](docs/contributing/CONTRIBUTING.md) - Contribution guidelines
 - 🏆 [Production Quality](docs/PRODUCTION_QUALITY.md) - CI/CD and quality metrics
 - 📊 [Performance Baselines](docs/performance/BASELINE.md) - Regression thresholds
+- 📜 [Changelog](CHANGELOG.md) - Version history
+- 🔒 [Security Policy](SECURITY.md) - Security reporting
+- 📏 [Code of Conduct](CODE_OF_CONDUCT.md) - Community guidelines
+- 📑 [Traceability](docs/TRACEABILITY.md) - Feature-Test-Module mapping
+
+### Compliance
+- 📋 [ISO/IEC 27001 and 20000 Mapping](docs/compliance/iso-mapping.md) - Which features help satisfy which clauses (and what remains the operator's responsibility)
 
 ---
 
@@ -435,7 +448,7 @@ include(FetchContent)
 FetchContent_Declare(
     monitoring_system
     GIT_REPOSITORY https://github.com/kcenon/monitoring_system.git
-    GIT_TAG v0.1.0 # Pin to a specific release tag; do NOT use main
+    GIT_TAG v1.0.0 # Pin to a specific release tag; do NOT use main
 )
 
 FetchContent_MakeAvailable(monitoring_system)
@@ -504,12 +517,55 @@ cmake --build build
 make coverage
 ```
 
-**Test Status**: ✅ 37/37 tests passing (100% pass rate)
+**Test Status**: ✅ 1,118 test cases across 55 suites passing (100% pass rate)
 
 **Test Coverage**:
 - Line Coverage: 87.3%
 - Function Coverage: 92.1%
 - Branch Coverage: 78.5%
+
+---
+
+## API Stability (v1.0)
+
+Starting with v1.0.0, the public API is **frozen** under [Semantic Versioning](https://semver.org/):
+
+- **Patch releases** (1.0.x): Bug fixes only, no API changes.
+- **Minor releases** (1.x.0): Backward-compatible additions; existing code continues to compile.
+- **Major releases** (2.0.0): Reserved for breaking changes, with a deprecation cycle in the prior minor series.
+
+### Stable Public Interfaces
+
+| Component | Header | Guarantee |
+|-----------|--------|-----------|
+| `performance_monitor` | `core/performance_monitor.h` | Stable |
+| `distributed_tracer` | `tracing/distributed_tracer.h` | Stable |
+| `central_collector` | `core/central_collector.h` | Stable |
+| `metric_factory` | `factory/metric_factory.h` | Stable |
+| `health_monitor` | `health/health_monitor.h` | Stable |
+| `circuit_breaker` | `reliability/circuit_breaker.h` | Stable |
+| `ring_buffer` | `utils/ring_buffer.h` | Stable |
+| `metric_storage` | `utils/metric_storage.h` | Stable |
+| `time_series_buffer` | `utils/time_series_buffer.h` | Stable |
+
+### Construction API
+
+Public utility types now provide `create()` static factory methods that return `Result<T>` instead of throwing on invalid arguments. The throwing constructors are **deprecated** and will be removed in a future major release.
+
+```cpp
+// Preferred (v1.0+)
+ring_buffer_config cfg;
+cfg.capacity = 1024;
+auto result = ring_buffer<double>::create(cfg);
+if (result.is_err()) { /* handle error */ }
+
+// Deprecated — still works but will be removed in v2.0
+ring_buffer<double> buf(cfg); // may throw
+```
+
+### CMake Target
+
+The stable CMake export target is `monitoring_system::monitoring_system`.
 
 ---
 
@@ -522,7 +578,7 @@ make coverage
 | **Thread Safety** | A- | ✅ TSan clean, 0 data races |
 | **Resource Management** | A | ✅ ASan clean, 0 leaks |
 | **Error Handling** | A- | ✅ Result<T> pattern, 95% complete |
-| **Test Coverage** | A | ✅ 37/37 tests, 100% pass rate |
+| **Test Coverage** | A | ✅ 1,118 test cases, 100% pass rate |
 | **CI/CD** | A | ✅ Multi-platform, all green |
 
 ### CI/CD Validation

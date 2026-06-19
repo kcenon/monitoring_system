@@ -12,7 +12,7 @@ category: "MIGR"
 
 > **SSOT**: This document is the single source of truth for **Migration Guide - Monitoring System**.
 
-> **Language:** **English** | [한국어](MIGRATION.kr.md)
+> **Language:** **English** <!-- TODO: MIGRATION.kr.md not available -->
 
 ## Overview
 

@@ -18,11 +18,15 @@ This directory contains integration guides for using monitoring_system with othe
 
 ## Integration Guides
 
-- [With Common System](with-common-system.md) - IMonitor interface implementation
-- [With Thread System](with-thread-system.md) - Thread pool metrics
-- [With Logger System](with-logger.md) - Log-based metrics
-- [With Network System](with-network-system.md) - Network metrics
-- [With Database System](with-database-system.md) - Database performance metrics
+<!-- TODO: Sub-guides for per-system integration are planned. The pages below are not yet available; see the consolidated [Integration Guide](../guides/INTEGRATION.md) meanwhile. -->
+
+- With Common System - IMonitor interface implementation (planned)
+- With Thread System - Thread pool metrics (planned)
+- With Logger System - Log-based metrics (planned)
+- With Network System - Network metrics (planned)
+- With Database System - Database performance metrics (planned)
+
+For currently-available integration documentation, see the [Integration Guide](../guides/INTEGRATION.md).
 
 ## Quick Start
 
@@ -145,4 +149,4 @@ monitor->setGauge("users.active", active_user_count);
 ## Additional Resources
 
 - [Monitoring System API Reference](../API_REFERENCE.md)
-- [Ecosystem Integration Guide](../../../ECOSYSTEM.md)
+- [Ecosystem Integration Guide](../ECOSYSTEM.md)

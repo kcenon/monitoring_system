@@ -946,9 +946,10 @@ note: candidate template ignored: requirement 'std::is_arithmetic_v<std::string>
 
 | Compiler | Minimum Version | Flag |
 |----------|----------------|------|
-| GCC | 10+ | `-std=c++20` (or `-fconcepts` with GCC 10) |
-| Clang | 10+ | `-std=c++20` |
+| GCC | 13+ | `-std=c++20` |
+| Clang | 17+ | `-std=c++20` |
 | MSVC | 2022+ (19.30+) | `/std:c++20` |
+| Apple Clang | 14+ | `-std=c++20` |
 
 > **Note**: The concepts are only available when `KCENON_HAS_COMMON_SYSTEM` is defined, as they may extend common_system concepts.
 
@@ -1421,7 +1422,7 @@ private:
 
 - [Performance Optimization Cookbook](PERFORMANCE_COOKBOOK.md) — Low-level optimization components
 - [Best Practices](BEST_PRACTICES.md) — General monitoring best practices
-- [Plugin Development](../plugins/PLUGIN_DEVELOPMENT.md) — Writing custom plugins
+- [Plugin Development](../plugin_development_guide.md) — Writing custom plugins
 - [Collector Development](COLLECTOR_DEVELOPMENT.md) — Building custom collectors
 - [Quick Start](QUICK_START.md) — Getting started with monitoring_system
 

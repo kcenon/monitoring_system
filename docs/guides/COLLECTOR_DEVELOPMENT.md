@@ -12,7 +12,7 @@ category: "GUID"
 
 > **SSOT**: This document is the single source of truth for **Collector Development Guide**.
 
-> **Language:** **English** | [한국어](COLLECTOR_DEVELOPMENT.kr.md)
+> **Language:** **English** <!-- TODO: COLLECTOR_DEVELOPMENT.kr.md not available -->
 
 **Version**: 0.4.0.0
 **Last Updated**: 2026-02-09
@@ -511,7 +511,7 @@ bool is_available() const {
 }
 ```
 
-The factory and plugin_metric_collector automatically skip collectors where `is_available()` returns false.
+The factory and `collector_registry` automatically skip collectors where `is_available()` returns false.
 
 ### Platform Include Guards
 
@@ -753,41 +753,36 @@ auto collectors = factory.create_multiple(configs);
 
 ### Plugin System Registration
 
-For plugin-based collectors, register with `plugin_metric_collector`:
+For runtime plugin management, register collectors with the
+`collector_registry`. Collectors that implement `collector_plugin` can be
+registered with factory-based lazy loading:
 
 ```cpp
-#include <kcenon/monitoring/collectors/plugin_metric_collector.h>
+#include <kcenon/monitoring/plugins/collector_registry.h>
 
-plugin_collector_config pconfig;
-pconfig.collection_interval = std::chrono::seconds(5);
-pconfig.worker_threads = 2;
+auto& registry = collector_registry::instance();
 
-plugin_metric_collector collector(pconfig);
+// Factory-based registration (lazy instantiation)
+registry.register_factory<my_collector>("my_collector");
 
-// Register plugins
-auto my_plugin = std::make_unique<my_plugin_collector>();
-collector.register_plugin(std::move(my_plugin));
-
-// Start collection
-collector.start();
+// Look up and use a registered plugin
+auto* plugin = registry.get_plugin("my_collector");
 ```
 
 ### Configuration-Driven Collector Selection
 
-Use `plugin_factory` for type-based creation:
+Use `register_builtin_collectors()` to register all in-tree collectors at
+startup, then create instances by name through the `metric_factory`:
 
 ```cpp
-#include <kcenon/monitoring/collectors/plugin_metric_collector.h>
+#include <kcenon/monitoring/factory/builtin_collectors.h>
+#include <kcenon/monitoring/factory/metric_factory.h>
 
-// Register custom factory
-plugin_factory::register_factory("my_type", [](const auto& config) {
-    auto plugin = std::make_unique<my_plugin_collector>();
-    plugin->initialize(config);
-    return plugin;
-});
+register_builtin_collectors();
 
-// Create by type name (useful for config-file-driven setup)
-auto plugin = plugin_factory::create("my_type", {{"key", "value"}});
+// Create by name (useful for config-file-driven setup)
+auto collector = metric_factory::instance().create("system_resource_collector",
+                                                    {{"enabled", "true"}});
 ```
 
 ---
@@ -987,7 +982,7 @@ TEST(ThreadSafetyTest, ConcurrentCollect) {
 
 ## 7. Reference: Built-in Collector Catalog
 
-### Core Collectors (6)
+### Core Collectors (4)
 
 Always included in the build. These collectors cover fundamental system metrics.
 
@@ -997,10 +992,8 @@ Always included in the build. These collectors cover fundamental system metrics.
 | `network_metrics_collector` | `collectors/network_metrics_collector.h` | Socket buffer sizes, TCP state counts | Linux, macOS |
 | `process_metrics_collector` | `collectors/process_metrics_collector.h` | FD count, inodes, context switches | Linux, macOS |
 | `platform_metrics_collector` | `collectors/platform_metrics_collector.h` | Platform info, uptime, TCP states (Strategy pattern) | All |
-| `thread_system_collector` | `collectors/thread_system_collector.h` | Thread pool utilization, queue depth | All |
-| `logger_system_collector` | `collectors/logger_system_collector.h` | Logger throughput, buffer usage | All |
 
-### Utility Collectors (5)
+### Utility Collectors (4)
 
 Included in the core build, provide supplementary metrics:
 
@@ -1010,7 +1003,6 @@ Included in the core build, provide supplementary metrics:
 | `vm_collector` | `collectors/vm_collector.h` | Virtual memory statistics | Linux |
 | `interrupt_collector` | `collectors/interrupt_collector.h` | Hardware interrupt counts | Linux |
 | `security_collector` | `collectors/security_collector.h` | Security events | All |
-| `plugin_metric_collector` | `collectors/plugin_metric_collector.h` | Plugin management and aggregation | All |
 
 ### Hardware Plugin Collectors (4)
 
