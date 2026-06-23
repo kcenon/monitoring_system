@@ -2,13 +2,14 @@
  * @file protobuf_wire_fuzzer.cpp
  * @brief libFuzzer harness for the internal protobuf wire-format decoder.
  *
- * Targets kcenon::monitoring::protobuf_wire's decode primitives
- * (decode_varint / decode_tag / decode_length_delimited), which are the
+ * Targets kcenon::monitoring::protobuf_wire's decode primitives via the
+ * `reader` class (decode_tag / reader::read_varint / reader::read_fixed64 /
+ * reader::read_fixed32 / reader::read_length_delimited), which are the
  * monitoring_system's lowest-level untrusted-input parsing surface: they are
  * used to deserialize Jaeger api_v2 and Zipkin proto3 span messages received
  * over the wire by the trace exporters. Malformed or adversarial bytes must be
- * rejected gracefully (std::nullopt) without out-of-bounds reads, overflow, or
- * other undefined behavior.
+ * rejected gracefully (false / std::nullopt) without out-of-bounds reads,
+ * overflow, or other undefined behavior.
  *
  * The header is fully inline / header-only, so this harness needs no link
  * against the monitoring_system library.
@@ -28,59 +29,54 @@
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
     namespace pw = kcenon::monitoring::protobuf_wire;
 
+    pw::reader r(data, size);
+
     // Walk the buffer as a sequence of protobuf fields, exactly as a real
     // message decoder would, exercising every decode primitive. The loop must
     // terminate on any malformed field; the decoders signal that by returning
-    // std::nullopt and not advancing past the buffer end.
-    std::size_t offset = 0;
-    while (offset < size) {
-        const std::size_t before = offset;
+    // false / std::nullopt without advancing past the buffer end.
+    while (!r.eof()) {
+        const std::size_t before = r.position();
 
-        auto tag = pw::decode_tag(data, size, offset);
-        if (!tag.has_value()) {
+        std::uint32_t field_number = 0;
+        pw::wire_type wt{};
+        if (!pw::decode_tag(r, field_number, wt)) {
             break;  // truncated/invalid tag
         }
 
-        switch (tag->second) {
-            case pw::wire_type::varint: {
-                auto v = pw::decode_varint(data, size, offset);
-                if (!v.has_value()) {
-                    offset = size;  // stop: truncated varint
+        switch (wt) {
+            case pw::wire_type::varint:
+                if (!r.read_varint().has_value()) {
+                    return 0;  // truncated varint
                 }
                 break;
-            }
+            case pw::wire_type::fixed64:
+                if (!r.read_fixed64().has_value()) {
+                    return 0;  // truncated fixed64
+                }
+                break;
+            case pw::wire_type::fixed32:
+                if (!r.read_fixed32().has_value()) {
+                    return 0;  // truncated fixed32
+                }
+                break;
             case pw::wire_type::length_delimited: {
-                auto ld = pw::decode_length_delimited(data, size, offset);
-                if (!ld.has_value()) {
-                    offset = size;  // stop: bad length-delimited field
-                }
-                break;
-            }
-            case pw::wire_type::fixed64: {
-                if (offset + 8 > size) {
-                    offset = size;
-                } else {
-                    offset += 8;
-                }
-                break;
-            }
-            case pw::wire_type::fixed32: {
-                if (offset + 4 > size) {
-                    offset = size;
-                } else {
-                    offset += 4;
+                const std::uint8_t* ptr = nullptr;
+                std::size_t len = 0;
+                if (!r.read_length_delimited(&ptr, &len)) {
+                    return 0;  // bad length-delimited field
                 }
                 break;
             }
             default:
-                // Unknown wire type: cannot safely skip; stop.
-                offset = size;
-                break;
+                // Unknown/unsupported wire type (e.g. deprecated groups):
+                // cannot safely skip; stop.
+                return 0;
         }
 
         // Guard against any decoder that fails to make forward progress, which
         // would otherwise spin forever on a crafted input.
-        if (offset == before) {
+        if (r.position() == before) {
             break;
         }
     }
