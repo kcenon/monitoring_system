@@ -19,10 +19,17 @@ jobs:
       fail-fast: false
       matrix:
         target:
-          - json_import_fuzzer
+          - protobuf_wire_fuzzer
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Checkout common_system
+        uses: actions/checkout@v6
+        with:
+          repository: kcenon/common_system
+          path: common_system
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
         run: |
@@ -46,7 +53,7 @@ jobs:
           MAX_TIME="${{ github.event.inputs.max_total_time || '300' }}"
           mkdir -p fuzz_artifacts
           ./build/fuzz/${{ matrix.target }} \
-            fuzz/corpus/json_import \
+            fuzz/corpus/protobuf_wire \
             -max_total_time="${MAX_TIME}" \
             -print_final_stats=1 \
             -artifact_prefix=fuzz_artifacts/ \
