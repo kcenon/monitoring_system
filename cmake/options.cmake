@@ -1,3 +1,5 @@
+include("${CMAKE_CURRENT_LIST_DIR}/KcenonDependencyOptions.cmake")
+
 # options.cmake
 # All option(...) declarations and feature toggles for monitoring_system.
 #
@@ -57,14 +59,18 @@ option(MONITORING_BUILD_BENCHMARKS "Build benchmarks" OFF)
 ##################################################
 
 # common_system (mandatory when ON)
-option(MONITORING_WITH_COMMON_SYSTEM "Enable common_system integration" ON)
+kcenon_dependency_option(KCENON_WITH_COMMON_SYSTEM MONITORING_WITH_COMMON_SYSTEM
+    "Enable common_system integration" ON)
 
 # Required dependencies (Tier 2 and below)
-option(MONITORING_WITH_THREAD_SYSTEM "Enable thread_system integration (REQUIRED)" ON)
-option(MONITORING_WITH_LOGGER_SYSTEM "Enable logger_system integration (OPTIONAL - runtime binding via ILogger)" OFF)
+kcenon_dependency_option(KCENON_WITH_THREAD_SYSTEM MONITORING_WITH_THREAD_SYSTEM
+    "Enable thread_system integration (REQUIRED)" ON)
+kcenon_dependency_option(KCENON_WITH_LOGGER_SYSTEM MONITORING_WITH_LOGGER_SYSTEM
+    "Enable logger_system integration (OPTIONAL - runtime binding via ILogger)" OFF)
 
 # Optional integration (Tier 4 - kept optional to prevent circular dependency)
-option(MONITORING_WITH_NETWORK_SYSTEM "Enable network_system integration for HTTP transport (OPTIONAL)" OFF)
+kcenon_dependency_option(KCENON_WITH_NETWORK_SYSTEM MONITORING_WITH_NETWORK_SYSTEM
+    "Enable network_system integration for HTTP transport (OPTIONAL)" OFF)
 
 # Optional gRPC support for OTLP trace export
 option(MONITORING_WITH_GRPC "Enable gRPC support for OTLP trace export (OPTIONAL)" OFF)
