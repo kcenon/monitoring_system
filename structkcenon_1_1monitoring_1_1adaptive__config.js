@@ -1,0 +1,28 @@
+var structkcenon_1_1monitoring_1_1adaptive__config =
+[
+    [ "get_interval_for_load", "structkcenon_1_1monitoring_1_1adaptive__config.html#a8d3cc8e00975c3c8be0d06f8a9d9bedc", null ],
+    [ "get_sampling_rate_for_load", "structkcenon_1_1monitoring_1_1adaptive__config.html#a7d7b0273e942c8950b108749edd72dc4", null ],
+    [ "adaptation_interval", "structkcenon_1_1monitoring_1_1adaptive__config.html#a4f6de9bab4146a45236024927876c9f1", null ],
+    [ "cooldown_period", "structkcenon_1_1monitoring_1_1adaptive__config.html#a0f9f233e0aec650c93316fca5ae59fb9", null ],
+    [ "critical_interval", "structkcenon_1_1monitoring_1_1adaptive__config.html#a3d57fa0950b20e7109a9ce47f18cc9df", null ],
+    [ "critical_sampling_rate", "structkcenon_1_1monitoring_1_1adaptive__config.html#a8b34f47c6a2564b7414f590c802c374c", null ],
+    [ "enable_cooldown", "structkcenon_1_1monitoring_1_1adaptive__config.html#aada351297a9e544dcd15c9997721a773", null ],
+    [ "enable_hysteresis", "structkcenon_1_1monitoring_1_1adaptive__config.html#a7ba0a65c290bc71623bf3fff881b095b", null ],
+    [ "high_interval", "structkcenon_1_1monitoring_1_1adaptive__config.html#acee7a985822380af57046fc69a7608ef", null ],
+    [ "high_sampling_rate", "structkcenon_1_1monitoring_1_1adaptive__config.html#a724c5f631c47962258ecf210757c0fed", null ],
+    [ "high_threshold", "structkcenon_1_1monitoring_1_1adaptive__config.html#aa2add3346e8f744b438f38bc1ed80943", null ],
+    [ "hysteresis_margin", "structkcenon_1_1monitoring_1_1adaptive__config.html#a5e6245894ab975fcda33fa869d8373c0", null ],
+    [ "idle_interval", "structkcenon_1_1monitoring_1_1adaptive__config.html#a834835377b72f41dfe13f8ae8dce3ff2", null ],
+    [ "idle_sampling_rate", "structkcenon_1_1monitoring_1_1adaptive__config.html#adbfd72fb0c406a46f8d5c5424cc57844", null ],
+    [ "idle_threshold", "structkcenon_1_1monitoring_1_1adaptive__config.html#a85189caa04fb0e9994625900d97636be", null ],
+    [ "low_interval", "structkcenon_1_1monitoring_1_1adaptive__config.html#a349e73069d65004da3d5f76ea34faad7", null ],
+    [ "low_sampling_rate", "structkcenon_1_1monitoring_1_1adaptive__config.html#aadd79e788f7a4262b350959339352a40", null ],
+    [ "low_threshold", "structkcenon_1_1monitoring_1_1adaptive__config.html#ae32e5fb8b8077649fe7163f099a8fe4d", null ],
+    [ "memory_critical_threshold", "structkcenon_1_1monitoring_1_1adaptive__config.html#a1fc1fdf04a5251ddfc519cbf05cb9fbe", null ],
+    [ "memory_warning_threshold", "structkcenon_1_1monitoring_1_1adaptive__config.html#a0dfc75a1c75163d7490724fa4b2a768a", null ],
+    [ "moderate_interval", "structkcenon_1_1monitoring_1_1adaptive__config.html#a57994039c069efaeab7648c2ca2cf501", null ],
+    [ "moderate_sampling_rate", "structkcenon_1_1monitoring_1_1adaptive__config.html#acd97c6add24bb3fe575babe0c3b28efe", null ],
+    [ "moderate_threshold", "structkcenon_1_1monitoring_1_1adaptive__config.html#af601d103e7d291699977d818c5364b33", null ],
+    [ "smoothing_factor", "structkcenon_1_1monitoring_1_1adaptive__config.html#a770a56cd388dff21e726125d5b48c730", null ],
+    [ "strategy", "structkcenon_1_1monitoring_1_1adaptive__config.html#af8b80e964c4945473217182a8cdb7904", null ]
+];
