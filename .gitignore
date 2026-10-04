@@ -89,8 +89,16 @@ container_system/
 
 # Documentation
 documents/
-coherence-results/
 
+# Coherence gate reports and Python tests
+coherence-results/
+__pycache__/
 *.pyc
 
+# Reviewed coherence policy and source provenance are source inputs.
+!ci/coherence.json
+!ci/coherence-source.json
+!ci/coherence-promotion.json
+
+# Reviewed coherence inputs and provenance.
 !ci/*.json
