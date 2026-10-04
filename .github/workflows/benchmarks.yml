@@ -151,7 +151,7 @@ jobs:
            benchmarks/baselines/baseline_${{ matrix.os }}_$(date +%Y%m%d).json
 
     - name: Compare with baseline (if exists)
-      if: hashFiles('monitoring_system/benchmarks/baselines/baseline_${{ matrix.os }}_*.json') != ''
+      if: hashFiles(format('monitoring_system/benchmarks/baselines/baseline_{0}_*.json', matrix.os)) != ''
       run: |
         cd monitoring_system
         echo "Comparing with baseline..."
