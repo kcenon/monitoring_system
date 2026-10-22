@@ -1,0 +1,27 @@
+var classkcenon_1_1monitoring_1_1error__boundary =
+[
+    [ "config", "classkcenon_1_1monitoring_1_1error__boundary.html#a6e2848caae14b78b4e9cc26c46818741", null ],
+    [ "error_boundary", "classkcenon_1_1monitoring_1_1error__boundary.html#ab747f32c42469bd7d77d4e7fb3bbb17f", null ],
+    [ "error_boundary", "classkcenon_1_1monitoring_1_1error__boundary.html#ac0cdca86ea90f66085e6bfe543f40c0e", null ],
+    [ "error_boundary", "classkcenon_1_1monitoring_1_1error__boundary.html#a5d62b552ccfc4459157767e04e12efd6", null ],
+    [ "downgrade_degradation", "classkcenon_1_1monitoring_1_1error__boundary.html#a21802c2a625b39325b5d211d02a779f9", null ],
+    [ "execute", "classkcenon_1_1monitoring_1_1error__boundary.html#a497d55e5b057422b974efaa069e49e6d", null ],
+    [ "execute", "classkcenon_1_1monitoring_1_1error__boundary.html#a252b50421298e607236e08f0a8304d2a", null ],
+    [ "force_degradation", "classkcenon_1_1monitoring_1_1error__boundary.html#a0350f56e7f4b6017422d6bb5810b1e14", null ],
+    [ "get_degradation_level", "classkcenon_1_1monitoring_1_1error__boundary.html#a57c240fc65e30375fcca7a526a864f75", null ],
+    [ "get_metrics", "classkcenon_1_1monitoring_1_1error__boundary.html#a6a83e9204ef5838d73eecf87342a1786", null ],
+    [ "get_name", "classkcenon_1_1monitoring_1_1error__boundary.html#a3680c0ad5c9a017b3ca82240ef93b2bc", null ],
+    [ "handle_failure", "classkcenon_1_1monitoring_1_1error__boundary.html#ae44c9483bde4e7368fc05052315a3569", null ],
+    [ "handle_success", "classkcenon_1_1monitoring_1_1error__boundary.html#a23dcdf654ac183f16ef4010b4950f7ee", null ],
+    [ "is_healthy", "classkcenon_1_1monitoring_1_1error__boundary.html#af6b86b65d382ba76f5b8fd1fef4b8de8", null ],
+    [ "set_error_handler", "classkcenon_1_1monitoring_1_1error__boundary.html#a43827117cd439300002f57bf6088bc4d", null ],
+    [ "set_fallback_strategy", "classkcenon_1_1monitoring_1_1error__boundary.html#abeb8be085eedc02b25f39aad86b7835c", null ],
+    [ "upgrade_degradation", "classkcenon_1_1monitoring_1_1error__boundary.html#a244055d3663e7d2bbed14030f1ca30fd", null ],
+    [ "config_", "classkcenon_1_1monitoring_1_1error__boundary.html#af7c6f205cb77fddd3ea6d00ceed53cc7", null ],
+    [ "consecutive_failures_", "classkcenon_1_1monitoring_1_1error__boundary.html#a9c663021a0f986a49ba89c7819c38640", null ],
+    [ "current_degradation_level_", "classkcenon_1_1monitoring_1_1error__boundary.html#a164bff9a98a94789aa51cb10f472a1d2", null ],
+    [ "error_handler_", "classkcenon_1_1monitoring_1_1error__boundary.html#a63e7a718c21fdeddfe95f3867e73e0d6", null ],
+    [ "fallback_strategy_", "classkcenon_1_1monitoring_1_1error__boundary.html#aa80901ed4e02fe3a556b91eccdda31ab", null ],
+    [ "metrics_", "classkcenon_1_1monitoring_1_1error__boundary.html#a3f325a80fbe1145b3e0029f83c0ce6c9", null ],
+    [ "name_", "classkcenon_1_1monitoring_1_1error__boundary.html#ac485aba47172bab093eea2444622ea38", null ]
+];
